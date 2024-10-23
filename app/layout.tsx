@@ -5,9 +5,7 @@ import BgColor from './(home)/_components/ui/bgColor';
 import Container from './(home)/_components/ui/container';
 import clsx from 'clsx';
 import { fontSans } from '@/config/fonts';
-import Footer from './(home)/_components/footer';
-import { Navbar } from './(home)/_components/ui/navbar';
-import { Providers } from './providers';
+import { Providers } from '../providers/providers';
 
 export const metadata: Metadata = {
   title: {
@@ -56,7 +54,7 @@ export default function RootLayout({
       </head>
       <body
         className={clsx(
-          'min-h-screen bg-background font-sans antialiased px-2 py-4',
+          'min-h-screen bg-background font-sans antialiased',
           fontSans.variable
         )}
       >
@@ -64,15 +62,7 @@ export default function RootLayout({
           {/* Blur effect background */}
           <BgColor />
           {/* Main content layout */}
-          <Container>
-            {/* Navbar component */}
-            <Navbar />
-
-            {children}
-
-            {/* Footer component */}
-            <Footer />
-          </Container>
+          <Container>{children}</Container>
         </Providers>
       </body>
     </html>

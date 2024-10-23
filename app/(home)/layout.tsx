@@ -4,6 +4,7 @@ import { ReactNode } from 'react';
 import Footer from './_components/footer';
 import { Element, Link as ScrollLink } from 'react-scroll';
 import { motion } from 'framer-motion';
+import { Navbar } from './_components/ui/navbar';
 
 interface CommonLayoutProps {
   children: ReactNode;
@@ -32,9 +33,25 @@ export default function CommonLayout({
   contact,
 }: CommonLayoutProps) {
   return (
-    <div className="space-y-5">
+    <div className="space-y-5 pt-4 px-2">
+      <Navbar />
+
       {/* Main content */}
       <section>{children}</section>
+
+      {/* Skills section with animation */}
+      <Element name="skills">
+        <motion.section
+          className="h-screen"
+          id="skills"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.5 }}
+          variants={sectionAnimation}
+        >
+          {skills}
+        </motion.section>
+      </Element>
 
       {/* About section with animation */}
       <Element name="about">
@@ -75,20 +92,6 @@ export default function CommonLayout({
           variants={sectionAnimation}
         >
           {experience}
-        </motion.section>
-      </Element>
-
-      {/* Skills section with animation */}
-      <Element name="skills">
-        <motion.section
-          className="h-screen"
-          id="skills"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.5 }}
-          variants={sectionAnimation}
-        >
-          {skills}
         </motion.section>
       </Element>
 
@@ -133,6 +136,7 @@ export default function CommonLayout({
           {contact}
         </motion.section>
       </Element>
+      <Footer />
     </div>
   );
 }

@@ -13,7 +13,7 @@ export const buttonVariants = {
 export const linkVariants = {
   initial: { opacity: 0, y: 10 },
   animate: { opacity: 1, y: 0, transition: { duration: 0.3 } },
-  whileHover: { scale: 1.1, color: '#098346', transition: { duration: 0.2 } }, // Scale on hover with color change
+  whileHover: { scale: 1.1, color: '#F5A524', transition: { duration: 0.2 } }, // Scale on hover with color change
 };
 
 export const textVariants = {

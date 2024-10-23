@@ -1,4 +1,12 @@
 export type SiteConfig = typeof siteConfig;
+import {
+  FaTimes,
+  FaUser,
+  FaLaptopCode,
+  FaGraduationCap,
+  FaProjectDiagram,
+  FaBlog,
+} from 'react-icons/fa';
 
 export const siteConfig = {
   name: "Md-Rijwan-Jannat's Portfolio",
@@ -37,26 +45,32 @@ export const siteConfig = {
     },
   ],
 
-  navMenuItems: [
+  dashboardMenuItems: [
+    { name: 'Profile', icon: FaUser, path: '/dashboard' },
     {
-      label: 'Dashboard',
-      href: '/admin/dashboard',
+      name: 'Skills Management',
+      icon: FaLaptopCode,
+      path: '/dashboard/skills-management',
     },
     {
-      label: 'Manage Projects',
-      href: '/admin/projects',
+      name: 'Projects Management',
+      icon: FaProjectDiagram,
+      path: '/dashboard/projects-management',
     },
     {
-      label: 'Manage Blog',
-      href: '/admin/blog',
+      name: 'Education Management',
+      icon: FaGraduationCap,
+      path: '/dashboard/education-management',
     },
     {
-      label: 'Manage Skills',
-      href: '/admin/skills',
+      name: 'Experience Management',
+      icon: FaUser,
+      path: '/dashboard/experience-management',
     },
     {
-      label: 'Logout',
-      href: '/logout',
+      name: 'Blogs Management',
+      icon: FaBlog,
+      path: '/dashboard/blogs-management',
     },
   ],
   links: {

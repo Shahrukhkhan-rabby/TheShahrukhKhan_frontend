@@ -8,8 +8,9 @@ import {
   NavbarMenuToggle,
   NavbarItem,
   NavbarMenuItem,
+  NavbarBrand,
 } from '@nextui-org/navbar';
-import { Link as ScrollLink } from 'react-scroll'; // Import Scroll Link from react-scroll
+import { Link as ScrollLink } from 'react-scroll';
 import { motion } from 'framer-motion';
 import clsx from 'clsx';
 
@@ -18,6 +19,8 @@ import { ThemeSwitch } from '@/app/(home)/_components/ui/theme-switch';
 import { linkVariants, menuVariants } from './animation';
 import Logo from './logo';
 import NavButtons from './navButtons';
+import AnimatedButton from './button';
+import Link from 'next/link';
 
 export const Navbar = () => {
   const [shouldHideOnScroll, setShouldHideOnScroll] = useState(true);
@@ -41,7 +44,9 @@ export const Navbar = () => {
     >
       {/* Brand and logo */}
       <NavbarContent className="basis-1/5 sm:basis-full m-3" justify="start">
-        <Logo />
+        <NavbarBrand as={Link} href={'/'} className="gap-3 max-w-fit">
+          <Logo />
+        </NavbarBrand>
 
         {/* Desktop links with animation */}
         <ul className="hidden xl:flex gap-4 justify-start ml-2">
@@ -54,15 +59,13 @@ export const Navbar = () => {
                 whileHover="whileHover"
               >
                 <ScrollLink
-                  to={item.href.substring(1)} // Remove '#' for react-scroll
-                  smooth={true} // Enable smooth scrolling
-                  offset={-90} // Adjust the scroll offset for sticky navbar
-                  duration={500} // Animation duration
-                  className={clsx(
-                    'cursor-pointer',
-                    'data-[active=true]:text-primary data-[active=true]:font-medium'
-                  )}
-                  onClick={handleLinkClick} // Handle link click
+                  color="black"
+                  to={item.href.substring(1)}
+                  smooth={true}
+                  offset={-90}
+                  duration={500}
+                  className={clsx('cursor-pointer hover:text-warning')}
+                  onClick={handleLinkClick}
                 >
                   {item.label}
                 </ScrollLink>
@@ -82,6 +85,9 @@ export const Navbar = () => {
         </NavbarItem>
         <NavbarItem className="hidden sm:flex gap-2">
           <ThemeSwitch />
+        </NavbarItem>
+        <NavbarItem className="hidden sm:flex gap-2">
+          <AnimatedButton href="/dashboard" text="Dashboard" />
         </NavbarItem>
       </NavbarContent>
 
@@ -110,7 +116,7 @@ export const Navbar = () => {
                 whileHover="whileHover"
               >
                 <ScrollLink
-                  to={item.href.substring(1)} // Remove '#' for react-scroll
+                  to={item.href.substring(1)}
                   smooth={true}
                   offset={-70}
                   duration={1500}
@@ -124,6 +130,9 @@ export const Navbar = () => {
           ))}
         </div>
         <NavButtons />
+        <NavbarItem className="hidden sm:flex gap-2">
+          <AnimatedButton href="/dashboard" text="Dashboard" />
+        </NavbarItem>
       </NavbarMenu>
     </NextUINavbar>
   );
