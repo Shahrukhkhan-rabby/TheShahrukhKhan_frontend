@@ -9,28 +9,17 @@ import {
   TableCell,
 } from '@nextui-org/table';
 import { Avatar } from '@nextui-org/avatar';
-import { useGetAllSkills } from '@/hooks/skills.hook';
 import React from 'react';
 import { TSkill } from '@/types';
-import { Button } from '@nextui-org/button';
-import { FaPencilAlt, FaPlus, FaTrashAlt } from 'react-icons/fa';
 import AddSkillModal from '../../../modal/addSkillModal';
 import EditSkillModal from '../../../modal/editSkillModal';
 import DeleteSkillModal from '../../../modal/deleteSkillModal';
 
-export default function SkillsTable() {
-  const { data, isLoading, error } = useGetAllSkills();
+interface TSkillsTableProps {
+  skills: TSkill[];
+}
 
-  const skills = data?.data as TSkill[];
-
-  if (isLoading) {
-    return <p>Loading skills...</p>;
-  }
-
-  if (error) {
-    return <p>Error loading skills!</p>;
-  }
-
+export default function SkillsTable({ skills }: TSkillsTableProps) {
   return (
     <div>
       <div className="flex justify-end mb-5">
@@ -43,9 +32,8 @@ export default function SkillsTable() {
           <TableColumn>Level</TableColumn>
           <TableColumn>Category</TableColumn>
           <TableColumn>Action</TableColumn>
-          {/* Example for an additional column */}
         </TableHeader>
-        <TableBody>
+        <TableBody emptyContent={'No skills available'}>
           {skills?.map((skill) => (
             <TableRow key={skill._id}>
               <TableCell>
@@ -60,7 +48,6 @@ export default function SkillsTable() {
                   <DeleteSkillModal skill={skill} />
                 </div>
               </TableCell>
-              {/* Placeholder if no status */}
             </TableRow>
           ))}
         </TableBody>

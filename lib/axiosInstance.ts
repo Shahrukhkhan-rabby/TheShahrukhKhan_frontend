@@ -1,8 +1,10 @@
 import axios from 'axios';
 import { cookies } from 'next/headers';
 
+const baseApi = process.env.NEXT_PUBLIC_BASE_API;
+
 const axiosInstance = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_BASE_API,
+  baseURL: baseApi,
 });
 
 axiosInstance.interceptors.request.use(
@@ -11,7 +13,8 @@ axiosInstance.interceptors.request.use(
     const accessToken = cookieStore.get('accessToken')?.value;
 
     if (accessToken) {
-      config.headers.Authorization = `${accessToken}`;
+      // Add the 'Bearer' prefix to the token
+      config.headers.Authorization = `Bearer ${accessToken}`;
     }
 
     return config;
@@ -22,9 +25,10 @@ axiosInstance.interceptors.request.use(
 );
 
 axiosInstance.interceptors.response.use(
-  (response) => response,
-  (error) => {
-    // You may want to handle specific error responses here
+  function (response) {
+    return response;
+  },
+  function (error) {
     return Promise.reject(error);
   }
 );

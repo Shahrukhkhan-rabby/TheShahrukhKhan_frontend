@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Modal,
   ModalContent,
@@ -8,39 +8,29 @@ import {
   useDisclosure,
 } from '@nextui-org/modal';
 import { Button } from '@nextui-org/button';
-import { FaImage, FaPencilAlt, FaPlus } from 'react-icons/fa';
-import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'; // Import React Hook Form
-import { Select, SelectItem } from '@nextui-org/select';
+import { FaImage, FaPencilAlt } from 'react-icons/fa';
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { Input } from '@nextui-org/input';
-import { SkillLevel, SkillCategory } from '@/constants/skills.constants';
-import {
-  useCreateSkill,
-  useEditSkill,
-  useGetAllSkills,
-} from '@/hooks/skills.hook';
+import { useCreateProject, useEditProject } from '@/hooks/projects.hook';
 import { uploadImageToCloudinary } from '@/utils/uploadImageToCloudinary';
 import Image from 'next/image';
-import { TProject } from '@/types/projectsTypes';
-import { TSkill } from '@/types';
-import { useEditProject } from '@/hooks/projects.hook';
+import { Spinner } from '@nextui-org/spinner';
+import { Select, SelectItem } from '@nextui-org/select';
+import { useGetAllSkills } from '@/hooks/skills.hook';
+import { TProject, TSkill, TUpdateData } from '@/types';
+import { Selection } from '@nextui-org/table';
 
 interface TEditProjectModalProps {
   project: TProject;
 }
 
-export interface TEditProject {
-  id: string;
-  data: FieldValues;
-}
-
 export default function EditProjectModal({ project }: TEditProjectModalProps) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const { mutate: editProjectFn, isPending } = useEditProject();
+  const [loadingImages, setLoadingImages] = useState(false);
   const { data } = useGetAllSkills();
   const skills = data?.data;
 
-  const { mutate: editProjectFn, isPending } = useEditProject();
-
-  // Initialize React Hook Form
   const {
     register,
     handleSubmit,
@@ -48,78 +38,92 @@ export default function EditProjectModal({ project }: TEditProjectModalProps) {
     watch,
     formState: { errors },
   } = useForm({
-    defaultValues: {
-      title: project?.title,
-      description: project?.description,
-      live: project.live,
-      images: project.images,
-      technologies: project.technologies,
-    },
+    defaultValues: project,
   });
 
+  // State to hold selected technologies (multiple selection)
+  const [selectedTechnologies, setSelectedTechnologies] = useState<Selection>(
+    new Set()
+  );
+
+  // Initialize selectedTechnologies based on the project's existing technologies
+  useEffect(() => {
+    if (project?.technologies) {
+      setSelectedTechnologies(
+        new Set(project.technologies.map((tech: TSkill) => tech._id))
+      );
+    }
+  }, [project]);
+
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const uploadedUrl = await uploadImageToCloudinary(file);
-      setValue('images', uploadedUrl);
+    const files = e.target.files;
+    if (files) {
+      setLoadingImages(true);
+      const uploadedUrls: string[] = await Promise.all(
+        Array.from(files).map(uploadImageToCloudinary)
+      );
+      setValue('images', uploadedUrls);
+      setLoadingImages(false);
     }
   };
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    if (!data.images) {
-      console.error('Images is required but not uploaded.');
+    if (data.images.length === 0) {
+      console.error('At least one image is required.');
       return;
     }
-    const skillData: TEditProject = {
+    // Convert selected technologies Set to an array
+    data.technologies = Array.from(selectedTechnologies) as string[];
+
+    const projectData: TUpdateData = {
       id: project?._id,
       data: data,
     };
-
-    editProjectFn(skillData);
+    editProjectFn(projectData);
   };
-
-  const ProjectTechnologies = skills?.map((skill: TSkill) => {
-    return {
-      key: skill._id,
-      value: skill.name,
-    };
-  });
 
   return (
     <>
       <Button
         onPress={onOpen}
-        isIconOnly
         radius="full"
+        isIconOnly
         size="sm"
-        startContent={<FaPencilAlt className="text-default-800" />}
+        className="font-semibold"
+        endContent={<FaPencilAlt />}
       />
 
-      <Modal size="lg" isOpen={isOpen} onOpenChange={onOpenChange}>
+      <Modal
+        size="lg"
+        placement="center"
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+      >
         <ModalContent>
           {(onClose) => (
             <>
               <ModalHeader className="flex flex-col gap-1">
-                Edit the {`${project?.title}`} Skill
+                Edit the {`${project?.title}`} project
               </ModalHeader>
 
               <ModalBody>
-                {/* Form - Using React Hook Form */}
                 <form className="space-y-3" onSubmit={handleSubmit(onSubmit)}>
                   <Input
                     label="Project Title"
                     variant="bordered"
                     placeholder="Enter project title"
                     {...register('title', {
-                      required: 'PRoject name is required',
+                      required: 'Project title is required',
                     })}
                   />
                   {errors.title && (
-                    <p className="text-error">{errors.title.message}</p>
+                    <p className="text-error text-xs text-red-500">
+                      {errors.title?.message}
+                    </p>
                   )}
 
                   <Input
-                    label="Project Description"
+                    label="Description"
                     variant="bordered"
                     placeholder="Enter project description"
                     {...register('description', {
@@ -127,38 +131,73 @@ export default function EditProjectModal({ project }: TEditProjectModalProps) {
                     })}
                   />
                   {errors.description && (
-                    <p className="text-error">{errors.description.message}</p>
+                    <p className="text-error text-xs text-red-500">
+                      {errors.description?.message}
+                    </p>
                   )}
 
                   <Input
-                    label="Project Live Link"
+                    label="GitHub (Frontend)"
                     variant="bordered"
-                    placeholder="Enter project live link"
-                    {...register('live', {
-                      required: 'Project live link is required',
+                    placeholder="Enter frontend GitHub URL"
+                    {...register('github.frontend', {
+                      required: 'Frontend GitHub URL is required',
                     })}
                   />
-                  {errors.description && (
-                    <p className="text-error">{errors.description.message}</p>
+                  {errors.github?.frontend && (
+                    <p className="text-error text-xs text-red-500">
+                      {errors.github.frontend?.message}
+                    </p>
                   )}
 
-                  <Select
-                    label="Project technologies"
-                    placeholder="Select project technologies"
+                  <Input
+                    label="GitHub (Backend)"
                     variant="bordered"
-                    {...register('technologies', {
-                      required: 'Project technologies is required',
+                    placeholder="Enter backend GitHub URL"
+                    {...register('github.backend', {
+                      required: 'Backend GitHub URL is required',
                     })}
+                  />
+                  {errors.github?.backend && (
+                    <p className="text-error text-xs text-red-500">
+                      {errors.github.backend?.message}
+                    </p>
+                  )}
+
+                  <Input
+                    label="Live Site URL"
+                    variant="bordered"
+                    placeholder="Enter live site URL"
+                    {...register('live', {
+                      required: 'Live site URL is required',
+                    })}
+                  />
+                  {errors.live && (
+                    <p className="text-error text-xs text-red-500">
+                      {errors.live?.message}
+                    </p>
+                  )}
+
+                  {/* Multiple Select for Skill Categories */}
+                  <Select
+                    label="Skill Category"
+                    placeholder="Select skill category"
+                    selectionMode="multiple"
+                    selectedKeys={selectedTechnologies}
+                    onSelectionChange={setSelectedTechnologies}
+                    variant="bordered"
                     multiple
                   >
-                    {ProjectTechnologies.map((technologies) => (
-                      <SelectItem key={technologies} value={technologies}>
-                        {technologies}
+                    {skills?.map((technology: TSkill) => (
+                      <SelectItem key={technology._id} value={technology._id}>
+                        {technology.name}
                       </SelectItem>
                     ))}
                   </Select>
                   {errors.technologies && (
-                    <p className="text-error">{errors.technologies.message}</p>
+                    <p className="text-error text-xs text-red-500">
+                      {errors.technologies.message}
+                    </p>
                   )}
 
                   <label className="mt-4 cursor-pointer text-xs text-warning-400 my-5 flex gap-2 items-center h-14 rounded-xl px-3 border border-default-200 hover:border-default-400">
@@ -167,25 +206,34 @@ export default function EditProjectModal({ project }: TEditProjectModalProps) {
                     <Input
                       type="file"
                       accept="image/*"
+                      multiple
                       variant="bordered"
                       className="hidden"
                       onChange={handleFileUpload}
                     />
                   </label>
                   {errors.images && (
-                    <p className="text-error">Images is required</p>
+                    <p className="text-error text-xs text-red-500">
+                      At least one image is required
+                    </p>
                   )}
 
-                  {/* Show uploaded icon preview */}
-                  {watch('images') && (
-                    <Image
-                      src={watch('images')}
-                      width={500}
-                      height={500}
-                      alt="Skill Icon"
-                      className="h-12 w-12 mt-2 object-cover rounded-md border-dashed border-default-200 p-1"
-                    />
-                  )}
+                  <div className="flex items-center gap-2 flex-nowrap">
+                    {loadingImages ? (
+                      <Spinner size="sm" color="warning" />
+                    ) : (
+                      watch('images')?.map((img: string, index: number) => (
+                        <Image
+                          key={index}
+                          src={img}
+                          width={100}
+                          height={100}
+                          alt={`Uploaded image ${index + 1}`}
+                          className="h-14 w-14 mt-2 object-cover rounded-md border border-dashed border-default-200 p-1"
+                        />
+                      ))
+                    )}
+                  </div>
 
                   <ModalFooter>
                     <Button
@@ -195,7 +243,7 @@ export default function EditProjectModal({ project }: TEditProjectModalProps) {
                       isLoading={isPending}
                       onPress={onClose}
                     >
-                      {isPending ? 'Saving...' : 'Save'}
+                      {isPending ? 'Creating...' : 'Create'}
                     </Button>
                   </ModalFooter>
                 </form>

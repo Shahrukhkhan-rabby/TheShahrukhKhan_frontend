@@ -9,25 +9,27 @@ import {
 } from '@nextui-org/modal';
 import { Button } from '@nextui-org/button';
 import { FaTrashAlt } from 'react-icons/fa';
-import { useCreateSkill, useDeleteSkill } from '@/hooks/skills.hook';
-import { TSkill } from '@/types';
+import { TEducation } from '@/types';
+import { useDeleteEducation } from '@/hooks/educations.hook';
 
-interface TDeleteSkillModalProps {
-  skill: TSkill;
+interface TDeleteEducationModalProps {
+  education: TEducation;
 }
 
-export default function DeleteSkillModal({ skill }: TDeleteSkillModalProps) {
+export default function DeleteEducationModal({
+  education,
+}: TDeleteEducationModalProps) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const { mutate: deleteEducationFn, isPending } = useDeleteEducation();
 
-  const { mutate: deleteSkillFn, isPending } = useDeleteSkill();
-
-  const deleteSkillHandler = async (id: string) => {
+  const deleteEducationHandler = async (id: string) => {
     if (!id) {
       console.error('Id is required but not provided.');
       return;
     }
 
-    deleteSkillFn(id);
+    await deleteEducationFn(id);
+    onOpenChange();
   };
 
   return (
@@ -45,12 +47,11 @@ export default function DeleteSkillModal({ skill }: TDeleteSkillModalProps) {
           {(onClose) => (
             <>
               <ModalHeader className="flex flex-col gap-1">
-                Delete the {`${skill?.name}`} Skill
+                Delete {education.institution}
               </ModalHeader>
-
               <ModalBody>
                 <p className="text-xs text-default-700">
-                  Are you sure?. You want a delete this skill
+                  Are you sure you want to delete this education entry?
                 </p>
               </ModalBody>
               <ModalFooter>
@@ -59,9 +60,8 @@ export default function DeleteSkillModal({ skill }: TDeleteSkillModalProps) {
                 </Button>
                 <Button
                   isLoading={isPending}
-                  onClick={() => deleteSkillHandler(skill?._id)}
+                  onClick={() => deleteEducationHandler(education._id)}
                   size="sm"
-                  onPress={onClose}
                   className="bg-red-500 text-white"
                 >
                   Yes

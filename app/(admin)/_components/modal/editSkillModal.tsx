@@ -16,17 +16,11 @@ import { SkillLevel, SkillCategory } from '@/constants/skills.constants';
 import { useCreateSkill, useEditSkill } from '@/hooks/skills.hook';
 import { uploadImageToCloudinary } from '@/utils/uploadImageToCloudinary';
 import Image from 'next/image';
-import { TSkill } from '@/types';
+import { TSkill, TUpdateData } from '@/types';
 
 interface TEditSkillModalProps {
   skill: TSkill;
 }
-
-export interface TEditSkill {
-  id: string;
-  data: FieldValues;
-}
-
 export default function EditSkillModal({ skill }: TEditSkillModalProps) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
@@ -61,7 +55,7 @@ export default function EditSkillModal({ skill }: TEditSkillModalProps) {
       console.error('Icon is required but not uploaded.');
       return;
     }
-    const skillData: TEditSkill = {
+    const skillData: TUpdateData = {
       id: skill?._id,
       data: data,
     };
@@ -79,7 +73,12 @@ export default function EditSkillModal({ skill }: TEditSkillModalProps) {
         startContent={<FaPencilAlt className="text-default-800" />}
       />
 
-      <Modal size="lg" isOpen={isOpen} onOpenChange={onOpenChange}>
+      <Modal
+        size="lg"
+        placement="center"
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+      >
         <ModalContent>
           {(onClose) => (
             <>
@@ -99,7 +98,9 @@ export default function EditSkillModal({ skill }: TEditSkillModalProps) {
                     })}
                   />
                   {errors.name && (
-                    <p className="text-error">{errors.name.message}</p>
+                    <p className="text-error text-xs text-red-500">
+                      {errors.name.message}
+                    </p>
                   )}
 
                   <Select
@@ -117,7 +118,9 @@ export default function EditSkillModal({ skill }: TEditSkillModalProps) {
                     ))}
                   </Select>
                   {errors.level && (
-                    <p className="text-error">{errors.level.message}</p>
+                    <p className="text-error text-xs text-red-500">
+                      {errors.level.message}
+                    </p>
                   )}
 
                   <Select
@@ -135,7 +138,9 @@ export default function EditSkillModal({ skill }: TEditSkillModalProps) {
                     ))}
                   </Select>
                   {errors.category && (
-                    <p className="text-error">{errors.category.message}</p>
+                    <p className="text-error text-xs text-red-500">
+                      {errors.category.message}
+                    </p>
                   )}
 
                   <label className="mt-4 cursor-pointer text-xs text-warning-400 my-5 flex gap-2 items-center h-14 rounded-xl px-3 border border-default-200 hover:border-default-400">
@@ -150,7 +155,9 @@ export default function EditSkillModal({ skill }: TEditSkillModalProps) {
                     />
                   </label>
                   {errors.icon && (
-                    <p className="text-error">Icon is required</p>
+                    <p className="text-error text-xs text-red-500">
+                      Icon is required
+                    </p>
                   )}
 
                   {/* Show uploaded icon preview */}

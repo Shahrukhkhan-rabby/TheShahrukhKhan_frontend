@@ -67,15 +67,35 @@ const Landing = () => {
                   <span className="text-purple-400">{'<Name '}</span>
                   <span className="text-blue-400">className</span>
                   <span className="text-gray-400">=</span>
-                  <span className="text-green-400">"text-2xl font-bold"</span>
+                  <span className="text-green-400">
+                    "text-sm font-semibold"
+                  </span>
                   <span className="text-purple-400">{'>'}</span>
-                  <span className="text-white">MD Rijwan Jannat</span>
+                  <br />
+                  <span className="text-white ml-5 text-sm font-semibold">
+                    MD Rijwan Jannat
+                  </span>
+                  <br />
                   <span className="text-purple-400">{'</Name>'}</span>
                 </div>
                 <div className="mt-5">
-                  <span className="text-purple-400">{'<Passionate>'}</span>
-                  <span className="text-white">Hello: I am a </span>
-                  <span className="text-green-400">{text}</span>
+                  <span className="text-purple-400">{'<Passionate'}</span>
+                  <span className="text-blue-400">className</span>
+                  <span className="text-gray-400">=</span>
+                  <span className="text-green-400">
+                    "text-lg font-semibold"
+                  </span>
+                  <span className="text-purple-400">{'>'}</span>
+                  <br />
+                  <div className="flex gap-1 items-center pl-5">
+                    {' '}
+                    <span className="text-white text-lg font-semibold">
+                      Hello: I am a{' '}
+                    </span>
+                    <span className="text-green-400 text-lg font-semibold">
+                      {text}
+                    </span>
+                  </div>
                   <Cursor cursorColor="white" />
                   <span className="text-purple-400">{'</Passionate>'}</span>
                 </div>

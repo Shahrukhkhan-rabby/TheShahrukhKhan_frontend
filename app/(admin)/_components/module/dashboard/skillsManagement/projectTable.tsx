@@ -1,5 +1,7 @@
 'use client';
 
+import React from 'react';
+import { format } from 'date-fns';
 import {
   Table,
   TableHeader,
@@ -9,26 +11,18 @@ import {
   TableCell,
 } from '@nextui-org/table';
 import { Avatar } from '@nextui-org/avatar';
-import { useGetAllProjects } from '@/hooks/projects.hook';
-import React from 'react';
 import { TProject } from '@/types/projectsTypes';
 import AddProjectModal from '../../../modal/addProjectModal';
 import EditProjectModal from '../../../modal/editProjectModal';
 import DeleteProjectModal from '../../../modal/deleteProjectModal';
+import Link from 'next/link';
+import { Tooltip } from '@nextui-org/tooltip';
 
-export default function ProjectsTable() {
-  const { data, isLoading, error } = useGetAllProjects();
+interface TProjectTableProps {
+  projects: TProject[];
+}
 
-  const Projects = data?.data as TProject[];
-
-  if (isLoading) {
-    return <p>Loading Projects...</p>;
-  }
-
-  if (error) {
-    return <p>Error loading Projects!</p>;
-  }
-
+export default function ProjectsTable({ projects }: TProjectTableProps) {
   return (
     <div>
       <div className="flex justify-end mb-5">
@@ -39,26 +33,59 @@ export default function ProjectsTable() {
           <TableColumn>Image</TableColumn>
           <TableColumn>Title</TableColumn>
           <TableColumn>Description</TableColumn>
+          <TableColumn>GitHub (Frontend)</TableColumn>
+          <TableColumn>GitHub (Backend)</TableColumn>
+          <TableColumn>Live Site</TableColumn>
           <TableColumn>Created At</TableColumn>
           <TableColumn>Action</TableColumn>
-          {/* Example for an additional column */}
         </TableHeader>
-        <TableBody>
-          {Projects?.map((project) => (
+        <TableBody emptyContent={'No projects available'}>
+          {projects?.map((project) => (
             <TableRow key={project._id}>
               <TableCell>
                 <Avatar src={project.images[0]} />
               </TableCell>
               <TableCell>{project.title}</TableCell>
-              <TableCell>{project.description}</TableCell>
-              <TableCell>{project.createdAt}</TableCell>
+              <TableCell>
+                <Tooltip className="w-[250px]" content={project.description}>
+                  {project.description.slice(0, 28) + '...'}
+                </Tooltip>
+              </TableCell>
+              <TableCell>
+                <Link
+                  href={project.github.frontend}
+                  className="text-blue-500 whitespace-nowrap"
+                >
+                  Frontend
+                </Link>
+              </TableCell>
+              <TableCell>
+                <Link
+                  href={project.github.backend}
+                  className="text-blue-500 whitespace-nowrap"
+                >
+                  Backend
+                </Link>
+              </TableCell>
+              <TableCell>
+                <Link
+                  href={project.live}
+                  className="text-blue-500 whitespace-nowrap"
+                >
+                  Live Site
+                </Link>
+              </TableCell>
+              <TableCell>
+                <p className="whitespace-nowrap">
+                  {format(new Date(project.createdAt), 'dd MMM y')}
+                </p>
+              </TableCell>
               <TableCell>
                 <div className="flex items-center gap-5 justify-start">
                   <EditProjectModal project={project} />
                   <DeleteProjectModal project={project} />
                 </div>
               </TableCell>
-              {/* Placeholder if no status */}
             </TableRow>
           ))}
         </TableBody>

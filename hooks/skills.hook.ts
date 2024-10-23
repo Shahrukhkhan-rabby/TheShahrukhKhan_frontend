@@ -1,21 +1,20 @@
 import { useSearchParams } from 'next/navigation';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { SkillCategory } from '@/constants/skills.constants';
-import { TSkill } from '@/types';
+import { TSkill, TUpdateData } from '@/types';
 import {
   createSkill,
   deleteSkill,
   getSkillsByCategory,
-  updateSkill,
+  editSkill,
 } from '@/service/skillsService/skillsService';
 import { FieldValues } from 'react-hook-form';
 import { toast } from 'sonner';
-import { TEditSkill } from '@/app/(admin)/_components/modal/editSkillModal';
 
 // Create skills
 export const useCreateSkill = () => {
   return useMutation<any, Error, FieldValues>({
-    mutationKey: ['skills'],
+    mutationKey: ['add_skills'],
     mutationFn: (skillData) => createSkill(skillData),
     onSuccess: () => {
       toast.success('Skill create successfully.');
@@ -26,31 +25,11 @@ export const useCreateSkill = () => {
   });
 };
 
-// Get all skills
-export const useGetAllSkills = () => {
-  return useQuery({
-    queryKey: ['skills'],
-    queryFn: () => getSkillsByCategory(),
-  });
-};
-
-// Get skills base on category
-export const useGetSkillsByCategory = () => {
-  const searchParams = useSearchParams();
-  const category = searchParams.get('category') as SkillCategory;
-
-  return useQuery({
-    queryKey: ['skills', category],
-    queryFn: () => getSkillsByCategory(category),
-    enabled: !!category,
-  });
-};
-
 // Edit skills
 export const useEditSkill = () => {
   return useMutation({
-    mutationKey: ['skills'],
-    mutationFn: (skillData: TEditSkill) => updateSkill(skillData),
+    mutationKey: ['edit_skills'],
+    mutationFn: (skillData: TUpdateData) => editSkill(skillData),
     onSuccess: () => {
       toast.success('Skill update successfully.');
     },
@@ -63,7 +42,7 @@ export const useEditSkill = () => {
 // Delete skills
 export const useDeleteSkill = () => {
   return useMutation({
-    mutationKey: ['skills'],
+    mutationKey: ['delete_skills'],
     mutationFn: (id: string) => deleteSkill(id),
     onSuccess: () => {
       toast.success('Skill deleted successfully.');
@@ -71,5 +50,25 @@ export const useDeleteSkill = () => {
     onError: (error) => {
       toast.error(error.message);
     },
+  });
+};
+
+// Get all skills
+export const useGetAllSkills = () => {
+  return useQuery({
+    queryKey: ['get_skills'],
+    queryFn: () => getSkillsByCategory(),
+  });
+};
+
+// Get skills base on category
+export const useGetSkillsByCategory = () => {
+  const searchParams = useSearchParams();
+  const category = searchParams.get('category') as SkillCategory;
+
+  return useQuery({
+    queryKey: ['get_skills_by_category', category],
+    queryFn: () => getSkillsByCategory(category),
+    enabled: !!category,
   });
 };

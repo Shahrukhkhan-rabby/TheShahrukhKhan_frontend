@@ -42,7 +42,12 @@ export default function DeleteProjectModal({
         startContent={<FaTrashAlt className="text-red-500" />}
       />
 
-      <Modal size="lg" isOpen={isOpen} onOpenChange={onOpenChange}>
+      <Modal
+        size="lg"
+        placement="center"
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+      >
         <ModalContent>
           {(onClose) => (
             <>
@@ -57,7 +62,7 @@ export default function DeleteProjectModal({
               </ModalBody>
               <ModalFooter>
                 <Button onPress={onClose} size="sm">
-                  Cancel
+                  No
                 </Button>
                 <Button
                   isLoading={isPending}

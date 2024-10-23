@@ -1,9 +1,9 @@
 'use server';
 
-import { TEditSkill } from '@/app/(admin)/_components/modal/editSkillModal';
 import { SkillCategory } from '@/constants/skills.constants';
 import axiosInstance from '@/lib/axiosInstance';
-import { TSkill } from '@/types';
+import { TSkill, TUpdateData } from '@/types';
+import { revalidateTag } from 'next/cache';
 import { FieldValues } from 'react-hook-form';
 
 // Create skill
@@ -11,6 +11,7 @@ export const createSkill = async (skillData: FieldValues) => {
   try {
     const { data } = await axiosInstance.post('/skills', skillData);
 
+    revalidateTag('skills');
     return data;
   } catch (error: any) {
     throw new Error(error);
@@ -19,25 +20,45 @@ export const createSkill = async (skillData: FieldValues) => {
 
 // Fetch all skills
 export const getAllSkills = async () => {
-  const { data } = await axiosInstance.get('/skills');
+  let fetchOptions = {};
+
+  fetchOptions = {
+    cache: 'no-store',
+    next: {
+      tags: ['skills'],
+    },
+  };
+
+  const { data } = await axiosInstance.get('/skills', { fetchOptions });
   return data;
 };
 
 // Fetch skills based on the category
 export const getSkillsByCategory = async (category?: SkillCategory) => {
+  let fetchOptions = {};
+
+  fetchOptions = {
+    cache: 'no-store',
+    next: {
+      tags: ['skills'],
+    },
+  };
+
   const { data } = await axiosInstance.get('/skills', {
     params: { category },
+    fetchOptions,
   });
   return data;
 };
 
 // Update skill
-export const updateSkill = async (skillData: TEditSkill) => {
+export const editSkill = async (skillData: TUpdateData) => {
   try {
     const { data } = await axiosInstance.patch(
       `/skills/${skillData?.id}`,
       skillData?.data
     );
+    revalidateTag('skills');
 
     return data;
   } catch (error: any) {
@@ -50,6 +71,7 @@ export const deleteSkill = async (id: string) => {
   try {
     const { data } = await axiosInstance.delete(`/skills/${id}`);
 
+    revalidateTag('skills');
     return data;
   } catch (error: any) {
     throw new Error(error);

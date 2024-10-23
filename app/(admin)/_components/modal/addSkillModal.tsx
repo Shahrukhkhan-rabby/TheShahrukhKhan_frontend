@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Modal,
   ModalContent,
@@ -9,20 +9,21 @@ import {
 } from '@nextui-org/modal';
 import { Button } from '@nextui-org/button';
 import { FaImage, FaPlus } from 'react-icons/fa';
-import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'; // Import React Hook Form
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { Select, SelectItem } from '@nextui-org/select';
 import { Input } from '@nextui-org/input';
 import { SkillLevel, SkillCategory } from '@/constants/skills.constants';
 import { useCreateSkill } from '@/hooks/skills.hook';
 import { uploadImageToCloudinary } from '@/utils/uploadImageToCloudinary';
 import Image from 'next/image';
+import { Spinner } from '@nextui-org/spinner';
 
 export default function AddSkillModal() {
+  const [isImageUploading, setIsImageUploading] = useState(false); // Loader state for image
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   const { mutate: addSkillFn, isPending } = useCreateSkill();
 
-  // Initialize React Hook Form
   const {
     register,
     handleSubmit,
@@ -41,8 +42,10 @@ export default function AddSkillModal() {
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
+      setIsImageUploading(true);
       const uploadedUrl = await uploadImageToCloudinary(file);
       setValue('icon', uploadedUrl);
+      setIsImageUploading(false);
     }
   };
 
@@ -66,7 +69,12 @@ export default function AddSkillModal() {
         Add Skill
       </Button>
 
-      <Modal size="lg" isOpen={isOpen} onOpenChange={onOpenChange}>
+      <Modal
+        size="lg"
+        placement="center"
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+      >
         <ModalContent>
           {(onClose) => (
             <>
@@ -86,7 +94,9 @@ export default function AddSkillModal() {
                     })}
                   />
                   {errors.name && (
-                    <p className="text-error">{errors.name.message}</p>
+                    <p className="text-error text-xs text-red-500">
+                      {errors.name.message}
+                    </p>
                   )}
 
                   <Select
@@ -104,7 +114,9 @@ export default function AddSkillModal() {
                     ))}
                   </Select>
                   {errors.level && (
-                    <p className="text-error">{errors.level.message}</p>
+                    <p className="text-error text-xs text-red-500">
+                      {errors.level.message}
+                    </p>
                   )}
 
                   <Select
@@ -122,7 +134,9 @@ export default function AddSkillModal() {
                     ))}
                   </Select>
                   {errors.category && (
-                    <p className="text-error">{errors.category.message}</p>
+                    <p className="text-error text-xs text-red-500">
+                      {errors.category.message}
+                    </p>
                   )}
 
                   <label className="mt-4 cursor-pointer text-xs text-warning-400 my-5 flex gap-2 items-center h-14 rounded-xl px-3 border border-default-200 hover:border-default-400">
@@ -137,18 +151,26 @@ export default function AddSkillModal() {
                     />
                   </label>
                   {errors.icon && (
-                    <p className="text-error">Icon is required</p>
+                    <p className="text-error text-xs text-red-500">
+                      Icon is required
+                    </p>
                   )}
 
-                  {/* Show uploaded icon preview */}
-                  {watch('icon') && (
-                    <Image
-                      src={watch('icon')}
-                      width={500}
-                      height={500}
-                      alt="Skill Icon"
-                      className="h-12 w-12 mt-2 object-cover rounded-md border-dashed border-default-200 p-1"
-                    />
+                  {/* Show loader or uploaded icon preview */}
+                  {isImageUploading ? (
+                    <div className="p-2">
+                      <Spinner size="sm" color="warning" />
+                    </div>
+                  ) : (
+                    watch('icon') && (
+                      <Image
+                        src={watch('icon')}
+                        width={500}
+                        height={500}
+                        alt="Skill Icon"
+                        className="h-12 w-12 mt-2 object-cover rounded-md border-dashed border-default-200 p-1"
+                      />
+                    )
                   )}
 
                   <ModalFooter>

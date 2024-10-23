@@ -1,6 +1,6 @@
 // utils/cloudinary.ts
 
-export const uploadImageToCloudinary = async (file: File) => {
+export const uploadImageToCloudinary = async (file: File): Promise<string> => {
   const cloudinary_url = process.env.NEXT_PUBLIC_CLOUDINARY_URL;
   const upload_preset = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET;
 
