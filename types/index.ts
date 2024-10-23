@@ -15,3 +15,4 @@ export * from './projectsTypes';
 export * from './educationTypes';
 export * from './experienceTypes';
 export * from './blogsTypes';
+export * from './aboutTypes';

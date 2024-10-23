@@ -1,6 +1,6 @@
 import { getAllProjects } from '@/service/projectService/projectService';
 import React, { Suspense } from 'react';
-import ProjectsTable from '../../_components/module/dashboard/skillsManagement/projectTable';
+import ProjectsTable from '../../_components/module/dashboard/projectManagement/projectTable';
 import ProjectsTableSkeleton from '../../_components/ui/skeleton/projectTableSkeleton';
 
 export default async function ProjectsManagement() {
