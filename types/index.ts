@@ -14,3 +14,4 @@ export * from './skillsTypes';
 export * from './projectsTypes';
 export * from './educationTypes';
 export * from './experienceTypes';
+export * from './blogsTypes';

@@ -1,7 +1,9 @@
 'use server';
 
 import axiosInstance from '@/lib/axiosInstance';
+import { TAuthor } from '@/types';
 import { jwtDecode } from 'jwt-decode';
+import { revalidateTag } from 'next/cache';
 import { cookies } from 'next/headers';
 import { FieldValues } from 'react-hook-form';
 
@@ -12,6 +14,34 @@ export const loginUser = async (userData: FieldValues) => {
     if (data.success) {
       cookies().set('accessToken', data?.data?.accessToken);
     }
+
+    return data;
+  } catch (error: any) {
+    throw new Error(error);
+  }
+};
+
+// Fetch admin
+export const getAdmin = async () => {
+  let fetchOptions = {};
+
+  fetchOptions = {
+    cache: 'no-store',
+    next: {
+      tags: ['users'],
+    },
+  };
+
+  const { data } = await axiosInstance.get('/users', { fetchOptions });
+  return data;
+};
+
+// Update admin
+export const editAdmin = async (adminData: Partial<TAuthor>) => {
+  try {
+    const { data } = await axiosInstance.patch(`/users`, adminData);
+
+    revalidateTag('users');
 
     return data;
   } catch (error: any) {

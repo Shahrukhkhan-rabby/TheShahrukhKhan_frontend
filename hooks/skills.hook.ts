@@ -61,14 +61,14 @@ export const useGetAllSkills = () => {
   });
 };
 
-// Get skills base on category
+// Get skills based on category
 export const useGetSkillsByCategory = () => {
   const searchParams = useSearchParams();
   const category = searchParams.get('category') as SkillCategory;
 
   return useQuery({
-    queryKey: ['get_skills_by_category', category],
-    queryFn: () => getSkillsByCategory(category),
-    enabled: !!category,
+    queryKey: ['get_skills_by_category', category || 'Frontend'],
+    queryFn: () => getSkillsByCategory(category || 'Frontend'),
+    enabled: true,
   });
 };
