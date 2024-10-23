@@ -45,10 +45,14 @@ export default function ProjectsTable({ projects }: TProjectTableProps) {
               <TableCell>
                 <Avatar src={project.images[0]} />
               </TableCell>
-              <TableCell>{project.title}</TableCell>
+              <TableCell>
+                <p className="whitespace-nowrap">{project.title}</p>
+              </TableCell>
               <TableCell>
                 <Tooltip className="w-[250px]" content={project.description}>
-                  {project.description.slice(0, 28) + '...'}
+                  <p className="whitespace-nowrap">
+                    {project.description.slice(0, 20) + '...'}
+                  </p>
                 </Tooltip>
               </TableCell>
               <TableCell>

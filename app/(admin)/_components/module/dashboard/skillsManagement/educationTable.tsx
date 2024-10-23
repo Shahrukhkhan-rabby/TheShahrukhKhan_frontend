@@ -46,15 +46,23 @@ export default function EducationTable({ educations }: TEducationTableProps) {
           {educations?.map((education: TEducation) => (
             <TableRow key={education._id}>
               <TableCell>
-                <p>{education.institution}</p>
+                <p className="whitespace-nowrap">{education.institution}</p>
               </TableCell>
-              <TableCell>{education.location}</TableCell>
               <TableCell>
-                {new Date(education.startDate).toLocaleDateString()}
+                <p className="whitespace-nowrap">{education.location}</p>
+              </TableCell>
+              <TableCell>
+                <p className="whitespace-nowrap">
+                  {' '}
+                  {new Date(education.startDate).toLocaleDateString()}
+                </p>
               </TableCell>
               <TableCell>
                 {education.endDate ? (
-                  <p> {new Date(education.endDate).toLocaleDateString()}</p>
+                  <p className="whitespace-nowrap">
+                    {' '}
+                    {new Date(education.endDate).toLocaleDateString()}
+                  </p>
                 ) : (
                   'N/A'
                 )}
@@ -69,7 +77,7 @@ export default function EducationTable({ educations }: TEducationTableProps) {
                   className="w-[250px]"
                   content={education.subjects.join(', ')}
                 >
-                  <span>
+                  <span className="whitespace-nowrap">
                     {getTrimmedText(education.subjects.join(', '), 28)}
                   </span>
                 </Tooltip>
@@ -77,7 +85,7 @@ export default function EducationTable({ educations }: TEducationTableProps) {
 
               {/* Description with tooltip */}
               <TableCell>
-                <p>{education.degree}</p>
+                <p className="whitespace-nowrap">{education.degree}</p>
               </TableCell>
 
               <TableCell>

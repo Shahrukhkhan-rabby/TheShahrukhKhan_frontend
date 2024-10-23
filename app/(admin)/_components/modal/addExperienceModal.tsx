@@ -56,6 +56,8 @@ export default function AddExperienceModal() {
       <Button
         onPress={onOpen}
         className="font-semibold"
+        variant="faded"
+        color="warning"
         endContent={<FaPlus />}
       >
         Add Experience

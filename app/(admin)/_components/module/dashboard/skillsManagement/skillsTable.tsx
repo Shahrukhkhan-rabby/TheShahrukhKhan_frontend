@@ -39,9 +39,15 @@ export default function SkillsTable({ skills }: TSkillsTableProps) {
               <TableCell>
                 <Avatar src={skill.icon} />
               </TableCell>
-              <TableCell>{skill.name}</TableCell>
-              <TableCell>{skill.level}</TableCell>
-              <TableCell>{skill.category}</TableCell>
+              <TableCell>
+                <p className="whitespace-nowrap">{skill.name}</p>
+              </TableCell>
+              <TableCell>
+                <p className="whitespace-nowrap">{skill.level}</p>
+              </TableCell>
+              <TableCell>
+                <p className="whitespace-nowrap">{skill.category}</p>
+              </TableCell>
               <TableCell>
                 <div className="flex items-center gap-5 justify-start">
                   <EditSkillModal skill={skill} />

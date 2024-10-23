@@ -75,7 +75,7 @@ export default function SidebarMain({ children }: { children: ReactNode }) {
       <motion.aside
         variants={sidebarVariants}
         animate={isLargeScreen ? 'expanded' : 'collapsed'}
-        className="text-default-800 transition-all duration-300 ease-in-out h-screen lg:static flex flex-col  z-10 bg-default-50 fixed"
+        className="text-default-800 transition-all duration-300 ease-in-out h-screen lg:static flex flex-col items-center z-10 bg-default-50 fixed"
       >
         {/* Sidebar Logo */}
         <div className="flex items-start text-lg font-semibold p-4">
@@ -93,7 +93,7 @@ export default function SidebarMain({ children }: { children: ReactNode }) {
             >
               <Link
                 href={route.path}
-                className={`flex items-center space-x-2 p-2 md:py-2 lg:px-4 rounded-lg hover:bg-warning-400 hover:text-default-100 transition whitespace-nowrap ${route.path === pathname ? 'bg-warning-400 text-default-50' : ''}`}
+                className={`flex items-center space-x-2 p-2 md:py-2 lg:px-4 rounded-md hover:bg-warning-400 hover:text-default-100 transition whitespace-nowrap ${route.path === pathname ? 'bg-warning-400 text-default-50' : ''}`}
               >
                 <route.icon className="size-4" />
                 <motion.span
@@ -110,7 +110,7 @@ export default function SidebarMain({ children }: { children: ReactNode }) {
       </motion.aside>
 
       {/* Main Content */}
-      <motion.div className="flex-1 p-6 h-screen overflow-y-scroll scrollbar-hide">
+      <motion.div className="flex-1 p-6 h-screen overflow-y-scroll scrollbar-hide ml-8 lg:ml-0">
         {children}
       </motion.div>
     </div>

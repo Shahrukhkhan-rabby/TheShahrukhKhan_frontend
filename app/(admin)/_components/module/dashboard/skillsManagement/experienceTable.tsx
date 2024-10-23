@@ -46,9 +46,15 @@ export default function ExperienceTable({
         <TableBody emptyContent={'No experiences available'}>
           {experiences?.map((experience) => (
             <TableRow key={experience._id}>
-              <TableCell>{experience.title}</TableCell>
-              <TableCell>{experience.company}</TableCell>
-              <TableCell>{experience.location}</TableCell>
+              <TableCell>
+                <p className="whitespace-nowrap">{experience.title}</p>
+              </TableCell>
+              <TableCell>
+                <p className="whitespace-nowrap">{experience.company}</p>
+              </TableCell>
+              <TableCell>
+                <p className="whitespace-nowrap">{experience.location}</p>
+              </TableCell>
               <TableCell>
                 <p className="whitespace-nowrap">
                   {' '}
@@ -58,14 +64,18 @@ export default function ExperienceTable({
                 </p>
               </TableCell>
               <TableCell>
-                {experience.endDate
-                  ? format(new Date(experience.endDate), 'yyyy-MM-dd')
-                  : 'Present'}
+                <p className="whitespace-nowrap">
+                  {experience.endDate
+                    ? format(new Date(experience.endDate), 'yyyy-MM-dd')
+                    : 'Present'}
+                </p>
               </TableCell>
               <TableCell>
                 {' '}
                 <Tooltip className="w-[250px]" content={experience.description}>
-                  <span>{getTrimmedText(experience.description, 20)}</span>
+                  <span className="whitespace-nowrap">
+                    {getTrimmedText(experience.description, 20)}
+                  </span>
                 </Tooltip>
               </TableCell>
               <TableCell>

@@ -80,6 +80,8 @@ export default function AddProjectModal() {
       <Button
         onPress={onOpen}
         className="font-semibold"
+        variant="faded"
+        color="warning"
         endContent={<FaPlus />}
       >
         Add Project
