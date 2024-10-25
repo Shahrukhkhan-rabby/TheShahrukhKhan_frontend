@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Modal,
   ModalContent,
@@ -6,11 +6,12 @@ import {
   ModalBody,
   ModalFooter,
   useDisclosure,
-} from '@nextui-org/modal';
-import { Button } from '@nextui-org/button';
-import { FaTrashAlt } from 'react-icons/fa';
-import { TEducation } from '@/types';
-import { useDeleteEducation } from '@/hooks/educations.hook';
+} from "@nextui-org/modal";
+import { Button } from "@nextui-org/button";
+import { FaTrashAlt } from "react-icons/fa";
+
+import { TEducation } from "@/types";
+import { useDeleteEducation } from "@/hooks/educations.hook";
 
 interface TDeleteEducationModalProps {
   education: TEducation;
@@ -24,7 +25,8 @@ export default function DeleteEducationModal({
 
   const deleteEducationHandler = async (id: string) => {
     if (!id) {
-      console.error('Id is required but not provided.');
+      console.error("Id is required but not provided.");
+
       return;
     }
 
@@ -35,14 +37,14 @@ export default function DeleteEducationModal({
   return (
     <>
       <Button
-        onPress={onOpen}
         isIconOnly
         radius="full"
         size="sm"
         startContent={<FaTrashAlt className="text-red-500" />}
+        onPress={onOpen}
       />
 
-      <Modal size="lg" isOpen={isOpen} onOpenChange={onOpenChange}>
+      <Modal isOpen={isOpen} size="lg" onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (
             <>
@@ -55,14 +57,14 @@ export default function DeleteEducationModal({
                 </p>
               </ModalBody>
               <ModalFooter>
-                <Button onPress={onClose} size="sm">
+                <Button size="sm" onPress={onClose}>
                   No
                 </Button>
                 <Button
-                  isLoading={isPending}
-                  onClick={() => deleteEducationHandler(education._id)}
-                  size="sm"
                   className="bg-red-500 text-white"
+                  isLoading={isPending}
+                  size="sm"
+                  onClick={() => deleteEducationHandler(education._id)}
                 >
                   Yes
                 </Button>

@@ -1,17 +1,17 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import { Input, Textarea } from '@nextui-org/input';
-import { Card, CardBody } from '@nextui-org/card';
-import { Button } from '@nextui-org/button';
-import Image from 'next/image';
-import { Chip } from '@nextui-org/chip';
-import { useEditAbout } from '@/hooks/about.hook';
-import { useEditAdmin } from '@/hooks/auth.hook';
-import { uploadImageToCloudinary } from '@/utils/uploadImageToCloudinary';
-import { TAbout } from '@/types';
-import { FaImage } from 'react-icons/fa';
-import { Spinner } from '@nextui-org/spinner';
+import React, { useState } from "react";
+import { Input, Textarea } from "@nextui-org/input";
+import { Card, CardBody } from "@nextui-org/card";
+import { Button } from "@nextui-org/button";
+import Image from "next/image";
+import { Chip } from "@nextui-org/chip";
+import { Spinner } from "@nextui-org/spinner";
+
+import { useEditAbout } from "@/hooks/about.hook";
+import { useEditAdmin } from "@/hooks/auth.hook";
+import { uploadImageToCloudinary } from "@/utils/uploadImageToCloudinary";
+import { TAbout } from "@/types";
 
 interface TProfileProps {
   about: TAbout[]; // Ensure TAbout[] is typed correctly
@@ -45,22 +45,26 @@ export default function About({ about }: TProfileProps) {
   };
 
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
+
     setEditableData((prevData) => ({ ...prevData, [name]: value }));
   };
 
   const handleAdminInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+
     setEditableAdminData((prevData) => ({ ...prevData, [name]: value }));
   };
 
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
+
     if (file) {
       setIsImageUploading(true);
       const uploadedUrl = await uploadImageToCloudinary(file);
+
       setEditableAdminData((prevData) => ({ ...prevData, image: uploadedUrl }));
       setIsImageUploading(false);
     }
@@ -87,13 +91,13 @@ export default function About({ about }: TProfileProps) {
       editAboutFn(editAboutData);
       editAdminFn(editAdminData);
 
-      console.log('Data successfully saved:', {
+      console.log("Data successfully saved:", {
         about: editableData,
         admin: editableAdminData,
       });
       setIsEditing(false);
     } catch (error) {
-      console.error('Error saving data:', error);
+      console.error("Error saving data:", error);
     }
   };
 
@@ -104,13 +108,13 @@ export default function About({ about }: TProfileProps) {
           <div className="flex items-center mb-4">
             {isEditing ? (
               <>
-                {' '}
+                {" "}
                 <label className="cursor-pointer my-4 flex items-center">
                   <Input
-                    type="file"
                     accept="image/*"
-                    variant="bordered"
                     className="hidden"
+                    type="file"
+                    variant="bordered"
                     onChange={handleFileUpload}
                   />
                   {isImageUploading ? (
@@ -119,11 +123,11 @@ export default function About({ about }: TProfileProps) {
                     </div>
                   ) : (
                     <Image
-                      src={editableAdminData.image}
-                      width={50}
-                      height={50}
                       alt="Uploaded Image"
                       className="rounded-full size-24 object-cover"
+                      height={50}
+                      src={editableAdminData.image}
+                      width={50}
                     />
                   )}
                 </label>
@@ -131,11 +135,11 @@ export default function About({ about }: TProfileProps) {
             ) : (
               <>
                 <Image
-                  width={500}
-                  height={500}
-                  src={editableAdminData.image}
                   alt={editableAdminData.name}
                   className="w-24 h-24 rounded-full border-2 object-cover border-default-300"
+                  height={500}
+                  src={editableAdminData.image}
+                  width={500}
                 />
               </>
             )}
@@ -149,62 +153,62 @@ export default function About({ about }: TProfileProps) {
           {isEditing ? (
             <div>
               <Input
-                variant="bordered"
+                className="mb-2"
                 label="Name"
                 name="name"
                 value={editableAdminData.name}
+                variant="bordered"
                 onChange={handleAdminInputChange}
-                className="mb-2"
               />
 
               <Input
-                variant="bordered"
+                className="mb-2"
                 label="Title"
                 name="title"
                 value={editableData.title}
+                variant="bordered"
                 onChange={handleInputChange}
-                className="mb-2"
               />
               <Textarea
-                variant="bordered"
+                className="mb-2"
                 label="Description"
                 name="description"
-                value={editableData.description}
-                onChange={handleInputChange}
-                className="mb-2"
                 rows={3}
+                value={editableData.description}
+                variant="bordered"
+                onChange={handleInputChange}
               />
               <Input
-                variant="bordered"
+                className="mb-2"
                 label="Country"
                 name="country"
                 value={editableData.country}
+                variant="bordered"
                 onChange={handleInputChange}
-                className="mb-2"
               />
               <Input
-                variant="bordered"
+                className="mb-2"
                 label="Address"
                 name="address"
                 value={editableData.address}
+                variant="bordered"
                 onChange={handleInputChange}
-                className="mb-2"
               />
               <Input
-                variant="bordered"
+                className="mb-2"
                 label="District"
                 name="district"
                 value={editableData.district}
+                variant="bordered"
                 onChange={handleInputChange}
-                className="mb-2"
               />
               <Button
-                onClick={handleSaveClick}
-                color="warning"
-                size="sm"
                 className="w-full"
-                isLoading={aboutIsPending || adminIsPending}
+                color="warning"
                 disabled={aboutIsPending || adminIsPending}
+                isLoading={aboutIsPending || adminIsPending}
+                size="sm"
+                onClick={handleSaveClick}
               >
                 Save
               </Button>
@@ -213,7 +217,7 @@ export default function About({ about }: TProfileProps) {
             <div>
               <h3 className="text-lg font-semibold">{editableData.title}</h3>
               <p className="mb-2 text-xs">{editableData.description}</p>
-              <div className="border-t border-default-200 my-2"></div>
+              <div className="border-t border-default-200 my-2" />
               <div className="flex flex-col gap-3">
                 <Chip>Country: {editableData.country}</Chip>
                 <Chip>Address: {editableData.address}</Chip>
@@ -223,13 +227,13 @@ export default function About({ about }: TProfileProps) {
           )}
 
           <Button
-            onClick={handleEditClick}
-            color="warning"
-            variant="faded"
-            size="sm"
             className="mt-4 w-full text-default-900"
+            color="warning"
+            size="sm"
+            variant="faded"
+            onClick={handleEditClick}
           >
-            {isEditing ? 'Cancel' : 'Edit'}
+            {isEditing ? "Cancel" : "Edit"}
           </Button>
         </CardBody>
       </Card>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Modal,
   ModalContent,
@@ -6,21 +6,22 @@ import {
   ModalBody,
   ModalFooter,
   useDisclosure,
-} from '@nextui-org/modal';
-import { Button } from '@nextui-org/button';
-import { FaImage, FaPencilAlt } from 'react-icons/fa';
-import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
-import { Input } from '@nextui-org/input';
-import { uploadImageToCloudinary } from '@/utils/uploadImageToCloudinary';
-import { Spinner } from '@nextui-org/spinner';
-import Image from 'next/image';
-import { useEditBlog } from '@/hooks/blogs.hook';
-import { TBlog } from '@/types';
-import dynamic from 'next/dynamic';
-import 'react-quill/dist/quill.snow.css';
+} from "@nextui-org/modal";
+import { Button } from "@nextui-org/button";
+import { FaImage, FaPencilAlt } from "react-icons/fa";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { Input } from "@nextui-org/input";
+import { Spinner } from "@nextui-org/spinner";
+import Image from "next/image";
+import dynamic from "next/dynamic";
 
-// Dynamically import ReactQuill to avoid SSR issues
-const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
+import { uploadImageToCloudinary } from "@/utils/uploadImageToCloudinary";
+import { useEditBlog } from "@/hooks/blogs.hook";
+import { TBlog } from "@/types";
+
+import "react-quill/dist/quill.snow.css";
+
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 export default function EditBlogModal({ blog }: { blog: TBlog }) {
   const [isImageUploading, setIsImageUploading] = useState(false);
@@ -29,7 +30,6 @@ export default function EditBlogModal({ blog }: { blog: TBlog }) {
   const { mutate: editBlogFn, isPending } = useEditBlog();
 
   const {
-    register,
     handleSubmit,
     setValue,
     watch,
@@ -40,17 +40,19 @@ export default function EditBlogModal({ blog }: { blog: TBlog }) {
 
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
+
     if (file) {
       setIsImageUploading(true);
       const uploadedUrl = await uploadImageToCloudinary(file);
-      setValue('imageUrl', uploadedUrl);
+
+      setValue("imageUrl", uploadedUrl);
       setIsImageUploading(false);
     }
   };
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     if (!data.imageUrl) {
-      console.error('Image is required but not uploaded.');
+      alert("Image is required but not uploaded.");
       return;
     }
 
@@ -58,24 +60,25 @@ export default function EditBlogModal({ blog }: { blog: TBlog }) {
       id: blog?._id,
       data: data,
     };
+
     editBlogFn(blogData);
   };
 
   return (
     <>
       <Button
-        onPress={onOpen}
+        isIconOnly
         className="font-semibold"
         radius="full"
         size="sm"
-        isIconOnly
         startContent={<FaPencilAlt />}
+        onPress={onOpen}
       />
 
       <Modal
-        size="lg"
-        placement="center"
         isOpen={isOpen}
+        placement="center"
+        size="lg"
         onOpenChange={onOpenChange}
       >
         <ModalContent>
@@ -88,8 +91,8 @@ export default function EditBlogModal({ blog }: { blog: TBlog }) {
               <ModalBody>
                 <form className="space-y-3" onSubmit={handleSubmit(onSubmit)}>
                   <ReactQuill
-                    value={watch('content')}
-                    onChange={(value) => setValue('content', value)}
+                    value={watch("content")}
+                    onChange={(value) => setValue("content", value)}
                   />
                   {errors.content && (
                     <p className="text-error text-xs text-red-500">
@@ -97,17 +100,18 @@ export default function EditBlogModal({ blog }: { blog: TBlog }) {
                     </p>
                   )}
 
-                  <label className="mt-4 cursor-pointer text-xs text-warning-400 my-5 flex gap-2 items-center h-14 rounded-xl px-3 border border-default-200 hover:border-default-400">
+                  <div className="mt-4 cursor-pointer text-xs text-warning-400 my-5 flex gap-2 items-center h-14 rounded-xl px-3 border border-default-200 hover:border-default-400">
                     <FaImage className="text-2xl" />
                     <p>Upload Image</p>
                     <Input
-                      type="file"
                       accept="image/*"
-                      variant="bordered"
+                      aria-label="Image upload"
                       className="hidden"
+                      type="file"
+                      variant="bordered"
                       onChange={handleFileUpload}
                     />
-                  </label>
+                  </div>
                   {errors.imageUrl && (
                     <p className="text-error text-xs text-red-500">
                       Image is required
@@ -116,16 +120,16 @@ export default function EditBlogModal({ blog }: { blog: TBlog }) {
 
                   {isImageUploading ? (
                     <div className="p-2">
-                      <Spinner size="sm" color="warning" />
+                      <Spinner color="warning" size="sm" />
                     </div>
                   ) : (
-                    watch('imageUrl') && (
+                    watch("imageUrl") && (
                       <Image
-                        src={watch('imageUrl')}
-                        width={500}
-                        height={500}
                         alt="Blog Image"
                         className="h-48 w-full mt-2 object-cover rounded-md border-dashed border-default-200 p-1"
+                        height={500}
+                        src={watch("imageUrl")}
+                        width={500}
                       />
                     )
                   )}
@@ -134,11 +138,11 @@ export default function EditBlogModal({ blog }: { blog: TBlog }) {
                     <Button
                       className="text-default-900"
                       color="warning"
-                      type="submit"
                       isLoading={isPending}
+                      type="submit"
                       onPress={onClose}
                     >
-                      {isPending ? 'Updating...' : 'Update'}
+                      {isPending ? "Updating..." : "Update"}
                     </Button>
                   </ModalFooter>
                 </form>

@@ -1,4 +1,4 @@
-import { TAuthor } from './blogsTypes';
+import { TAuthor } from "./blogsTypes";
 
 export interface TAbout {
   _id: string;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Modal,
   ModalContent,
@@ -6,17 +6,18 @@ import {
   ModalBody,
   ModalFooter,
   useDisclosure,
-} from '@nextui-org/modal';
-import { Button } from '@nextui-org/button';
-import { FaImage, FaPencilAlt, FaPlus } from 'react-icons/fa';
-import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'; // Import React Hook Form
-import { Select, SelectItem } from '@nextui-org/select';
-import { Input } from '@nextui-org/input';
-import { SkillLevel, SkillCategory } from '@/constants/skills.constants';
-import { useCreateSkill, useEditSkill } from '@/hooks/skills.hook';
-import { uploadImageToCloudinary } from '@/utils/uploadImageToCloudinary';
-import Image from 'next/image';
-import { TSkill, TUpdateData } from '@/types';
+} from "@nextui-org/modal";
+import { Button } from "@nextui-org/button";
+import { FaImage, FaPencilAlt } from "react-icons/fa";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form"; // Import React Hook Form
+import { Select, SelectItem } from "@nextui-org/select";
+import { Input } from "@nextui-org/input";
+import Image from "next/image";
+
+import { SkillLevel, SkillCategory } from "@/constants/skills.constants";
+import { useEditSkill } from "@/hooks/skills.hook";
+import { uploadImageToCloudinary } from "@/utils/uploadImageToCloudinary";
+import { TSkill, TUpdateData } from "@/types";
 
 interface TEditSkillModalProps {
   skill: TSkill;
@@ -44,15 +45,18 @@ export default function EditSkillModal({ skill }: TEditSkillModalProps) {
 
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
+
     if (file) {
       const uploadedUrl = await uploadImageToCloudinary(file);
-      setValue('icon', uploadedUrl);
+
+      setValue("icon", uploadedUrl);
     }
   };
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     if (!data.icon) {
-      console.error('Icon is required but not uploaded.');
+      console.error("Icon is required but not uploaded.");
+
       return;
     }
     const skillData: TUpdateData = {
@@ -66,17 +70,17 @@ export default function EditSkillModal({ skill }: TEditSkillModalProps) {
   return (
     <>
       <Button
-        onPress={onOpen}
         isIconOnly
         radius="full"
         size="sm"
         startContent={<FaPencilAlt className="text-default-800" />}
+        onPress={onOpen}
       />
 
       <Modal
-        size="lg"
-        placement="center"
         isOpen={isOpen}
+        placement="center"
+        size="lg"
         onOpenChange={onOpenChange}
       >
         <ModalContent>
@@ -91,10 +95,10 @@ export default function EditSkillModal({ skill }: TEditSkillModalProps) {
                 <form className="space-y-3" onSubmit={handleSubmit(onSubmit)}>
                   <Input
                     label="Skill Name"
-                    variant="bordered"
                     placeholder="Enter skill name"
-                    {...register('name', {
-                      required: 'Skill name is required',
+                    variant="bordered"
+                    {...register("name", {
+                      required: "Skill name is required",
                     })}
                   />
                   {errors.name && (
@@ -107,8 +111,8 @@ export default function EditSkillModal({ skill }: TEditSkillModalProps) {
                     label="Skill Level"
                     placeholder="Select skill level"
                     variant="bordered"
-                    {...register('level', {
-                      required: 'Skill level is required',
+                    {...register("level", {
+                      required: "Skill level is required",
                     })}
                   >
                     {Object.values(SkillLevel).map((level) => (
@@ -127,8 +131,8 @@ export default function EditSkillModal({ skill }: TEditSkillModalProps) {
                     label="Skill Category"
                     placeholder="Select skill category"
                     variant="bordered"
-                    {...register('category', {
-                      required: 'Skill category is required',
+                    {...register("category", {
+                      required: "Skill category is required",
                     })}
                   >
                     {Object.values(SkillCategory).map((category) => (
@@ -143,14 +147,18 @@ export default function EditSkillModal({ skill }: TEditSkillModalProps) {
                     </p>
                   )}
 
-                  <label className="mt-4 cursor-pointer text-xs text-warning-400 my-5 flex gap-2 items-center h-14 rounded-xl px-3 border border-default-200 hover:border-default-400">
+                  <label
+                    htmlFor="upload"
+                    className="mt-4 cursor-pointer text-xs text-warning-400 my-5 flex gap-2 items-center h-14 rounded-xl px-3 border border-default-200 hover:border-default-400"
+                  >
                     <FaImage className="text-2xl" />
                     <p>Upload Icon</p>
                     <Input
-                      type="file"
+                      id="upload"
                       accept="image/*"
-                      variant="bordered"
                       className="hidden"
+                      type="file"
+                      variant="bordered"
                       onChange={handleFileUpload}
                     />
                   </label>
@@ -161,13 +169,13 @@ export default function EditSkillModal({ skill }: TEditSkillModalProps) {
                   )}
 
                   {/* Show uploaded icon preview */}
-                  {watch('icon') && (
+                  {watch("icon") && (
                     <Image
-                      src={watch('icon')}
-                      width={500}
-                      height={500}
                       alt="Skill Icon"
                       className="h-12 w-12 mt-2 object-cover rounded-md border-dashed border-default-200 p-1"
+                      height={500}
+                      src={watch("icon")}
+                      width={500}
                     />
                   )}
 
@@ -175,11 +183,11 @@ export default function EditSkillModal({ skill }: TEditSkillModalProps) {
                     <Button
                       className="text-default-900"
                       color="warning"
-                      type="submit"
                       isLoading={isPending}
+                      type="submit"
                       onPress={onClose}
                     >
-                      {isPending ? 'Saving...' : 'Save'}
+                      {isPending ? "Saving..." : "Save"}
                     </Button>
                   </ModalFooter>
                 </form>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Modal,
   ModalContent,
@@ -6,11 +6,12 @@ import {
   ModalBody,
   ModalFooter,
   useDisclosure,
-} from '@nextui-org/modal';
-import { Button } from '@nextui-org/button';
-import { FaTrashAlt } from 'react-icons/fa';
-import { TProject } from '@/types/projectsTypes';
-import { useDeleteProject } from '@/hooks/projects.hook';
+} from "@nextui-org/modal";
+import { Button } from "@nextui-org/button";
+import { FaTrashAlt } from "react-icons/fa";
+
+import { TProject } from "@/types/projectsTypes";
+import { useDeleteProject } from "@/hooks/projects.hook";
 
 interface TDeleteProjectModalProps {
   project: TProject;
@@ -25,7 +26,8 @@ export default function DeleteProjectModal({
 
   const deleteProjectHandler = async (id: string) => {
     if (!id) {
-      console.error('Id is required but not provided.');
+      console.error("Id is required but not provided.");
+
       return;
     }
 
@@ -35,17 +37,17 @@ export default function DeleteProjectModal({
   return (
     <>
       <Button
-        onPress={onOpen}
         isIconOnly
         radius="full"
         size="sm"
         startContent={<FaTrashAlt className="text-red-500" />}
+        onPress={onOpen}
       />
 
       <Modal
-        size="lg"
-        placement="center"
         isOpen={isOpen}
+        placement="center"
+        size="lg"
         onOpenChange={onOpenChange}
       >
         <ModalContent>
@@ -61,15 +63,15 @@ export default function DeleteProjectModal({
                 </p>
               </ModalBody>
               <ModalFooter>
-                <Button onPress={onClose} size="sm">
+                <Button size="sm" onPress={onClose}>
                   No
                 </Button>
                 <Button
-                  isLoading={isPending}
-                  onClick={() => deleteProjectHandler(project?._id)}
-                  size="sm"
-                  onPress={onClose}
                   className="bg-red-500 text-white"
+                  isLoading={isPending}
+                  size="sm"
+                  onClick={() => deleteProjectHandler(project?._id)}
+                  onPress={onClose}
                 >
                   Yes
                 </Button>

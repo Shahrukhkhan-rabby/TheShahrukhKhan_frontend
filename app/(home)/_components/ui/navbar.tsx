@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Navbar as NextUINavbar,
   NavbarContent,
@@ -9,62 +9,62 @@ import {
   NavbarItem,
   NavbarMenuItem,
   NavbarBrand,
-} from '@nextui-org/navbar';
-import { Link as ScrollLink } from 'react-scroll';
-import { motion } from 'framer-motion';
-import clsx from 'clsx';
+} from "@nextui-org/navbar";
+import { Link as ScrollLink } from "react-scroll";
+import { motion } from "framer-motion";
+import clsx from "clsx";
 
-import { siteConfig } from '@/config/site';
-import { ThemeSwitch } from '@/app/(home)/_components/ui/theme-switch';
-import { linkVariants, menuVariants } from './animation';
-import Logo from './logo';
-import NavButtons from './navButtons';
-import AnimatedButton from './button';
-import Link from 'next/link';
+import { linkVariants, menuVariants } from "./animation";
+import Logo from "./logo";
+import NavButtons from "./navButtons";
+import AnimatedButton from "./button";
+
+import { ThemeSwitch } from "@/app/(home)/_components/ui/theme-switch";
+import { siteConfig } from "@/config/site";
+import { useRouter } from "next/navigation";
+import { FaDashcube } from "react-icons/fa";
 
 export const Navbar = () => {
+  const router = useRouter();
   const [shouldHideOnScroll, setShouldHideOnScroll] = useState(true);
 
   const handleLinkClick = () => {
-    // Disable hiding on scroll when clicking a section link
     setShouldHideOnScroll(false);
-  };
-
-  const handleScrollRestore = () => {
-    // Re-enable hiding on scroll after some condition (optional)
-    setShouldHideOnScroll(true);
+    router.push("/");
   };
 
   return (
     <NextUINavbar
-      shouldHideOnScroll={shouldHideOnScroll}
-      className={`rounded-full border border-default-200 bg-opacity-5 top-4 ${!shouldHideOnScroll && 'top-4'}`}
+      className={`rounded-full border border-default-200 bg-opacity-5 top-4 ${!shouldHideOnScroll && "top-4"}`}
       maxWidth="xl"
       position="sticky"
+      shouldHideOnScroll={shouldHideOnScroll}
     >
       {/* Brand and logo */}
       <NavbarContent className="basis-1/5 sm:basis-full m-3" justify="start">
-        <NavbarBrand as={Link} href={'/'} className="gap-3 max-w-fit">
+        <NavbarBrand className="gap-3 max-w-fit">
           <Logo />
         </NavbarBrand>
 
         {/* Desktop links with animation */}
-        <ul className="hidden xl:flex gap-4 justify-start ml-2">
+        <div className="hidden xl:flex gap-4 justify-start ml-2">
           {siteConfig.navItems.map((item) => (
             <NavbarItem key={item.href}>
               <motion.div
-                variants={linkVariants}
-                initial="initial"
                 animate="animate"
+                initial="initial"
+                variants={linkVariants}
                 whileHover="whileHover"
               >
                 <ScrollLink
+                  className={clsx(
+                    "cursor-pointer text-default-800 hover:text-warning",
+                  )}
                   color="black"
-                  to={item.href.substring(1)}
-                  smooth={true}
-                  offset={-90}
                   duration={500}
-                  className={clsx('cursor-pointer hover:text-warning')}
+                  offset={-90}
+                  smooth={true}
+                  to={item.href.substring(1)}
                   onClick={handleLinkClick}
                 >
                   {item.label}
@@ -72,7 +72,7 @@ export const Navbar = () => {
               </motion.div>
             </NavbarItem>
           ))}
-        </ul>
+        </div>
       </NavbarContent>
 
       {/* Right section: Theme Switch and Buttons */}
@@ -87,7 +87,11 @@ export const Navbar = () => {
           <ThemeSwitch />
         </NavbarItem>
         <NavbarItem className="hidden sm:flex gap-2">
-          <AnimatedButton href="/dashboard" text="Dashboard" />
+          <AnimatedButton
+            href="/dashboard"
+            text="Dashboard"
+            IconComponent={FaDashcube}
+          />
         </NavbarItem>
       </NavbarContent>
 
@@ -99,28 +103,28 @@ export const Navbar = () => {
 
       {/* Mobile menu with staggered animation */}
       <NavbarMenu
-        as={motion.div}
-        initial="closed"
         animate="open"
-        exit="closed"
-        variants={menuVariants}
+        as={motion.div}
         className="flex flex-col items-center"
+        exit="closed"
+        initial="closed"
+        variants={menuVariants}
       >
         <div className="mx-4 mt-2 flex flex-col gap-2 items-center justify-center space-y-5">
           {siteConfig.navItems.map((item, index) => (
             <NavbarMenuItem key={`${item}-${index}`}>
               <motion.div
-                variants={linkVariants}
-                initial="initial"
                 animate="animate"
+                initial="initial"
+                variants={linkVariants}
                 whileHover="whileHover"
               >
                 <ScrollLink
-                  to={item.href.substring(1)}
-                  smooth={true}
-                  offset={-70}
+                  className={clsx("cursor-pointer text-foreground")}
                   duration={1500}
-                  className={clsx('cursor-pointer text-foreground')}
+                  offset={-70}
+                  smooth={true}
+                  to={item.href.substring(1)}
                   onClick={handleLinkClick}
                 >
                   {item.label}

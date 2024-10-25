@@ -1,9 +1,10 @@
-import { NextResponse } from 'next/server';
-import { NextRequest } from 'next/server';
-import { getCurrentUser } from './service/authService/authService';
-import { cookies } from 'next/headers';
+import { NextResponse } from "next/server";
+import { NextRequest } from "next/server";
+import { cookies } from "next/headers";
 
-const AuthRoutes = ['/login', '/register'];
+import { getCurrentUser } from "./service/authService/authService";
+
+const AuthRoutes = ["/login", "/register"];
 
 type Role = keyof typeof roleBasedRoutes;
 
@@ -17,14 +18,14 @@ export async function middleware(request: NextRequest) {
 
   const user = await getCurrentUser();
   const cookieStore = cookies();
-  const accessToken = cookieStore.get('accessToken')?.value;
+  const accessToken = cookieStore.get("accessToken")?.value;
 
   if (!user && !accessToken) {
     if (AuthRoutes.includes(pathname)) {
       return NextResponse.next();
     } else {
       return NextResponse.redirect(
-        new URL(`/login?redirect=${pathname}`, request.url)
+        new URL(`/login?redirect=${pathname}`, request.url),
       );
     }
   }
@@ -37,10 +38,10 @@ export async function middleware(request: NextRequest) {
     }
   }
 
-  return NextResponse.redirect(new URL('/', request.url));
+  return NextResponse.redirect(new URL("/", request.url));
 }
 
 // See "Matching Paths" below to learn more
 export const config = {
-  matcher: ['/dashboard/', '/login'],
+  matcher: ["/dashboard/", "/login"],
 };

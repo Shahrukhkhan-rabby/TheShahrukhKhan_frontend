@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Modal,
   ModalContent,
@@ -6,13 +6,14 @@ import {
   ModalBody,
   ModalFooter,
   useDisclosure,
-} from '@nextui-org/modal';
-import { Button } from '@nextui-org/button';
-import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
-import { Input } from '@nextui-org/input';
-import { TEducation } from '@/types';
-import { useEditEducation } from '@/hooks/educations.hook';
-import { FaPencilAlt } from 'react-icons/fa';
+} from "@nextui-org/modal";
+import { Button } from "@nextui-org/button";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { Input } from "@nextui-org/input";
+import { FaPencilAlt } from "react-icons/fa";
+
+import { TEducation } from "@/types";
+import { useEditEducation } from "@/hooks/educations.hook";
 
 interface TEditEducationModalProps {
   education: TEducation;
@@ -32,12 +33,12 @@ export default function EditEducationModal({
     defaultValues: {
       institution: education.institution,
       location: education.location,
-      startDate: education.startDate.split('T')[0],
-      endDate: education.endDate.split('T')[0],
+      startDate: education.startDate.split("T")[0],
+      endDate: education.endDate.split("T")[0],
       grade: education.grade,
-      subjects: education.subjects.join(', '),
+      subjects: education.subjects.join(", "),
       degree: education.degree, // Assuming you have a degree field in education
-      description: education.description || '', // Default to empty if not available
+      description: education.description || "", // Default to empty if not available
     },
   });
 
@@ -50,13 +51,14 @@ export default function EditEducationModal({
         location: data.location,
         startDate: new Date(data.startDate).toISOString(),
         endDate: data.endDate ? new Date(data.endDate).toISOString() : null,
-        description: data.description || '',
+        description: data.description || "",
         grade: data.grade,
         subjects: data.subjects
-          .split(',')
+          .split(",")
           .map((subject: string) => subject.trim()),
       },
     };
+
     await editEducationFn(educationData);
     onOpenChange();
   };
@@ -64,14 +66,14 @@ export default function EditEducationModal({
   return (
     <>
       <Button
-        onPress={onOpen}
+        isIconOnly
         className="font-semibold"
         radius="full"
-        isIconOnly
         startContent={<FaPencilAlt />}
+        onPress={onOpen}
       />
 
-      <Modal size="lg" isOpen={isOpen} onOpenChange={onOpenChange}>
+      <Modal isOpen={isOpen} size="lg" onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (
             <>
@@ -82,9 +84,9 @@ export default function EditEducationModal({
                 <form className="space-y-3" onSubmit={handleSubmit(onSubmit)}>
                   <Input
                     label="Degree"
-                    variant="bordered"
                     placeholder="Enter degree"
-                    {...register('degree', { required: 'Degree is required' })}
+                    variant="bordered"
+                    {...register("degree", { required: "Degree is required" })}
                   />
                   {errors.degree && (
                     <p className="text-error text-xs text-red-500">
@@ -94,10 +96,10 @@ export default function EditEducationModal({
 
                   <Input
                     label="Institution"
-                    variant="bordered"
                     placeholder="Enter institution name"
-                    {...register('institution', {
-                      required: 'Institution is required',
+                    variant="bordered"
+                    {...register("institution", {
+                      required: "Institution is required",
                     })}
                   />
                   {errors.institution && (
@@ -108,10 +110,10 @@ export default function EditEducationModal({
 
                   <Input
                     label="Location"
-                    variant="bordered"
                     placeholder="Enter location"
-                    {...register('location', {
-                      required: 'Location is required',
+                    variant="bordered"
+                    {...register("location", {
+                      required: "Location is required",
                     })}
                   />
                   {errors.location && (
@@ -124,8 +126,8 @@ export default function EditEducationModal({
                     label="Start Date"
                     type="date"
                     variant="bordered"
-                    {...register('startDate', {
-                      required: 'Start date is required',
+                    {...register("startDate", {
+                      required: "Start date is required",
                     })}
                   />
                   {errors.startDate && (
@@ -138,14 +140,14 @@ export default function EditEducationModal({
                     label="End Date"
                     type="date"
                     variant="bordered"
-                    {...register('endDate')}
+                    {...register("endDate")}
                   />
 
                   <Input
                     label="Grade"
-                    variant="bordered"
                     placeholder="Enter grade"
-                    {...register('grade', { required: 'Grade is required' })}
+                    variant="bordered"
+                    {...register("grade", { required: "Grade is required" })}
                   />
                   {errors.grade && (
                     <p className="text-error text-xs text-red-500">
@@ -155,10 +157,10 @@ export default function EditEducationModal({
 
                   <Input
                     label="Subjects"
-                    variant="bordered"
                     placeholder="Enter subjects (comma separated)"
-                    {...register('subjects', {
-                      required: 'Subjects are required',
+                    variant="bordered"
+                    {...register("subjects", {
+                      required: "Subjects are required",
                     })}
                   />
                   {errors.subjects && (
@@ -169,20 +171,20 @@ export default function EditEducationModal({
 
                   <Input
                     label="Description"
-                    variant="bordered"
                     placeholder="Enter a brief description"
-                    {...register('description')}
+                    variant="bordered"
+                    {...register("description")}
                   />
 
                   <ModalFooter>
                     <Button
                       className="text-default-900"
                       color="warning"
-                      type="submit"
                       isLoading={isPending}
+                      type="submit"
                       onPress={onClose}
                     >
-                      {isPending ? 'Saving...' : 'Save'}
+                      {isPending ? "Saving..." : "Save"}
                     </Button>
                   </ModalFooter>
                 </form>

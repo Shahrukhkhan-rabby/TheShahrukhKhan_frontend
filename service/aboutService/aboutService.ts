@@ -1,16 +1,17 @@
-'use server';
+"use server";
 
-import axiosInstance from '@/lib/axiosInstance';
-import { TUpdateData } from '@/types';
-import { revalidateTag } from 'next/cache';
-import { FieldValues } from 'react-hook-form';
+import { revalidateTag } from "next/cache";
+import { FieldValues } from "react-hook-form";
+
+import axiosInstance from "@/lib/axiosInstance";
+import { TUpdateData } from "@/types";
 
 // Create About
 export const createAbout = async (aboutData: FieldValues) => {
   try {
-    const { data } = await axiosInstance.post('/about', aboutData);
+    const { data } = await axiosInstance.post("/about", aboutData);
 
-    revalidateTag('about');
+    revalidateTag("about");
 
     return data;
   } catch (error: any) {
@@ -21,13 +22,14 @@ export const createAbout = async (aboutData: FieldValues) => {
 // Fetch all About
 export const getAllAbout = async () => {
   const fetchOptions = {
-    cache: 'no-store',
+    cache: "no-store",
     next: {
-      tags: ['about'],
+      tags: ["about"],
     },
   };
 
-  const { data } = await axiosInstance.get('/about', { fetchOptions });
+  const { data } = await axiosInstance.get("/about", { fetchOptions });
+
   return data;
 };
 
@@ -36,10 +38,10 @@ export const editAbout = async (aboutData: TUpdateData) => {
   try {
     const { data } = await axiosInstance.patch(
       `/about/${aboutData?.id}`,
-      aboutData?.data
+      aboutData?.data,
     );
 
-    revalidateTag('about');
+    revalidateTag("about");
 
     return data;
   } catch (error: any) {
@@ -52,7 +54,7 @@ export const deleteAbout = async (id: string) => {
   try {
     const { data } = await axiosInstance.delete(`/about/${id}`);
 
-    revalidateTag('about');
+    revalidateTag("about");
 
     return data;
   } catch (error: any) {

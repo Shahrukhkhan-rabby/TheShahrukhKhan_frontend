@@ -1,7 +1,9 @@
-import React, { Suspense } from 'react';
-import SkillsTable from '../../_components/module/dashboard/skillsManagement/skillsTable';
-import { getAllSkills } from '@/service/skillsService/skillsService';
-import SkillsTableSkeleton from '../../_components/ui/skeleton/skillsTableSkeleton';
+import React, { Suspense } from "react";
+
+import SkillsTable from "../../_components/module/dashboard/skillsManagement/skillsTable";
+import SkillsTableSkeleton from "../../_components/ui/skeleton/skillsTableSkeleton";
+
+import { getAllSkills } from "@/service/skillsService/skillsService";
 
 export default async function SkillsManagement() {
   const data = await getAllSkills();
@@ -9,7 +11,7 @@ export default async function SkillsManagement() {
 
   return (
     <Suspense fallback={<SkillsTableSkeleton />}>
-      {' '}
+      {" "}
       <SkillsTable skills={skills} />
     </Suspense>
   );

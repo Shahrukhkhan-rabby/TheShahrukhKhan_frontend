@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import React from 'react';
+import React from "react";
 import {
   Table,
   TableHeader,
@@ -8,9 +8,10 @@ import {
   TableBody,
   TableRow,
   TableCell,
-} from '@nextui-org/table';
-import { Skeleton } from '@nextui-org/skeleton';
-import AddProjectModal from '../../modal/addProjectModal';
+} from "@nextui-org/table";
+import { Skeleton } from "@nextui-org/skeleton";
+
+import AddProjectModal from "../../modal/addProjectModal";
 
 const ProjectsTableSkeleton = () => {
   return (

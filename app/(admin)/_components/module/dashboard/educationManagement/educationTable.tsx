@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import {
   Table,
@@ -7,14 +7,15 @@ import {
   TableBody,
   TableRow,
   TableCell,
-} from '@nextui-org/table';
-import { Avatar } from '@nextui-org/avatar';
-import { Tooltip } from '@nextui-org/tooltip';
-import React from 'react';
-import AddEducationModal from '../../../modal/addEducationModal';
-import DeleteEducationModal from '../../../modal/deleteEducationModal';
-import { TEducation } from '@/types';
-import EditEducationModal from '../../../modal/editEducationModal ';
+} from "@nextui-org/table";
+import { Tooltip } from "@nextui-org/tooltip";
+import React from "react";
+
+import AddEducationModal from "../../../modal/addEducationModal";
+import DeleteEducationModal from "../../../modal/deleteEducationModal";
+import EditEducationModal from "../../../modal/editEducationModal ";
+
+import { TEducation } from "@/types";
 
 interface TEducationTableProps {
   educations: TEducation[];
@@ -23,7 +24,7 @@ interface TEducationTableProps {
 export default function EducationTable({ educations }: TEducationTableProps) {
   // Helper function to trim text to a specified length
   const getTrimmedText = (text: string, maxLength: number) => {
-    return text.length > maxLength ? text.slice(0, maxLength) + '...' : text;
+    return text.length > maxLength ? text.slice(0, maxLength) + "..." : text;
   };
 
   return (
@@ -42,7 +43,7 @@ export default function EducationTable({ educations }: TEducationTableProps) {
           <TableColumn>Degree</TableColumn>
           <TableColumn>Actions</TableColumn>
         </TableHeader>
-        <TableBody emptyContent={'No education available'}>
+        <TableBody emptyContent={"No education available"}>
           {educations?.map((education: TEducation) => (
             <TableRow key={education._id}>
               <TableCell>
@@ -53,18 +54,18 @@ export default function EducationTable({ educations }: TEducationTableProps) {
               </TableCell>
               <TableCell>
                 <p className="whitespace-nowrap">
-                  {' '}
+                  {" "}
                   {new Date(education.startDate).toLocaleDateString()}
                 </p>
               </TableCell>
               <TableCell>
                 {education.endDate ? (
                   <p className="whitespace-nowrap">
-                    {' '}
+                    {" "}
                     {new Date(education.endDate).toLocaleDateString()}
                   </p>
                 ) : (
-                  'N/A'
+                  "N/A"
                 )}
               </TableCell>
               <TableCell>
@@ -75,10 +76,10 @@ export default function EducationTable({ educations }: TEducationTableProps) {
               <TableCell>
                 <Tooltip
                   className="w-[250px]"
-                  content={education.subjects.join(', ')}
+                  content={education.subjects.join(", ")}
                 >
                   <span className="whitespace-nowrap">
-                    {getTrimmedText(education.subjects.join(', '), 28)}
+                    {getTrimmedText(education.subjects.join(", "), 28)}
                   </span>
                 </Tooltip>
               </TableCell>

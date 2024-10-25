@@ -1,6 +1,6 @@
-import * as React from 'react';
+import * as React from "react";
 
-import { IconSvgProps } from '@/types';
+import { IconSvgProps } from "@/types";
 
 export const Logo: React.FC<IconSvgProps> = ({
   size = 36,
@@ -32,11 +32,11 @@ export const FaceBookIcon: React.FC<IconSvgProps> = ({
 }) => {
   return (
     <svg
-      xmlns="http://www.w3.org/2000/svg"
       fill="none"
       height={size || height}
       viewBox="0 0 32 32"
       width={size || width}
+      xmlns="http://www.w3.org/2000/svg"
       {...props}
       className="text-red-500"
     >

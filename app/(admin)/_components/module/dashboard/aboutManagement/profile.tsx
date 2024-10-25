@@ -1,6 +1,6 @@
-import { getAllAbout } from '@/service/aboutService/aboutService';
-import { getAdmin } from '@/service/authService/authService';
-import About from './about';
+import About from "./about";
+
+import { getAllAbout } from "@/service/aboutService/aboutService";
 
 export default async function Profile() {
   const aboutData = await getAllAbout();

@@ -3,7 +3,7 @@ export const buttonVariants = {
   animate: {
     scale: 1,
     opacity: 1,
-    transition: { type: 'spring', stiffness: 100 },
+    transition: { type: "spring", stiffness: 100 },
   },
   whileHover: { scale: 1.2, rotate: 5, transition: { duration: 0.3 } },
   whileTap: { scale: 0.95, rotate: 0, transition: { duration: 0.2 } },
@@ -13,13 +13,13 @@ export const buttonVariants = {
 export const linkVariants = {
   initial: { opacity: 0, y: 10 },
   animate: { opacity: 1, y: 0, transition: { duration: 0.3 } },
-  whileHover: { scale: 1.1, color: '#F5A524', transition: { duration: 0.2 } }, // Scale on hover with color change
+  whileHover: { scale: 1.1, color: "#F5A524", transition: { duration: 0.2 } }, // Scale on hover with color change
 };
 
 export const textVariants = {
   initial: { opacity: 0, x: -20 },
   animate: { opacity: 1, x: 0, transition: { duration: 0.7 } },
-  whileHover: { color: '#f59e0b', transition: { duration: 0.3 } },
+  whileHover: { color: "#f59e0b", transition: { duration: 0.3 } },
 };
 
 export const menuVariants = {

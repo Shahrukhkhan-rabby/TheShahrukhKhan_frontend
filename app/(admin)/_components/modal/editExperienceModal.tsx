@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Modal,
   ModalContent,
@@ -6,19 +6,17 @@ import {
   ModalBody,
   ModalFooter,
   useDisclosure,
-} from '@nextui-org/modal';
-import { Button } from '@nextui-org/button';
-import { FaPencilAlt, FaPlus } from 'react-icons/fa';
-import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
-import { Input } from '@nextui-org/input';
-import {
-  useCreateExperience,
-  useEditExperience,
-} from '@/hooks/experience.hook'; // Assuming you have a hook for creating experiences
-import { Select, SelectItem } from '@nextui-org/select';
-import { Selection } from '@nextui-org/table';
-import { useGetAllSkills } from '@/hooks/skills.hook';
-import { TExperience, TSkill } from '@/types';
+} from "@nextui-org/modal";
+import { Button } from "@nextui-org/button";
+import { FaPencilAlt } from "react-icons/fa";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { Input } from "@nextui-org/input";
+import { Select, SelectItem } from "@nextui-org/select";
+import { Selection } from "@nextui-org/table";
+
+import { useEditExperience } from "@/hooks/experience.hook"; // Assuming you have a hook for creating experiences
+import { useGetAllSkills } from "@/hooks/skills.hook";
+import { TExperience, TSkill } from "@/types";
 
 interface TEditExperienceModalProps {
   experience: TExperience;
@@ -43,7 +41,7 @@ export default function EditExperienceModal({
 
   // State to hold selected technologies (multiple selection)
   const [selectedTechnologies, setSelectedTechnologies] = useState<Selection>(
-    new Set()
+    new Set(),
   );
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
@@ -54,24 +52,25 @@ export default function EditExperienceModal({
       id: experience._id,
       data: data,
     };
+
     editExperienceFn(experienceData);
   };
 
   return (
     <>
       <Button
-        onPress={onOpen}
+        isIconOnly
         className="font-semibold"
         radius="full"
         size="sm"
-        isIconOnly
         startContent={<FaPencilAlt />}
+        onPress={onOpen}
       />
 
       <Modal
-        size="lg"
-        placement="center"
         isOpen={isOpen}
+        placement="center"
+        size="lg"
         onOpenChange={onOpenChange}
       >
         <ModalContent>
@@ -85,10 +84,10 @@ export default function EditExperienceModal({
                 <form className="space-y-3" onSubmit={handleSubmit(onSubmit)}>
                   <Input
                     label="Job Title"
-                    variant="bordered"
                     placeholder="Enter job title"
-                    {...register('title', {
-                      required: 'Job title is required',
+                    variant="bordered"
+                    {...register("title", {
+                      required: "Job title is required",
                     })}
                   />
                   {errors.title && (
@@ -99,10 +98,10 @@ export default function EditExperienceModal({
 
                   <Input
                     label="Company"
-                    variant="bordered"
                     placeholder="Enter company name"
-                    {...register('company', {
-                      required: 'Company name is required',
+                    variant="bordered"
+                    {...register("company", {
+                      required: "Company name is required",
                     })}
                   />
                   {errors.company && (
@@ -113,10 +112,10 @@ export default function EditExperienceModal({
 
                   <Input
                     label="Location"
-                    variant="bordered"
                     placeholder="Enter location"
-                    {...register('location', {
-                      required: 'Location is required',
+                    variant="bordered"
+                    {...register("location", {
+                      required: "Location is required",
                     })}
                   />
                   {errors.location && (
@@ -129,8 +128,8 @@ export default function EditExperienceModal({
                     label="Start Date"
                     type="date"
                     variant="bordered"
-                    {...register('startDate', {
-                      required: 'Start date is required',
+                    {...register("startDate", {
+                      required: "Start date is required",
                     })}
                   />
                   {errors.startDate && (
@@ -143,15 +142,15 @@ export default function EditExperienceModal({
                     label="End Date"
                     type="date"
                     variant="bordered"
-                    {...register('endDate')}
+                    {...register("endDate")}
                   />
 
                   <Input
                     label="Description"
-                    variant="bordered"
                     placeholder="Enter job description"
-                    {...register('description', {
-                      required: 'Job description is required',
+                    variant="bordered"
+                    {...register("description", {
+                      required: "Job description is required",
                     })}
                   />
                   {errors.description && (
@@ -162,13 +161,13 @@ export default function EditExperienceModal({
 
                   {/* Multiple Select for Technologies */}
                   <Select
+                    multiple
                     label="Technologies"
                     placeholder="Select technologies"
-                    selectionMode="multiple"
                     selectedKeys={selectedTechnologies}
-                    onSelectionChange={setSelectedTechnologies}
+                    selectionMode="multiple"
                     variant="bordered"
-                    multiple
+                    onSelectionChange={setSelectedTechnologies}
                   >
                     {technologies?.map((technology: TSkill) => (
                       <SelectItem key={technology._id} value={technology._id}>
@@ -186,11 +185,11 @@ export default function EditExperienceModal({
                     <Button
                       className="text-default-900"
                       color="warning"
-                      type="submit"
                       isLoading={isPending}
+                      type="submit"
                       onPress={onClose}
                     >
-                      {isPending ? 'Saving...' : 'Save'}
+                      {isPending ? "Saving..." : "Save"}
                     </Button>
                   </ModalFooter>
                 </form>

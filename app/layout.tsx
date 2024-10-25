@@ -1,11 +1,14 @@
-import '@/styles/globals.css';
-import { Metadata } from 'next';
-import { siteConfig } from '@/config/site';
-import BgColor from './(home)/_components/ui/bgColor';
-import Container from './(home)/_components/ui/container';
-import clsx from 'clsx';
-import { fontSans } from '@/config/fonts';
-import { Providers } from '../providers/providers';
+import "@/styles/globals.css";
+import { Metadata } from "next";
+import clsx from "clsx";
+
+import { Providers } from "../providers/providers";
+
+import BgColor from "./(home)/_components/ui/bgColor";
+import Container from "./(home)/_components/ui/container";
+
+import { siteConfig } from "@/config/site";
+import { fontSans } from "@/config/fonts";
 
 export const metadata: Metadata = {
   title: {
@@ -14,7 +17,7 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   icons: {
-    icon: '/favicon.ico',
+    icon: "/favicon.ico",
   },
   openGraph: {
     title: siteConfig.name,
@@ -29,11 +32,11 @@ export const metadata: Metadata = {
         alt: siteConfig.name,
       },
     ],
-    locale: 'en_US',
-    type: 'website',
+    locale: "en_US",
+    type: "website",
   },
   twitter: {
-    card: 'summary_large_image',
+    card: "summary_large_image",
     site: siteConfig.url,
     title: siteConfig.name,
     description: siteConfig.description,
@@ -46,19 +49,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html suppressHydrationWarning lang="en">
       <head>
         {/* Meta tags for SEO */}
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="theme-color" content="#000000" />
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <meta content="#000000" name="theme-color" />
       </head>
       <body
         className={clsx(
-          'min-h-screen bg-background font-sans antialiased',
-          fontSans.variable
+          "min-h-screen bg-background font-sans antialiased",
+          fontSans.variable,
         )}
       >
-        <Providers themeProps={{ attribute: 'class', defaultTheme: 'dark' }}>
+        <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
           {/* Blur effect background */}
           <BgColor />
           {/* Main content layout */}

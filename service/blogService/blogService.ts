@@ -1,16 +1,17 @@
-'use server';
+"use server";
 
-import axiosInstance from '@/lib/axiosInstance';
-import { TUpdateData } from '@/types';
-import { revalidateTag } from 'next/cache';
-import { FieldValues } from 'react-hook-form';
+import { revalidateTag } from "next/cache";
+import { FieldValues } from "react-hook-form";
+
+import axiosInstance from "@/lib/axiosInstance";
+import { TUpdateData } from "@/types";
 
 // Create blog
 export const createBlog = async (BlogData: FieldValues) => {
   try {
-    const { data } = await axiosInstance.post('/blogs', BlogData);
+    const { data } = await axiosInstance.post("/blogs", BlogData);
 
-    revalidateTag('blogs');
+    revalidateTag("blogs");
 
     return data;
   } catch (error: any) {
@@ -23,13 +24,14 @@ export const getAllBlogs = async () => {
   let fetchOptions = {};
 
   fetchOptions = {
-    cache: 'no-store',
+    cache: "no-store",
     next: {
-      tags: ['blogs'],
+      tags: ["blogs"],
     },
   };
 
-  const { data } = await axiosInstance.get('/blogs', { fetchOptions });
+  const { data } = await axiosInstance.get("/blogs", { fetchOptions });
+
   return data;
 };
 
@@ -38,10 +40,10 @@ export const editBlog = async (BlogData: TUpdateData) => {
   try {
     const { data } = await axiosInstance.patch(
       `/blogs/${BlogData?.id}`,
-      BlogData?.data
+      BlogData?.data,
     );
 
-    revalidateTag('blogs');
+    revalidateTag("blogs");
 
     return data;
   } catch (error: any) {
@@ -54,7 +56,7 @@ export const deleteBlog = async (id: string) => {
   try {
     const { data } = await axiosInstance.delete(`/blogs/${id}`);
 
-    revalidateTag('blogs');
+    revalidateTag("blogs");
 
     return data;
   } catch (error: any) {

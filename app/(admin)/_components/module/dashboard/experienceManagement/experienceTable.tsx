@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import {
   Table,
@@ -7,15 +7,16 @@ import {
   TableBody,
   TableRow,
   TableCell,
-} from '@nextui-org/table';
-import React from 'react';
-import { Avatar } from '@nextui-org/avatar';
-import AddExperienceModal from '../../../modal/addExperienceModal';
-import EditExperienceModal from '../../../modal/editExperienceModal';
-import { TExperience } from '@/types';
-import { format } from 'date-fns';
-import DeleteExperienceModal from '../../../modal/deleteExperienceModal';
-import { Tooltip } from '@nextui-org/tooltip';
+} from "@nextui-org/table";
+import React from "react";
+import { format } from "date-fns";
+import { Tooltip } from "@nextui-org/tooltip";
+
+import AddExperienceModal from "../../../modal/addExperienceModal";
+import EditExperienceModal from "../../../modal/editExperienceModal";
+import DeleteExperienceModal from "../../../modal/deleteExperienceModal";
+
+import { TExperience } from "@/types";
 
 interface TExperienceTableProps {
   experiences: TExperience[];
@@ -26,8 +27,9 @@ export default function ExperienceTable({
 }: TExperienceTableProps) {
   // Helper function to trim text to a specified length
   const getTrimmedText = (text: string, maxLength: number) => {
-    return text.length > maxLength ? text.slice(0, maxLength) + '...' : text;
+    return text.length > maxLength ? text.slice(0, maxLength) + "..." : text;
   };
+
   return (
     <div>
       <div className="flex justify-end mb-5">
@@ -43,7 +45,7 @@ export default function ExperienceTable({
           <TableColumn>Description</TableColumn>
           <TableColumn>Action</TableColumn>
         </TableHeader>
-        <TableBody emptyContent={'No experiences available'}>
+        <TableBody emptyContent={"No experiences available"}>
           {experiences?.map((experience) => (
             <TableRow key={experience._id}>
               <TableCell>
@@ -57,21 +59,21 @@ export default function ExperienceTable({
               </TableCell>
               <TableCell>
                 <p className="whitespace-nowrap">
-                  {' '}
+                  {" "}
                   {experience.startDate
-                    ? format(new Date(experience.startDate), 'dd MMM y')
-                    : 'N/A'}
+                    ? format(new Date(experience.startDate), "dd MMM y")
+                    : "N/A"}
                 </p>
               </TableCell>
               <TableCell>
                 <p className="whitespace-nowrap">
                   {experience.endDate
-                    ? format(new Date(experience.endDate), 'yyyy-MM-dd')
-                    : 'Present'}
+                    ? format(new Date(experience.endDate), "yyyy-MM-dd")
+                    : "Present"}
                 </p>
               </TableCell>
               <TableCell>
-                {' '}
+                {" "}
                 <Tooltip className="w-[250px]" content={experience.description}>
                   <span className="whitespace-nowrap">
                     {getTrimmedText(experience.description, 20)}

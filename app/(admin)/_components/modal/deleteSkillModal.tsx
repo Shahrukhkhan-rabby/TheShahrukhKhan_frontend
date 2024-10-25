@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Modal,
   ModalContent,
@@ -6,11 +6,12 @@ import {
   ModalBody,
   ModalFooter,
   useDisclosure,
-} from '@nextui-org/modal';
-import { Button } from '@nextui-org/button';
-import { FaTrashAlt } from 'react-icons/fa';
-import { useCreateSkill, useDeleteSkill } from '@/hooks/skills.hook';
-import { TSkill } from '@/types';
+} from "@nextui-org/modal";
+import { Button } from "@nextui-org/button";
+import { FaTrashAlt } from "react-icons/fa";
+
+import { useDeleteSkill } from "@/hooks/skills.hook";
+import { TSkill } from "@/types";
 
 interface TDeleteSkillModalProps {
   skill: TSkill;
@@ -23,7 +24,8 @@ export default function DeleteSkillModal({ skill }: TDeleteSkillModalProps) {
 
   const deleteSkillHandler = async (id: string) => {
     if (!id) {
-      console.error('Id is required but not provided.');
+      console.error("Id is required but not provided.");
+
       return;
     }
 
@@ -33,14 +35,14 @@ export default function DeleteSkillModal({ skill }: TDeleteSkillModalProps) {
   return (
     <>
       <Button
-        onPress={onOpen}
         isIconOnly
         radius="full"
         size="sm"
         startContent={<FaTrashAlt className="text-red-500" />}
+        onPress={onOpen}
       />
 
-      <Modal size="lg" isOpen={isOpen} onOpenChange={onOpenChange}>
+      <Modal isOpen={isOpen} size="lg" onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (
             <>
@@ -54,15 +56,15 @@ export default function DeleteSkillModal({ skill }: TDeleteSkillModalProps) {
                 </p>
               </ModalBody>
               <ModalFooter>
-                <Button onPress={onClose} size="sm">
+                <Button size="sm" onPress={onClose}>
                   No
                 </Button>
                 <Button
-                  isLoading={isPending}
-                  onClick={() => deleteSkillHandler(skill?._id)}
-                  size="sm"
-                  onPress={onClose}
                   className="bg-red-500 text-white"
+                  isLoading={isPending}
+                  size="sm"
+                  onClick={() => deleteSkillHandler(skill?._id)}
+                  onPress={onClose}
                 >
                   Yes
                 </Button>

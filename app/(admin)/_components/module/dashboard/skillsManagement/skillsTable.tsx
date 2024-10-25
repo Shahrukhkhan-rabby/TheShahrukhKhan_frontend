@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import {
   Table,
@@ -7,13 +7,15 @@ import {
   TableBody,
   TableRow,
   TableCell,
-} from '@nextui-org/table';
-import { Avatar } from '@nextui-org/avatar';
-import React from 'react';
-import { TSkill } from '@/types';
-import AddSkillModal from '../../../modal/addSkillModal';
-import EditSkillModal from '../../../modal/editSkillModal';
-import DeleteSkillModal from '../../../modal/deleteSkillModal';
+} from "@nextui-org/table";
+import { Avatar } from "@nextui-org/avatar";
+import React from "react";
+
+import AddSkillModal from "../../../modal/addSkillModal";
+import EditSkillModal from "../../../modal/editSkillModal";
+import DeleteSkillModal from "../../../modal/deleteSkillModal";
+
+import { TSkill } from "@/types";
 
 interface TSkillsTableProps {
   skills: TSkill[];
@@ -33,7 +35,7 @@ export default function SkillsTable({ skills }: TSkillsTableProps) {
           <TableColumn>Category</TableColumn>
           <TableColumn>Action</TableColumn>
         </TableHeader>
-        <TableBody emptyContent={'No skills available'}>
+        <TableBody emptyContent={"No skills available"}>
           {skills?.map((skill) => (
             <TableRow key={skill._id}>
               <TableCell>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Modal,
   ModalContent,
@@ -6,16 +6,17 @@ import {
   ModalBody,
   ModalFooter,
   useDisclosure,
-} from '@nextui-org/modal';
-import { Button } from '@nextui-org/button';
-import { FaPlus } from 'react-icons/fa';
-import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
-import { Input } from '@nextui-org/input';
-import { useCreateExperience } from '@/hooks/experience.hook'; // Assuming you have a hook for creating experiences
-import { Select, SelectItem } from '@nextui-org/select';
-import { Selection } from '@nextui-org/table';
-import { useGetAllSkills } from '@/hooks/skills.hook';
-import { TSkill } from '@/types';
+} from "@nextui-org/modal";
+import { Button } from "@nextui-org/button";
+import { FaPlus } from "react-icons/fa";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { Input } from "@nextui-org/input";
+import { Select, SelectItem } from "@nextui-org/select";
+import { Selection } from "@nextui-org/table";
+
+import { useCreateExperience } from "@/hooks/experience.hook"; // Assuming you have a hook for creating experiences
+import { useGetAllSkills } from "@/hooks/skills.hook";
+import { TSkill } from "@/types";
 
 export default function AddExperienceModal() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -30,19 +31,19 @@ export default function AddExperienceModal() {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      title: '',
-      company: '',
-      location: '',
-      startDate: '',
-      endDate: '',
-      description: '',
+      title: "",
+      company: "",
+      location: "",
+      startDate: "",
+      endDate: "",
+      description: "",
       technologies: [] as string[], // Array to store selected technologies
     },
   });
 
   // State to hold selected technologies (multiple selection)
   const [selectedTechnologies, setSelectedTechnologies] = useState<Selection>(
-    new Set()
+    new Set(),
   );
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
@@ -54,19 +55,19 @@ export default function AddExperienceModal() {
   return (
     <>
       <Button
-        onPress={onOpen}
         className="font-semibold"
-        variant="faded"
         color="warning"
         endContent={<FaPlus />}
+        variant="faded"
+        onPress={onOpen}
       >
         Add Experience
       </Button>
 
       <Modal
-        size="lg"
-        placement="center"
         isOpen={isOpen}
+        placement="center"
+        size="lg"
         onOpenChange={onOpenChange}
       >
         <ModalContent>
@@ -80,10 +81,10 @@ export default function AddExperienceModal() {
                 <form className="space-y-3" onSubmit={handleSubmit(onSubmit)}>
                   <Input
                     label="Job Title"
-                    variant="bordered"
                     placeholder="Enter job title"
-                    {...register('title', {
-                      required: 'Job title is required',
+                    variant="bordered"
+                    {...register("title", {
+                      required: "Job title is required",
                     })}
                   />
                   {errors.title && (
@@ -94,10 +95,10 @@ export default function AddExperienceModal() {
 
                   <Input
                     label="Company"
-                    variant="bordered"
                     placeholder="Enter company name"
-                    {...register('company', {
-                      required: 'Company name is required',
+                    variant="bordered"
+                    {...register("company", {
+                      required: "Company name is required",
                     })}
                   />
                   {errors.company && (
@@ -108,10 +109,10 @@ export default function AddExperienceModal() {
 
                   <Input
                     label="Location"
-                    variant="bordered"
                     placeholder="Enter location"
-                    {...register('location', {
-                      required: 'Location is required',
+                    variant="bordered"
+                    {...register("location", {
+                      required: "Location is required",
                     })}
                   />
                   {errors.location && (
@@ -124,8 +125,8 @@ export default function AddExperienceModal() {
                     label="Start Date"
                     type="date"
                     variant="bordered"
-                    {...register('startDate', {
-                      required: 'Start date is required',
+                    {...register("startDate", {
+                      required: "Start date is required",
                     })}
                   />
                   {errors.startDate && (
@@ -138,15 +139,15 @@ export default function AddExperienceModal() {
                     label="End Date"
                     type="date"
                     variant="bordered"
-                    {...register('endDate')}
+                    {...register("endDate")}
                   />
 
                   <Input
                     label="Description"
-                    variant="bordered"
                     placeholder="Enter job description"
-                    {...register('description', {
-                      required: 'Job description is required',
+                    variant="bordered"
+                    {...register("description", {
+                      required: "Job description is required",
                     })}
                   />
                   {errors.description && (
@@ -157,13 +158,13 @@ export default function AddExperienceModal() {
 
                   {/* Multiple Select for Technologies */}
                   <Select
+                    multiple
                     label="Technologies"
                     placeholder="Select technologies"
-                    selectionMode="multiple"
                     selectedKeys={selectedTechnologies}
-                    onSelectionChange={setSelectedTechnologies}
+                    selectionMode="multiple"
                     variant="bordered"
-                    multiple
+                    onSelectionChange={setSelectedTechnologies}
                   >
                     {technologies?.map((technology: TSkill) => (
                       <SelectItem key={technology._id} value={technology._id}>
@@ -181,11 +182,11 @@ export default function AddExperienceModal() {
                     <Button
                       className="text-default-900"
                       color="warning"
-                      type="submit"
                       isLoading={isPending}
+                      type="submit"
                       onPress={onClose}
                     >
-                      {isPending ? 'Creating...' : 'Create'}
+                      {isPending ? "Creating..." : "Create"}
                     </Button>
                   </ModalFooter>
                 </form>

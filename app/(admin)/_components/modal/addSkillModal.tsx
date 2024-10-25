@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Modal,
   ModalContent,
@@ -6,17 +6,18 @@ import {
   ModalBody,
   ModalFooter,
   useDisclosure,
-} from '@nextui-org/modal';
-import { Button } from '@nextui-org/button';
-import { FaImage, FaPlus } from 'react-icons/fa';
-import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
-import { Select, SelectItem } from '@nextui-org/select';
-import { Input } from '@nextui-org/input';
-import { SkillLevel, SkillCategory } from '@/constants/skills.constants';
-import { useCreateSkill } from '@/hooks/skills.hook';
-import { uploadImageToCloudinary } from '@/utils/uploadImageToCloudinary';
-import Image from 'next/image';
-import { Spinner } from '@nextui-org/spinner';
+} from "@nextui-org/modal";
+import { Button } from "@nextui-org/button";
+import { FaImage, FaPlus } from "react-icons/fa";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { Select, SelectItem } from "@nextui-org/select";
+import { Input } from "@nextui-org/input";
+import Image from "next/image";
+import { Spinner } from "@nextui-org/spinner";
+
+import { SkillLevel, SkillCategory } from "@/constants/skills.constants";
+import { useCreateSkill } from "@/hooks/skills.hook";
+import { uploadImageToCloudinary } from "@/utils/uploadImageToCloudinary";
 
 export default function AddSkillModal() {
   const [isImageUploading, setIsImageUploading] = useState(false); // Loader state for image
@@ -32,49 +33,50 @@ export default function AddSkillModal() {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      name: '',
-      level: '',
-      category: '',
-      icon: '',
+      name: "",
+      level: "",
+      category: "",
+      icon: "",
     },
   });
 
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
+
     if (file) {
       setIsImageUploading(true);
       const uploadedUrl = await uploadImageToCloudinary(file);
-      setValue('icon', uploadedUrl);
+
+      setValue("icon", uploadedUrl);
       setIsImageUploading(false);
     }
   };
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     if (!data.icon) {
-      console.error('Icon is required but not uploaded.');
+      // Icon upload validation message
       return;
     }
 
-    console.log(data);
     addSkillFn(data);
   };
 
   return (
     <>
       <Button
-        onPress={onOpen}
         className="font-semibold"
-        variant="faded"
         color="warning"
         endContent={<FaPlus />}
+        variant="faded"
+        onPress={onOpen}
       >
         Add Skill
       </Button>
 
       <Modal
-        size="lg"
-        placement="center"
         isOpen={isOpen}
+        placement="center"
+        size="lg"
         onOpenChange={onOpenChange}
       >
         <ModalContent>
@@ -89,10 +91,10 @@ export default function AddSkillModal() {
                 <form className="space-y-3" onSubmit={handleSubmit(onSubmit)}>
                   <Input
                     label="Skill Name"
-                    variant="bordered"
                     placeholder="Enter skill name"
-                    {...register('name', {
-                      required: 'Skill name is required',
+                    variant="bordered"
+                    {...register("name", {
+                      required: "Skill name is required",
                     })}
                   />
                   {errors.name && (
@@ -105,8 +107,8 @@ export default function AddSkillModal() {
                     label="Skill Level"
                     placeholder="Select skill level"
                     variant="bordered"
-                    {...register('level', {
-                      required: 'Skill level is required',
+                    {...register("level", {
+                      required: "Skill level is required",
                     })}
                   >
                     {Object.values(SkillLevel).map((level) => (
@@ -125,8 +127,8 @@ export default function AddSkillModal() {
                     label="Skill Category"
                     placeholder="Select skill category"
                     variant="bordered"
-                    {...register('category', {
-                      required: 'Skill category is required',
+                    {...register("category", {
+                      required: "Skill category is required",
                     })}
                   >
                     {Object.values(SkillCategory).map((category) => (
@@ -141,14 +143,18 @@ export default function AddSkillModal() {
                     </p>
                   )}
 
-                  <label className="mt-4 cursor-pointer text-xs text-warning-400 my-5 flex gap-2 items-center h-14 rounded-xl px-3 border border-default-200 hover:border-default-400">
+                  <label
+                    htmlFor="icon-upload" // Associate label with input
+                    className="mt-4 cursor-pointer text-xs text-warning-400 my-5 flex gap-2 items-center h-14 rounded-xl px-3 border border-default-200 hover:border-default-400"
+                  >
                     <FaImage className="text-2xl" />
                     <p>Upload Icon</p>
                     <Input
-                      type="file"
+                      id="icon-upload" // ID matching the label's htmlFor
                       accept="image/*"
-                      variant="bordered"
                       className="hidden"
+                      type="file"
+                      variant="bordered"
                       onChange={handleFileUpload}
                     />
                   </label>
@@ -161,16 +167,16 @@ export default function AddSkillModal() {
                   {/* Show loader or uploaded icon preview */}
                   {isImageUploading ? (
                     <div className="p-2">
-                      <Spinner size="sm" color="warning" />
+                      <Spinner color="warning" size="sm" />
                     </div>
                   ) : (
-                    watch('icon') && (
+                    watch("icon") && (
                       <Image
-                        src={watch('icon')}
-                        width={500}
-                        height={500}
                         alt="Skill Icon"
                         className="h-12 w-12 mt-2 object-cover rounded-md border-dashed border-default-200 p-1"
+                        height={500}
+                        src={watch("icon")}
+                        width={500}
                       />
                     )
                   )}
@@ -179,11 +185,11 @@ export default function AddSkillModal() {
                     <Button
                       className="text-default-900"
                       color="warning"
-                      type="submit"
                       isLoading={isPending}
+                      type="submit"
                       onPress={onClose}
                     >
-                      {isPending ? 'Creating...' : 'Create'}
+                      {isPending ? "Creating..." : "Create"}
                     </Button>
                   </ModalFooter>
                 </form>

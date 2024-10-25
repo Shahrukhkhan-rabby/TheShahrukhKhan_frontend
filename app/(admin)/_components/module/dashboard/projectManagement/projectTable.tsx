@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { format } from 'date-fns';
+import React from "react";
+import { format } from "date-fns";
 import {
   Table,
   TableHeader,
@@ -9,14 +9,16 @@ import {
   TableBody,
   TableRow,
   TableCell,
-} from '@nextui-org/table';
-import { Avatar } from '@nextui-org/avatar';
-import { TProject } from '@/types/projectsTypes';
-import AddProjectModal from '../../../modal/addProjectModal';
-import EditProjectModal from '../../../modal/editProjectModal';
-import DeleteProjectModal from '../../../modal/deleteProjectModal';
-import Link from 'next/link';
-import { Tooltip } from '@nextui-org/tooltip';
+} from "@nextui-org/table";
+import { Avatar } from "@nextui-org/avatar";
+import Link from "next/link";
+import { Tooltip } from "@nextui-org/tooltip";
+
+import AddProjectModal from "../../../modal/addProjectModal";
+import EditProjectModal from "../../../modal/editProjectModal";
+import DeleteProjectModal from "../../../modal/deleteProjectModal";
+
+import { TProject } from "@/types/projectsTypes";
 
 interface TProjectTableProps {
   projects: TProject[];
@@ -39,49 +41,53 @@ export default function ProjectsTable({ projects }: TProjectTableProps) {
           <TableColumn>Created At</TableColumn>
           <TableColumn>Action</TableColumn>
         </TableHeader>
-        <TableBody emptyContent={'No projects available'}>
+        <TableBody emptyContent={"No projects available"}>
           {projects?.map((project) => (
             <TableRow key={project._id}>
               <TableCell>
                 <Avatar src={project.images[0]} />
               </TableCell>
               <TableCell>
-                <p className="whitespace-nowrap">{project.title}</p>
+                <Tooltip className="w-[250px]" content={project.title}>
+                  <p className="whitespace-nowrap">
+                    {project.title.slice(0, 10) + "..."}
+                  </p>
+                </Tooltip>
               </TableCell>
               <TableCell>
                 <Tooltip className="w-[250px]" content={project.description}>
                   <p className="whitespace-nowrap">
-                    {project.description.slice(0, 20) + '...'}
+                    {project.description.slice(0, 20) + "..."}
                   </p>
                 </Tooltip>
               </TableCell>
               <TableCell>
                 <Link
-                  href={project.github.frontend}
                   className="text-blue-500 whitespace-nowrap"
+                  href={project.github.frontend}
                 >
                   Frontend
                 </Link>
               </TableCell>
               <TableCell>
                 <Link
-                  href={project.github.backend}
                   className="text-blue-500 whitespace-nowrap"
+                  href={project.github.backend}
                 >
                   Backend
                 </Link>
               </TableCell>
               <TableCell>
                 <Link
-                  href={project.live}
                   className="text-blue-500 whitespace-nowrap"
+                  href={project.live}
                 >
                   Live Site
                 </Link>
               </TableCell>
               <TableCell>
                 <p className="whitespace-nowrap">
-                  {format(new Date(project.createdAt), 'dd MMM y')}
+                  {format(new Date(project.createdAt), "dd MMM y")}
                 </p>
               </TableCell>
               <TableCell>

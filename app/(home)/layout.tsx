@@ -1,109 +1,122 @@
-'use client';
+"use client";
 
-import { ReactNode } from 'react';
-import Footer from './_components/footer';
-import { Element, Link as ScrollLink } from 'react-scroll';
-import { motion } from 'framer-motion';
-import { Navbar } from './_components/ui/navbar';
+import { ReactNode } from "react";
+import { Element } from "react-scroll";
+import { motion } from "framer-motion";
+
+import Footer from "./_components/footer";
+import { Navbar } from "./_components/ui/navbar";
 
 interface CommonLayoutProps {
   children: ReactNode;
-  about: ReactNode;
+  aboutMe: ReactNode;
   education: ReactNode;
   experience: ReactNode;
   skills: ReactNode;
   projects: ReactNode;
-  blogs: ReactNode;
-  contact: ReactNode;
+  myBlogs: ReactNode;
+  contactMe: ReactNode;
 }
 
-const sectionAnimation = {
+export const sectionAnimation = {
   hidden: { opacity: 0, y: 100 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
 };
 
 export default function CommonLayout({
   children,
-  about,
+  aboutMe,
   education,
   experience,
   skills,
   projects,
-  blogs,
-  contact,
+  myBlogs,
+  contactMe,
 }: CommonLayoutProps) {
   return (
     <div className="space-y-5 pt-4 px-2">
       <Navbar />
 
       {/* Main content */}
-      <section>{children}</section>
+      <Element name="home">
+        <motion.section
+          className="h-full my-5"
+          id="home"
+          initial="hidden"
+          variants={sectionAnimation}
+          viewport={{ once: true, amount: 0.5 }}
+          whileInView="visible"
+        >
+          {" "}
+          {children}
+        </motion.section>
+      </Element>
 
       {/* Skills section with animation */}
       <Element name="skills">
         <motion.section
-          className="h-screen"
+          className="h-full my-5"
           id="skills"
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.5 }}
           variants={sectionAnimation}
+          viewport={{ once: true, amount: 0.5 }}
+          whileInView="visible"
         >
           {skills}
-        </motion.section>
-      </Element>
-
-      {/* About section with animation */}
-      <Element name="about">
-        <motion.section
-          className="h-screen"
-          id="about"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.5 }}
-          variants={sectionAnimation}
-        >
-          {about}
-        </motion.section>
-      </Element>
-
-      {/* Education section with animation */}
-      <Element name="education">
-        <motion.section
-          className="h-screen"
-          id="education"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.5 }}
-          variants={sectionAnimation}
-        >
-          {education}
         </motion.section>
       </Element>
 
       {/* Experience section with animation */}
       <Element name="experience">
         <motion.section
-          className="h-screen"
+          className="h-full my-5"
           id="experience"
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.5 }}
           variants={sectionAnimation}
+          viewport={{ once: true, amount: 0.5 }}
+          whileInView="visible"
         >
           {experience}
+        </motion.section>
+      </Element>
+
+      {/* About section with animation */}
+      <Element name="about">
+        <motion.section
+          className="h-full my-5"
+          id="about"
+          initial="hidden"
+          variants={sectionAnimation}
+          viewport={{ once: true, amount: 0.5 }}
+          whileInView="visible"
+        >
+          {aboutMe}
+        </motion.section>
+      </Element>
+
+      {/* Education section with animation */}
+      <Element name="education">
+        <motion.section
+          className="h-full my-5"
+          id="education"
+          initial="hidden"
+          variants={sectionAnimation}
+          viewport={{ once: true, amount: 0.5 }}
+          whileInView="visible"
+        >
+          {education}
         </motion.section>
       </Element>
 
       {/* Projects section with animation */}
       <Element name="projects">
         <motion.section
-          className="h-screen"
+          className="h-full my-5"
           id="projects"
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.5 }}
           variants={sectionAnimation}
+          viewport={{ once: true, amount: 0.5 }}
+          whileInView="visible"
         >
           {projects}
         </motion.section>
@@ -112,28 +125,28 @@ export default function CommonLayout({
       {/* Blogs section with animation */}
       <Element name="blogs">
         <motion.section
-          className="h-screen"
+          className="h-full my-5"
           id="blogs"
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.5 }}
           variants={sectionAnimation}
+          viewport={{ once: true, amount: 0.5 }}
+          whileInView="visible"
         >
-          {blogs}
+          {myBlogs}
         </motion.section>
       </Element>
 
       {/* Contact section with animation */}
       <Element name="contact">
         <motion.section
-          className="h-screen"
+          className="h-full my-5"
           id="contact"
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.5 }}
           variants={sectionAnimation}
+          viewport={{ once: true, amount: 0.5 }}
+          whileInView="visible"
         >
-          {contact}
+          {contactMe}
         </motion.section>
       </Element>
       <Footer />

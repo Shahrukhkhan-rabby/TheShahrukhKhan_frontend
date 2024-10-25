@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Modal,
   ModalContent,
@@ -6,12 +6,12 @@ import {
   ModalBody,
   ModalFooter,
   useDisclosure,
-} from '@nextui-org/modal';
-import { Button } from '@nextui-org/button';
-import { FaTrashAlt } from 'react-icons/fa';
-import { TBlog, TEducation } from '@/types';
-import { useDeleteEducation } from '@/hooks/educations.hook';
-import { useDeleteBlog } from '@/hooks/blogs.hook';
+} from "@nextui-org/modal";
+import { Button } from "@nextui-org/button";
+import { FaTrashAlt } from "react-icons/fa";
+
+import { TBlog } from "@/types";
+import { useDeleteBlog } from "@/hooks/blogs.hook";
 
 interface TDeleteBlogModalProps {
   blog: TBlog;
@@ -23,7 +23,8 @@ export default function DeleteBlogModal({ blog }: TDeleteBlogModalProps) {
 
   const deleteBlogHandler = async (id: string) => {
     if (!id) {
-      console.error('Id is required but not provided.');
+      console.error("Id is required but not provided.");
+
       return;
     }
 
@@ -34,14 +35,14 @@ export default function DeleteBlogModal({ blog }: TDeleteBlogModalProps) {
   return (
     <>
       <Button
-        onPress={onOpen}
         isIconOnly
         radius="full"
         size="sm"
         startContent={<FaTrashAlt className="text-red-500" />}
+        onPress={onOpen}
       />
 
-      <Modal size="lg" isOpen={isOpen} onOpenChange={onOpenChange}>
+      <Modal isOpen={isOpen} size="lg" onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (
             <>
@@ -54,14 +55,14 @@ export default function DeleteBlogModal({ blog }: TDeleteBlogModalProps) {
                 </p>
               </ModalBody>
               <ModalFooter>
-                <Button onPress={onClose} size="sm">
+                <Button size="sm" onPress={onClose}>
                   No
                 </Button>
                 <Button
-                  isLoading={isPending}
-                  onClick={() => deleteBlogHandler(blog._id)}
-                  size="sm"
                   className="bg-red-500 text-white"
+                  isLoading={isPending}
+                  size="sm"
+                  onClick={() => deleteBlogHandler(blog._id)}
                 >
                   Yes
                 </Button>

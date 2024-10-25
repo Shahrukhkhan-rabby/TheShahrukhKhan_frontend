@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import {
   Modal,
   ModalContent,
@@ -6,19 +6,20 @@ import {
   ModalBody,
   ModalFooter,
   useDisclosure,
-} from '@nextui-org/modal';
-import { Button } from '@nextui-org/button';
-import { FaImage, FaPencilAlt } from 'react-icons/fa';
-import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
-import { Input } from '@nextui-org/input';
-import { useCreateProject, useEditProject } from '@/hooks/projects.hook';
-import { uploadImageToCloudinary } from '@/utils/uploadImageToCloudinary';
-import Image from 'next/image';
-import { Spinner } from '@nextui-org/spinner';
-import { Select, SelectItem } from '@nextui-org/select';
-import { useGetAllSkills } from '@/hooks/skills.hook';
-import { TProject, TSkill, TUpdateData } from '@/types';
-import { Selection } from '@nextui-org/table';
+} from "@nextui-org/modal";
+import { Button } from "@nextui-org/button";
+import { FaImage, FaPencilAlt } from "react-icons/fa";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { Input } from "@nextui-org/input";
+import Image from "next/image";
+import { Spinner } from "@nextui-org/spinner";
+import { Select, SelectItem } from "@nextui-org/select";
+import { Selection } from "@nextui-org/table";
+
+import { useEditProject } from "@/hooks/projects.hook";
+import { uploadImageToCloudinary } from "@/utils/uploadImageToCloudinary";
+import { useGetAllSkills } from "@/hooks/skills.hook";
+import { TProject, TSkill, TUpdateData } from "@/types";
 
 interface TEditProjectModalProps {
   project: TProject;
@@ -43,33 +44,47 @@ export default function EditProjectModal({ project }: TEditProjectModalProps) {
 
   // State to hold selected technologies (multiple selection)
   const [selectedTechnologies, setSelectedTechnologies] = useState<Selection>(
-    new Set()
+    new Set(),
   );
 
   // Initialize selectedTechnologies based on the project's existing technologies
   useEffect(() => {
     if (project?.technologies) {
       setSelectedTechnologies(
-        new Set(project.technologies.map((tech: TSkill) => tech._id))
+        new Set(project.technologies.map((tech: TSkill) => tech._id)),
       );
     }
   }, [project]);
 
+  const [uploadedImages, setUploadedImages] = useState<string[]>([]);
+
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
+
     if (files) {
       setLoadingImages(true);
-      const uploadedUrls: string[] = await Promise.all(
-        Array.from(files).map(uploadImageToCloudinary)
+      const uploadedUrls = await Promise.all(
+        Array.from(files).map(uploadImageToCloudinary),
       );
-      setValue('images', uploadedUrls);
+
+      setUploadedImages((prevImages) => [...prevImages, ...uploadedUrls]);
+      setValue("images", [...watch("images"), ...uploadedUrls]); // update form state
       setLoadingImages(false);
     }
   };
 
+  const handleDeleteImage = (index: number) => {
+    const newImages = uploadedImages.filter(
+      (_, imgIndex) => imgIndex !== index,
+    );
+    setUploadedImages(newImages);
+    setValue("images", newImages); // update form state
+  };
+
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     if (data.images.length === 0) {
-      console.error('At least one image is required.');
+      console.error("At least one image is required.");
+
       return;
     }
     // Convert selected technologies Set to an array
@@ -79,24 +94,25 @@ export default function EditProjectModal({ project }: TEditProjectModalProps) {
       id: project?._id,
       data: data,
     };
+
     editProjectFn(projectData);
   };
 
   return (
     <>
       <Button
-        onPress={onOpen}
-        radius="full"
         isIconOnly
-        size="sm"
         className="font-semibold"
         endContent={<FaPencilAlt />}
+        radius="full"
+        size="sm"
+        onPress={onOpen}
       />
 
       <Modal
-        size="lg"
-        placement="center"
         isOpen={isOpen}
+        placement="center"
+        size="lg"
         onOpenChange={onOpenChange}
       >
         <ModalContent>
@@ -110,10 +126,10 @@ export default function EditProjectModal({ project }: TEditProjectModalProps) {
                 <form className="space-y-3" onSubmit={handleSubmit(onSubmit)}>
                   <Input
                     label="Project Title"
-                    variant="bordered"
                     placeholder="Enter project title"
-                    {...register('title', {
-                      required: 'Project title is required',
+                    variant="bordered"
+                    {...register("title", {
+                      required: "Project title is required",
                     })}
                   />
                   {errors.title && (
@@ -124,10 +140,10 @@ export default function EditProjectModal({ project }: TEditProjectModalProps) {
 
                   <Input
                     label="Description"
-                    variant="bordered"
                     placeholder="Enter project description"
-                    {...register('description', {
-                      required: 'Project description is required',
+                    variant="bordered"
+                    {...register("description", {
+                      required: "Project description is required",
                     })}
                   />
                   {errors.description && (
@@ -138,10 +154,10 @@ export default function EditProjectModal({ project }: TEditProjectModalProps) {
 
                   <Input
                     label="GitHub (Frontend)"
-                    variant="bordered"
                     placeholder="Enter frontend GitHub URL"
-                    {...register('github.frontend', {
-                      required: 'Frontend GitHub URL is required',
+                    variant="bordered"
+                    {...register("github.frontend", {
+                      required: "Frontend GitHub URL is required",
                     })}
                   />
                   {errors.github?.frontend && (
@@ -152,10 +168,10 @@ export default function EditProjectModal({ project }: TEditProjectModalProps) {
 
                   <Input
                     label="GitHub (Backend)"
-                    variant="bordered"
                     placeholder="Enter backend GitHub URL"
-                    {...register('github.backend', {
-                      required: 'Backend GitHub URL is required',
+                    variant="bordered"
+                    {...register("github.backend", {
+                      required: "Backend GitHub URL is required",
                     })}
                   />
                   {errors.github?.backend && (
@@ -166,10 +182,10 @@ export default function EditProjectModal({ project }: TEditProjectModalProps) {
 
                   <Input
                     label="Live Site URL"
-                    variant="bordered"
                     placeholder="Enter live site URL"
-                    {...register('live', {
-                      required: 'Live site URL is required',
+                    variant="bordered"
+                    {...register("live", {
+                      required: "Live site URL is required",
                     })}
                   />
                   {errors.live && (
@@ -180,13 +196,13 @@ export default function EditProjectModal({ project }: TEditProjectModalProps) {
 
                   {/* Multiple Select for Skill Categories */}
                   <Select
+                    multiple
                     label="Skill Category"
                     placeholder="Select skill category"
-                    selectionMode="multiple"
                     selectedKeys={selectedTechnologies}
-                    onSelectionChange={setSelectedTechnologies}
+                    selectionMode="multiple"
                     variant="bordered"
-                    multiple
+                    onSelectionChange={setSelectedTechnologies}
                   >
                     {skills?.map((technology: TSkill) => (
                       <SelectItem key={technology._id} value={technology._id}>
@@ -200,15 +216,20 @@ export default function EditProjectModal({ project }: TEditProjectModalProps) {
                     </p>
                   )}
 
-                  <label className="mt-4 cursor-pointer text-xs text-warning-400 my-5 flex gap-2 items-center h-14 rounded-xl px-3 border border-default-200 hover:border-default-400">
+                  {/* Image Upload */}
+                  <label
+                    htmlFor="file-upload"
+                    className="mt-4 cursor-pointer text-xs text-warning-400 my-5 flex gap-2 items-center h-14 rounded-xl px-3 border border-default-200 hover:border-default-400"
+                  >
                     <FaImage className="text-2xl" />
                     <p>Upload Images</p>
                     <Input
-                      type="file"
-                      accept="image/*"
+                      id="file-upload"
                       multiple
-                      variant="bordered"
+                      accept="image/*"
                       className="hidden"
+                      type="file"
+                      variant="bordered"
                       onChange={handleFileUpload}
                     />
                   </label>
@@ -218,19 +239,28 @@ export default function EditProjectModal({ project }: TEditProjectModalProps) {
                     </p>
                   )}
 
-                  <div className="flex items-center gap-2 flex-nowrap">
+                  {/* Display Uploaded Images */}
+                  <div className="flex items-center gap-2 flex-wrap">
                     {loadingImages ? (
-                      <Spinner size="sm" color="warning" />
+                      <Spinner color="warning" size="sm" />
                     ) : (
-                      watch('images')?.map((img: string, index: number) => (
-                        <Image
-                          key={index}
-                          src={img}
-                          width={100}
-                          height={100}
-                          alt={`Uploaded image ${index + 1}`}
-                          className="h-14 w-14 mt-2 object-cover rounded-md border border-dashed border-default-200 p-1"
-                        />
+                      uploadedImages.map((img, index) => (
+                        <div key={index} className="relative">
+                          <Image
+                            alt={`Uploaded image ${index + 1}`}
+                            className="h-14 w-14 mt-2 object-cover rounded-md border border-dashed border-default-200 p-1"
+                            height={100}
+                            src={img}
+                            width={100}
+                          />
+                          <button
+                            type="button"
+                            onClick={() => handleDeleteImage(index)}
+                            className="absolute -top-2 -right-2 size-4 bg-red-600 text-white rounded-full p-1"
+                          >
+                            X
+                          </button>
+                        </div>
                       ))
                     )}
                   </div>
@@ -239,11 +269,11 @@ export default function EditProjectModal({ project }: TEditProjectModalProps) {
                     <Button
                       className="text-default-900"
                       color="warning"
-                      type="submit"
                       isLoading={isPending}
+                      type="submit"
                       onPress={onClose}
                     >
-                      {isPending ? 'Creating...' : 'Create'}
+                      {isPending ? "Creating..." : "Create"}
                     </Button>
                   </ModalFooter>
                 </form>
