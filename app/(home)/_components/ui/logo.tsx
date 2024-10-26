@@ -1,11 +1,14 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
-import { GiChessQueen } from "react-icons/gi";
-import { motion } from "framer-motion";
-import { Link as ScrollLink } from "react-scroll"; // Correct import for react-scroll
+import React, { useState } from 'react';
+import { GiChessQueen } from 'react-icons/gi';
+import { motion } from 'framer-motion';
+import { Link as ScrollLink } from 'react-scroll';
+import logo from '../../../../public/favicon.ico';
 
-import { textVariants } from "./animation";
+import { textVariants } from './animation';
+import { Avatar } from '@nextui-org/avatar';
+import Image from 'next/image';
 
 export default function Logo() {
   const [shouldHideOnScroll, setShouldHideOnScroll] = useState(true);
@@ -30,15 +33,15 @@ export default function Logo() {
         variants={textVariants}
         whileHover="whileHover"
       >
-        {/* Animated Icon */}
-        <div>
-          <GiChessQueen className="text-warning" size={30} />
+        <div className="w-10">
+          <Image
+            className="rounded-md"
+            src={logo}
+            alt="logo"
+            width={500}
+            height={500}
+          />
         </div>
-
-        {/* Animated Text */}
-        <p className="font-semibold text-xl mt-1 text-default-900 hidden lg:block">
-          RijwaN
-        </p>
       </motion.div>
     </ScrollLink>
   );

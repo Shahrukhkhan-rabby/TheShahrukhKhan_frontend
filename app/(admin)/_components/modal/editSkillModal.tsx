@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Modal,
   ModalContent,
@@ -6,18 +6,18 @@ import {
   ModalBody,
   ModalFooter,
   useDisclosure,
-} from "@nextui-org/modal";
-import { Button } from "@nextui-org/button";
-import { FaImage, FaPencilAlt } from "react-icons/fa";
-import { FieldValues, SubmitHandler, useForm } from "react-hook-form"; // Import React Hook Form
-import { Select, SelectItem } from "@nextui-org/select";
-import { Input } from "@nextui-org/input";
-import Image from "next/image";
+} from '@nextui-org/modal';
+import { Button } from '@nextui-org/button';
+import { FaImage, FaPencilAlt } from 'react-icons/fa';
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'; // Import React Hook Form
+import { Select, SelectItem } from '@nextui-org/select';
+import { Input } from '@nextui-org/input';
+import Image from 'next/image';
 
-import { SkillLevel, SkillCategory } from "@/constants/skills.constants";
-import { useEditSkill } from "@/hooks/skills.hook";
-import { uploadImageToCloudinary } from "@/utils/uploadImageToCloudinary";
-import { TSkill, TUpdateData } from "@/types";
+import { SkillLevel, SkillCategory } from '@/constants/skills.constants';
+import { useEditSkill } from '@/hooks/skills.hook';
+import { uploadImageToCloudinary } from '@/utils/uploadImageToCloudinary';
+import { TSkill, TUpdateData } from '@/types';
 
 interface TEditSkillModalProps {
   skill: TSkill;
@@ -49,13 +49,13 @@ export default function EditSkillModal({ skill }: TEditSkillModalProps) {
     if (file) {
       const uploadedUrl = await uploadImageToCloudinary(file);
 
-      setValue("icon", uploadedUrl);
+      setValue('icon', uploadedUrl);
     }
   };
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     if (!data.icon) {
-      console.error("Icon is required but not uploaded.");
+      console.error('Icon is required but not uploaded.');
 
       return;
     }
@@ -97,8 +97,8 @@ export default function EditSkillModal({ skill }: TEditSkillModalProps) {
                     label="Skill Name"
                     placeholder="Enter skill name"
                     variant="bordered"
-                    {...register("name", {
-                      required: "Skill name is required",
+                    {...register('name', {
+                      required: 'Skill name is required',
                     })}
                   />
                   {errors.name && (
@@ -111,8 +111,8 @@ export default function EditSkillModal({ skill }: TEditSkillModalProps) {
                     label="Skill Level"
                     placeholder="Select skill level"
                     variant="bordered"
-                    {...register("level", {
-                      required: "Skill level is required",
+                    {...register('level', {
+                      required: 'Skill level is required',
                     })}
                   >
                     {Object.values(SkillLevel).map((level) => (
@@ -131,8 +131,8 @@ export default function EditSkillModal({ skill }: TEditSkillModalProps) {
                     label="Skill Category"
                     placeholder="Select skill category"
                     variant="bordered"
-                    {...register("category", {
-                      required: "Skill category is required",
+                    {...register('category', {
+                      required: 'Skill category is required',
                     })}
                   >
                     {Object.values(SkillCategory).map((category) => (
@@ -169,12 +169,12 @@ export default function EditSkillModal({ skill }: TEditSkillModalProps) {
                   )}
 
                   {/* Show uploaded icon preview */}
-                  {watch("icon") && (
+                  {watch('icon') && (
                     <Image
                       alt="Skill Icon"
                       className="h-12 w-12 mt-2 object-cover rounded-md border-dashed border-default-200 p-1"
                       height={500}
-                      src={watch("icon")}
+                      src={watch('icon')}
                       width={500}
                     />
                   )}
@@ -187,7 +187,7 @@ export default function EditSkillModal({ skill }: TEditSkillModalProps) {
                       type="submit"
                       onPress={onClose}
                     >
-                      {isPending ? "Saving..." : "Save"}
+                      {isPending ? 'Saving...' : 'Save'}
                     </Button>
                   </ModalFooter>
                 </form>

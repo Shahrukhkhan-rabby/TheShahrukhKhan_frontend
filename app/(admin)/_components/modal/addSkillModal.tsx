@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   Modal,
   ModalContent,
@@ -6,18 +6,18 @@ import {
   ModalBody,
   ModalFooter,
   useDisclosure,
-} from "@nextui-org/modal";
-import { Button } from "@nextui-org/button";
-import { FaImage, FaPlus } from "react-icons/fa";
-import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-import { Select, SelectItem } from "@nextui-org/select";
-import { Input } from "@nextui-org/input";
-import Image from "next/image";
-import { Spinner } from "@nextui-org/spinner";
+} from '@nextui-org/modal';
+import { Button } from '@nextui-org/button';
+import { FaImage, FaPlus } from 'react-icons/fa';
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
+import { Select, SelectItem } from '@nextui-org/select';
+import { Input } from '@nextui-org/input';
+import Image from 'next/image';
+import { Spinner } from '@nextui-org/spinner';
 
-import { SkillLevel, SkillCategory } from "@/constants/skills.constants";
-import { useCreateSkill } from "@/hooks/skills.hook";
-import { uploadImageToCloudinary } from "@/utils/uploadImageToCloudinary";
+import { SkillLevel, SkillCategory } from '@/constants/skills.constants';
+import { useCreateSkill } from '@/hooks/skills.hook';
+import { uploadImageToCloudinary } from '@/utils/uploadImageToCloudinary';
 
 export default function AddSkillModal() {
   const [isImageUploading, setIsImageUploading] = useState(false); // Loader state for image
@@ -33,10 +33,10 @@ export default function AddSkillModal() {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      name: "",
-      level: "",
-      category: "",
-      icon: "",
+      name: '',
+      level: '',
+      category: '',
+      icon: '',
     },
   });
 
@@ -47,7 +47,7 @@ export default function AddSkillModal() {
       setIsImageUploading(true);
       const uploadedUrl = await uploadImageToCloudinary(file);
 
-      setValue("icon", uploadedUrl);
+      setValue('icon', uploadedUrl);
       setIsImageUploading(false);
     }
   };
@@ -93,8 +93,8 @@ export default function AddSkillModal() {
                     label="Skill Name"
                     placeholder="Enter skill name"
                     variant="bordered"
-                    {...register("name", {
-                      required: "Skill name is required",
+                    {...register('name', {
+                      required: 'Skill name is required',
                     })}
                   />
                   {errors.name && (
@@ -107,8 +107,8 @@ export default function AddSkillModal() {
                     label="Skill Level"
                     placeholder="Select skill level"
                     variant="bordered"
-                    {...register("level", {
-                      required: "Skill level is required",
+                    {...register('level', {
+                      required: 'Skill level is required',
                     })}
                   >
                     {Object.values(SkillLevel).map((level) => (
@@ -127,8 +127,8 @@ export default function AddSkillModal() {
                     label="Skill Category"
                     placeholder="Select skill category"
                     variant="bordered"
-                    {...register("category", {
-                      required: "Skill category is required",
+                    {...register('category', {
+                      required: 'Skill category is required',
                     })}
                   >
                     {Object.values(SkillCategory).map((category) => (
@@ -170,12 +170,12 @@ export default function AddSkillModal() {
                       <Spinner color="warning" size="sm" />
                     </div>
                   ) : (
-                    watch("icon") && (
+                    watch('icon') && (
                       <Image
                         alt="Skill Icon"
                         className="h-12 w-12 mt-2 object-cover rounded-md border-dashed border-default-200 p-1"
                         height={500}
-                        src={watch("icon")}
+                        src={watch('icon')}
                         width={500}
                       />
                     )
@@ -189,7 +189,7 @@ export default function AddSkillModal() {
                       type="submit"
                       onPress={onClose}
                     >
-                      {isPending ? "Creating..." : "Create"}
+                      {isPending ? 'Creating...' : 'Create'}
                     </Button>
                   </ModalFooter>
                 </form>

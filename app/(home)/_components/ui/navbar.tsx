@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   Navbar as NextUINavbar,
   NavbarContent,
@@ -9,20 +9,20 @@ import {
   NavbarItem,
   NavbarMenuItem,
   NavbarBrand,
-} from "@nextui-org/navbar";
-import { Link as ScrollLink } from "react-scroll";
-import { motion } from "framer-motion";
-import clsx from "clsx";
+} from '@nextui-org/navbar';
+import { Link as ScrollLink } from 'react-scroll';
+import { motion } from 'framer-motion';
+import clsx from 'clsx';
 
-import { linkVariants, menuVariants } from "./animation";
-import Logo from "./logo";
-import NavButtons from "./navButtons";
-import AnimatedButton from "./button";
+import { linkVariants, menuVariants } from './animation';
+import Logo from './logo';
+import NavButtons from './navButtons';
+import AnimatedButton from './button';
 
-import { ThemeSwitch } from "@/app/(home)/_components/ui/theme-switch";
-import { siteConfig } from "@/config/site";
-import { useRouter } from "next/navigation";
-import { FaDashcube } from "react-icons/fa";
+import { ThemeSwitch } from '@/app/(home)/_components/ui/theme-switch';
+import { siteConfig } from '@/config/site';
+import { useRouter } from 'next/navigation';
+import { FaDashcube } from 'react-icons/fa';
 
 export const Navbar = () => {
   const router = useRouter();
@@ -30,12 +30,12 @@ export const Navbar = () => {
 
   const handleLinkClick = () => {
     setShouldHideOnScroll(false);
-    router.push("/");
+    router.push('/');
   };
 
   return (
     <NextUINavbar
-      className={`rounded-full border border-default-200 bg-opacity-5 top-4 ${!shouldHideOnScroll && "top-4"}`}
+      className={`rounded-full border border-default-200 bg-opacity-5 top-4 ${!shouldHideOnScroll && 'top-4'}`}
       maxWidth="xl"
       position="sticky"
       shouldHideOnScroll={shouldHideOnScroll}
@@ -58,7 +58,7 @@ export const Navbar = () => {
               >
                 <ScrollLink
                   className={clsx(
-                    "cursor-pointer text-default-800 hover:text-warning",
+                    'cursor-pointer text-default-800 hover:text-warning'
                   )}
                   color="black"
                   duration={500}
@@ -90,6 +90,8 @@ export const Navbar = () => {
           <AnimatedButton
             href="/dashboard"
             text="Dashboard"
+            bgColor="bg-transparent"
+            borderColor="text-warning border-default-200"
             IconComponent={FaDashcube}
           />
         </NavbarItem>
@@ -120,7 +122,7 @@ export const Navbar = () => {
                 whileHover="whileHover"
               >
                 <ScrollLink
-                  className={clsx("cursor-pointer text-foreground")}
+                  className={clsx('cursor-pointer text-foreground')}
                   duration={1500}
                   offset={-70}
                   smooth={true}

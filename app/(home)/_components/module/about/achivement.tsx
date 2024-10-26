@@ -1,10 +1,10 @@
-"use client";
-import React from "react";
-import dynamic from "next/dynamic";
-import { differenceInYears } from "date-fns";
-import { TBlog, TProject, TSkill } from "@/types";
+'use client';
+import React from 'react';
+import dynamic from 'next/dynamic';
+import { differenceInYears } from 'date-fns';
+import { TBlog, TProject, TSkill } from '@/types';
 
-const AnimatedNumbers = dynamic(() => import("react-animated-numbers"), {
+const AnimatedNumbers = dynamic(() => import('react-animated-numbers'), {
   ssr: false,
 });
 
@@ -22,14 +22,12 @@ const AchievementsSection = ({
   const programmingStartDate = new Date(2022, 8, 1); // September 1, 2022
   const currentYearCount = differenceInYears(new Date(), programmingStartDate);
 
-  console.log(projects, skills, blogs);
-
   const achievementsList = [
-    { metric: "Projects", value: projects?.length, postfix: "+" },
-    { metric: "Skills", value: skills?.length, postfix: "+" },
-    { metric: "Blogs", value: blogs?.length, postfix: "+" },
-    { metric: "Awards", value: 0 }, // Set awards to 0 as specified
-    { metric: "Years", value: currentYearCount }, // Calculated years since programming start date
+    { metric: 'Years', value: currentYearCount },
+    { metric: 'Projects', value: projects?.length, postfix: '+' },
+    { metric: 'Skills', value: skills?.length, postfix: '+' },
+    { metric: 'Blogs', value: blogs?.length, postfix: '+' },
+    { metric: 'Awards', value: 0 },
   ];
 
   return (
@@ -44,7 +42,7 @@ const AchievementsSection = ({
               includeComma
               animateToNumber={achievement.value}
               locale="en-US"
-              className="text-warning text-2xl font-bold"
+              className="text-warning text-2xl font-bold duration-1000"
             />
             {achievement.postfix}
           </h2>

@@ -26,20 +26,27 @@ const Landing = () => {
         {/* Left Side - Image */}
         <motion.div
           animate={{ opacity: 1, x: 0 }}
-          className="w-full md:w-1/3"
+          className="w-full"
           initial={{ opacity: 0, x: -100 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
         >
-          <div className="">
+          <div className="w-full flex flex-col gap-3 items-center justify-center">
             <Image
               priority
               alt="MD Rijwan Jannat"
-              className=" bg-warning-500 rounded-lg object-cover"
+              className=" bg-warning-500 object-cover h-full size-48 md:size-64 xl:size-72 rounded-full"
               height={500}
               width={400}
               src={
                 'https://res.cloudinary.com/dihqveqyc/image/upload/v1729853599/py2ggp6ws37papsprtjm.jpg'
               }
+            />
+            <AnimatedButton
+              bgColor="bg-transparent"
+              borderColor="border-gray-600"
+              href="https://drive.google.com/file/d/1YIFQMCuGD8NCdpW4XuSH_01Ft9bPh_2V/view?usp=sharing"
+              text="View Resume"
+              textColor="text-default-900"
             />
           </div>
         </motion.div>
@@ -109,15 +116,6 @@ const Landing = () => {
                 <span className="text-purple-400">&lt;/Objective&gt;</span>
               </div>
             </div>
-          </div>
-          <div className="p-2 flex items-center justify-center">
-            <AnimatedButton
-              bgColor="bg-transparent"
-              borderColor="border-gray-600"
-              textColor="text-default-900"
-              href="https://drive.google.com/file/d/1YIFQMCuGD8NCdpW4XuSH_01Ft9bPh_2V/view?usp=sharing"
-              text="View Resume"
-            />
           </div>
         </motion.div>
       </div>

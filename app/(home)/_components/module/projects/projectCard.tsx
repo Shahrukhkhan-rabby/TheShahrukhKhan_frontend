@@ -81,7 +81,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                         />
                       </motion.div>
                     </div>
-                    <h2 className="text-gray-300 font-bold text-lg text-center">
+                    <h2 className="text-warning font-medium text-lg md:text-xl text-center">
                       {project.title}
                     </h2>
                   </div>
