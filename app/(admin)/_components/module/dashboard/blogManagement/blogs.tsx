@@ -1,15 +1,15 @@
-"use client";
+'use client';
 
-import React from "react";
-import { Card, CardBody, CardFooter, CardHeader } from "@nextui-org/card";
-import { format } from "date-fns";
-import Image from "next/image";
+import React from 'react';
+import { Card, CardBody, CardFooter, CardHeader } from '@nextui-org/card';
+import { format } from 'date-fns';
+import Image from 'next/image';
 
-import DeleteBlogModal from "../../../modal/deleteBlogModal";
-import AddBlogModal from "../../../modal/addBlogModal";
-import EditBlogModal from "../../../modal/editBlogModal";
+import DeleteBlogModal from '../../../modal/deleteBlogModal';
+import AddBlogModal from '../../../modal/addBlogModal';
+import EditBlogModal from '../../../modal/editBlogModal';
 
-import { TBlog } from "@/types";
+import { TBlog } from '@/types';
 
 interface TBlogTableProps {
   blogs: TBlog[];
@@ -48,7 +48,7 @@ export default function BlogCard({ blogs }: TBlogTableProps) {
               </div>
               <div className="mb-4">
                 <p className="text-sm text-default-600">
-                  Published: {format(new Date(blog.createdAt), "dd MMM y")}
+                  Published: {format(new Date(blog.createdAt), 'dd MMM y')}
                 </p>
               </div>
             </CardBody>

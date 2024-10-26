@@ -1,10 +1,9 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import React from "react";
-import { FaWhatsapp, FaEnvelope } from "react-icons/fa";
-import NavButtons from "../../ui/navButtons";
-import skillImage from "../../../../../assets/mainIconsdark.svg";
+import Image from 'next/image';
+import React from 'react';
+import { FaWhatsapp, FaEnvelope } from 'react-icons/fa';
+import NavButtons from '../../ui/navButtons';
 
 export default function ContactLeft() {
   return (
@@ -17,7 +16,7 @@ export default function ContactLeft() {
         <Image
           className="size-5"
           src={
-            "https://upload.wikimedia.org/wikipedia/commons/7/7e/Gmail_icon_%282020%29.svg"
+            'https://upload.wikimedia.org/wikipedia/commons/7/7e/Gmail_icon_%282020%29.svg'
           }
           width={500}
           height={500}
@@ -31,8 +30,10 @@ export default function ContactLeft() {
 
       <div className="flex items-center justify-center">
         <Image
-          className="w-1/2"
-          src={skillImage}
+          className="w-full h-[268px] object-cover rounded-lg"
+          src={
+            'https://raw.githubusercontent.com/devSouvik/devSouvik/master/gif3.gif'
+          }
           width={500}
           height={500}
           alt="gmail"

@@ -1,12 +1,13 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
-import { Avatar } from "@nextui-org/avatar";
+import React, { useState } from 'react';
+import { Avatar } from '@nextui-org/avatar';
 
-import { Title } from "../../ui/title";
+import { Title } from '../../ui/title';
 
-import { TBlog } from "@/types";
-import Image from "next/image";
+import { TBlog } from '@/types';
+import Image from 'next/image';
+import Link from 'next/link';
 
 interface TBlogsProps {
   blogs: TBlog[];
@@ -16,7 +17,7 @@ export default function Blogs({ blogs }: TBlogsProps) {
   return (
     <div>
       <Title title1="Blogs" title2="Blogs" />
-      <div className="grid grid-cols-1 xl:grid-cols-2 gap-5 ">
+      <div className="grid grid-cols-2 md:grid-cols-2 xl:grid-cols-3 gap-5 ">
         {blogs.map((blog) => (
           <BlogCard key={blog._id} blog={blog} />
         ))}
@@ -30,14 +31,8 @@ interface BlogCardProps {
 }
 
 const BlogCard = ({ blog }: BlogCardProps) => {
-  const [showDetails, setShowDetails] = useState(false);
-
-  const toggleDetails = () => {
-    setShowDetails((prev) => !prev);
-  };
-
   return (
-    <div className="border border-default-200 rounded-lg p-6">
+    <div className="border border-default-200 rounded-lg p-6 relative h-[350px]">
       <div className="flex gap-3 items-center">
         <Avatar size="md" src={blog.author.image} />
         <div className="flex flex-col items-start">
@@ -51,27 +46,16 @@ const BlogCard = ({ blog }: BlogCardProps) => {
         width={500}
         height={500}
         alt="Blog image"
-        className="w-full h-auto md:w-[250px] p-3 rounded"
+        className="w-full h-auto md:w-[250px] my-2 rounded-lg"
         src={blog.imageUrl}
       />
-      <div>
-        {showDetails ? (
-          <div
-            dangerouslySetInnerHTML={{ __html: blog.content }}
-            className="prose max-w-none"
-          />
-        ) : (
-          <div>
-            <p
-              dangerouslySetInnerHTML={{
-                __html: `${blog.content.substring(0, 200)}...`,
-              }}
-            />
-          </div>
-        )}
-        <button className="mt-4 font-semibold" onClick={toggleDetails}>
-          {showDetails ? "Hide Details" : "Show Details"}
-        </button>
+      <div className="absolute bottom-6 left-6">
+        <Link
+          href={`/blogs/${blog?._id}`}
+          className="mt-4 font-semibold hover:text-warning hover:border-b border-warning"
+        >
+          See details
+        </Link>
       </div>
     </div>
   );

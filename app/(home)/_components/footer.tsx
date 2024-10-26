@@ -1,20 +1,16 @@
-"use client";
+'use client';
 
-import NavButtons from "./ui/navButtons";
-import { siteConfig } from "@/config/site";
-import { motion } from "framer-motion";
-import { linkVariants } from "./ui/animation";
-import { Link as ScrollLink } from "react-scroll";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
-import clsx from "clsx";
+import NavButtons from './ui/navButtons';
+import { siteConfig } from '@/config/site';
+import { linkVariants } from './ui/animation';
+import { Link as ScrollLink } from 'react-scroll';
+import { useRouter } from 'next/navigation';
+import clsx from 'clsx';
 
 export default function Footer() {
-  const [shouldHideOnScroll, setShouldHideOnScroll] = useState(true);
   const router = useRouter();
   const handleLinkClick = () => {
-    setShouldHideOnScroll(false);
-    router.push("/");
+    router.push('/');
   };
 
   return (
@@ -35,22 +31,20 @@ export default function Footer() {
             </h3>
             <nav className="flex flex-col space-y-2">
               {siteConfig.navItems.slice(0, 4).map((item) => (
-                <div>
-                  <div>
-                    <ScrollLink
-                      className={clsx(
-                        "cursor-pointer text-default-900 hover:text-warning",
-                      )}
-                      color="black"
-                      duration={500}
-                      offset={-90}
-                      smooth={true}
-                      to={item.href.substring(1)}
-                      onClick={handleLinkClick}
-                    >
-                      {item.label}
-                    </ScrollLink>
-                  </div>
+                <div key={item.href}>
+                  <ScrollLink
+                    className={clsx(
+                      'cursor-pointer text-default-900 hover:text-warning'
+                    )}
+                    color="black"
+                    duration={500}
+                    offset={-90}
+                    smooth={true}
+                    to={item.href.substring(1)}
+                    onClick={handleLinkClick}
+                  >
+                    {item.label}
+                  </ScrollLink>
                 </div>
               ))}
             </nav>

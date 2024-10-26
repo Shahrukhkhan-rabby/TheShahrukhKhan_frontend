@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { ReactNode } from "react";
-import { Element } from "react-scroll";
-import { motion } from "framer-motion";
+import { ReactNode } from 'react';
+import { Element } from 'react-scroll';
+import { motion } from 'framer-motion';
 
-import Footer from "./_components/footer";
-import { Navbar } from "./_components/ui/navbar";
+import Footer from './_components/footer';
+import { Navbar } from './_components/ui/navbar';
 
 interface CommonLayoutProps {
   children: ReactNode;
@@ -18,7 +18,7 @@ interface CommonLayoutProps {
   contactMe: ReactNode;
 }
 
-export const sectionAnimation = {
+const sectionAnimation = {
   hidden: { opacity: 0, y: 100 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
 };
@@ -47,7 +47,7 @@ export default function CommonLayout({
           viewport={{ once: true, amount: 0.5 }}
           whileInView="visible"
         >
-          {" "}
+          {' '}
           {children}
         </motion.section>
       </Element>

@@ -1,12 +1,19 @@
-"use client";
+'use client';
 
-import { IoIosArrowForward } from "react-icons/io";
-import { motion } from "framer-motion";
+import dynamic from 'next/dynamic';
+import { motion } from 'framer-motion';
 
 interface TitleProps {
   title1: string;
+
   title2: string;
 }
+
+// Dynamically import the IoIosArrowForward icon without SSR
+const IoIosArrowForward = dynamic(
+  () => import('react-icons/io').then((mod) => mod.IoIosArrowForward),
+  { ssr: false }
+);
 
 export const Title: React.FC<TitleProps> = ({ title1, title2 }) => {
   return (
@@ -22,7 +29,7 @@ export const Title: React.FC<TitleProps> = ({ title1, title2 }) => {
           transition={{
             duration: 1.5,
             repeat: Infinity,
-            repeatType: "reverse",
+            repeatType: 'reverse',
           }}
         />
       </div>
