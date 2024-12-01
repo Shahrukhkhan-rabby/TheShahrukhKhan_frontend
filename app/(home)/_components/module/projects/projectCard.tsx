@@ -1,9 +1,9 @@
-import { TProject } from '@/types';
-import Image from 'next/image';
-import React from 'react';
-import { motion } from 'framer-motion';
-import AnimatedButton from '../../ui/button';
-import { AiOutlineEye, AiOutlineInfoCircle } from 'react-icons/ai';
+import { TProject } from "@/types";
+import Image from "next/image";
+import React from "react";
+import { motion } from "framer-motion";
+import AnimatedButton from "../../ui/button";
+import { AiOutlineEye, AiOutlineInfoCircle } from "react-icons/ai";
 
 const cardContainerVariants = {
   hidden: { opacity: 0, y: 30 },
@@ -13,7 +13,7 @@ const cardContainerVariants = {
     transition: {
       delay: 0.2,
       duration: 0.5,
-      ease: 'easeOut',
+      ease: "easeOut",
     },
   },
 };
@@ -52,7 +52,7 @@ export default function ProjectCard({ project }: { project: TProject }) {
       variants={cardContainerVariants}
       initial="hidden"
       animate="visible"
-      whileHover={{ scale: 1.05, boxShadow: '0 10px 20px rgba(0, 0, 0, 0.2)' }}
+      whileHover={{ scale: 1.05, boxShadow: "0 10px 20px rgba(0, 0, 0, 0.2)" }}
       transition={{ duration: 0.3 }}
     >
       {/* Project Image */}

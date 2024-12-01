@@ -1,11 +1,11 @@
 // pages/experience.tsx
-'use client';
+"use client";
 
-import dynamic from 'next/dynamic';
-import { Title } from '../../ui/title';
-import { TExperiences } from '@/types/experiencesTypes';
+import dynamic from "next/dynamic";
+import { Title } from "../../ui/title";
+import { TExperiences } from "@/types/experiencesTypes";
 
-const ClientExperience = dynamic(() => import('./experienceCard'), {
+const ClientExperience = dynamic(() => import("./experienceCard"), {
   ssr: false,
 });
 

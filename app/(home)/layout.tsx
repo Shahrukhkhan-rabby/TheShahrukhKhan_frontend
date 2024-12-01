@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import { ReactNode } from 'react';
-import { Element } from 'react-scroll';
+import { ReactNode } from "react";
+import { Element } from "react-scroll";
 
-import Footer from './_components/footer';
-import { Navbar } from './_components/ui/navbar';
-import SmoothScrollWrapper from './_components/ui/ScrollAnimation';
+import Footer from "./_components/footer";
+import { Navbar } from "./_components/ui/navbar";
+import SmoothScrollWrapper from "./_components/ui/ScrollAnimation";
 
 interface CommonLayoutProps {
   children: ReactNode;

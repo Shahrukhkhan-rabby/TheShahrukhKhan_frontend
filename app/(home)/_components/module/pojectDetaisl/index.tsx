@@ -1,15 +1,15 @@
 // ProjectDetails.tsx
 
-'use client';
+"use client";
 
-import { TProject } from '@/types';
-import React, { useState } from 'react';
-import Image from 'next/image';
-import AnimatedButton from '../../ui/button';
-import { AiOutlineEye } from 'react-icons/ai';
-import { FaGithub } from 'react-icons/fa';
-import ThumbnailSlider from './thumbnailSlider ';
-import { motion } from 'framer-motion';
+import { TProject } from "@/types";
+import React, { useState } from "react";
+import Image from "next/image";
+import AnimatedButton from "../../ui/button";
+import { AiOutlineEye } from "react-icons/ai";
+import { FaGithub } from "react-icons/fa";
+import ThumbnailSlider from "./thumbnailSlider ";
+import { motion } from "framer-motion";
 
 export default function ProjectDetails({ project }: { project: TProject }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -25,7 +25,7 @@ export default function ProjectDetails({ project }: { project: TProject }) {
     visible: {
       opacity: 1,
       x: 0,
-      transition: { type: 'spring', stiffness: 100, damping: 20 },
+      transition: { type: "spring", stiffness: 100, damping: 20 },
     },
   };
 
@@ -33,7 +33,7 @@ export default function ProjectDetails({ project }: { project: TProject }) {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { duration: 0.5, ease: 'easeInOut' },
+      transition: { duration: 0.5, ease: "easeInOut" },
     },
   };
 
@@ -122,7 +122,7 @@ export default function ProjectDetails({ project }: { project: TProject }) {
                 width={500}
                 height={500}
                 className="size-6 rounded-full object-cover"
-              />{' '}
+              />{" "}
               {tech.name}
             </motion.span>
           ))}

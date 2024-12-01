@@ -1,12 +1,12 @@
 // MoreProductsSlider.tsx
 
-'use client';
+"use client";
 
-import React from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import ProjectCard from '@/app/(home)/_components/module/projects/projectCard';
-import { TProject } from '@/types';
+import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import ProjectCard from "@/app/(home)/_components/module/projects/projectCard";
+import { TProject } from "@/types";
 
 interface MoreProductsSliderProps {
   projects: TProject[];

@@ -1,20 +1,20 @@
-'use client';
+"use client";
 
-import { Button } from '@nextui-org/button';
-import Link from 'next/link';
-import React from 'react';
+import { Button } from "@nextui-org/button";
+import Link from "next/link";
+import React from "react";
 import {
   FaDiscord,
   FaFacebookF,
   FaGithub,
   FaLinkedin,
   FaTwitter,
-} from 'react-icons/fa';
-import { motion } from 'framer-motion';
+} from "react-icons/fa";
+import { motion } from "framer-motion";
 
-import { buttonVariants } from './animation';
+import { buttonVariants } from "./animation";
 
-import { siteConfig } from '@/config/site';
+import { siteConfig } from "@/config/site";
 
 export default function NavButtons() {
   return (

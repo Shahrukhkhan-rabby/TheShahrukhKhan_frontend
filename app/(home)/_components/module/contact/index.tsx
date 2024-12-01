@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import { useRef, useState, ChangeEvent, FormEvent } from 'react';
-import emailjs from '@emailjs/browser';
-import { Input, Textarea, Button } from '@nextui-org/react';
-import { IoSendSharp } from 'react-icons/io5';
+import { useRef, useState, ChangeEvent, FormEvent } from "react";
+import emailjs from "@emailjs/browser";
+import { Input, Textarea, Button } from "@nextui-org/react";
+import { IoSendSharp } from "react-icons/io5";
 
-import { Title } from '../../ui/title';
+import { Title } from "../../ui/title";
 
-import ContactLeft from './contactLeft';
+import ContactLeft from "./contactLeft";
 
 interface FormValues {
   username: string;
@@ -19,11 +19,11 @@ interface FormValues {
 
 const Contact: React.FC = () => {
   const [formValues, setFormValues] = useState<FormValues>({
-    username: '',
-    phoneNumber: '',
-    email: '',
-    subject: '',
-    message: '',
+    username: "",
+    phoneNumber: "",
+    email: "",
+    subject: "",
+    message: "",
   });
   const [errMsg, setErrMsg] = useState<string | null>(null);
   const [successMsg, setSuccessMsg] = useState<string | null>(null);
@@ -37,7 +37,7 @@ const Contact: React.FC = () => {
   };
 
   const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
 
@@ -49,40 +49,40 @@ const Contact: React.FC = () => {
     const { username, email, message } = formValues;
 
     if (!username) {
-      setErrMsg('Name is required!');
+      setErrMsg("Name is required!");
     } else if (!email) {
-      setErrMsg('Please provide your email!');
+      setErrMsg("Please provide your email!");
     } else if (!emailValidation(email)) {
-      setErrMsg('Please provide a valid email!');
+      setErrMsg("Please provide a valid email!");
     } else if (!message) {
-      setErrMsg('Message is required!');
+      setErrMsg("Message is required!");
     } else {
       setErrMsg(null);
 
       // Use emailjs to send the form data
       emailjs
         .sendForm(
-          'service_a83mwk4',
-          'template_crw6xto',
+          "service_a83mwk4",
+          "template_crw6xto",
           form.current as HTMLFormElement,
-          'wTuP0_-qh1sVDIcjH'
+          "wTuP0_-qh1sVDIcjH",
         )
         .then(
           (result) => {
             setSuccessMsg(
-              `Thank you, ${username}! Your message has been sent successfully.`
+              `Thank you, ${username}! Your message has been sent successfully.`,
             );
             setFormValues({
-              username: '',
-              phoneNumber: '',
-              email: '',
-              subject: '',
-              message: '',
+              username: "",
+              phoneNumber: "",
+              email: "",
+              subject: "",
+              message: "",
             });
           },
           (error) => {
-            setErrMsg('Something went wrong. Please try again.');
-          }
+            setErrMsg("Something went wrong. Please try again.");
+          },
         );
     }
   };
@@ -92,7 +92,7 @@ const Contact: React.FC = () => {
       <Title title1="Contact" title2="Contact" />
       <div className="w-full flex flex-col md:flex-row gap-5 md:items-start justify-start">
         <div className="w-full md:w-[40%]">
-          {' '}
+          {" "}
           <ContactLeft />
         </div>
         <form

@@ -65,9 +65,10 @@ const Landing = () => {
         >
           <div className="text-center lg:text-left">
             <h1 className="text-3xl md:text-5xl font-bold text-default-800">
-              Hello, I'm{' '}
+              Hello, I&apos;m{' '}
               <span className="text-[#F5A524]">MD Rijwan Jannat</span>
             </h1>
+
             <h2 className="text-xl md:text-3xl text-default-700 mt-4">
               A {text}
               <Cursor cursorColor="#F5A524" />

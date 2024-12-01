@@ -1,8 +1,8 @@
 // ClientExperience.tsx
-import React from 'react';
-import Image from 'next/image';
-import { format } from 'date-fns';
-import { TExperiences } from '@/types/experiencesTypes';
+import React from "react";
+import Image from "next/image";
+import { format } from "date-fns";
+import { TExperiences } from "@/types/experiencesTypes";
 
 interface TExperiencesProps {
   experiences: TExperiences[];
@@ -20,10 +20,10 @@ const ClientExperience: React.FC<TExperiencesProps> = ({ experiences }) => {
           <p className="text-default-600 font-medium">{exp.company}</p>
           <p className="text-sm text-default-500 mb-4">{exp.location}</p>
           <p className="text-sm text-default-500 mb-4">
-            {format(new Date(exp.startDate), 'dd MMM yyyy')} -{' '}
+            {format(new Date(exp.startDate), "dd MMM yyyy")} -{" "}
             {exp.endDate
-              ? format(new Date(exp.endDate), 'dd MMM yyyy')
-              : 'Present'}
+              ? format(new Date(exp.endDate), "dd MMM yyyy")
+              : "Present"}
           </p>
           <p className="text-default-700 mb-4 text-start">{exp.description}</p>
           <div className="flex flex-wrap items-start gap-3">

@@ -1,7 +1,7 @@
-import React from 'react';
-import skillImage from '../../../assets/mainIconsdark.svg';
-import SkillCategories from '../_components/module/skills/skillsCategories';
-import { Title } from '../_components/ui/title';
+import React from "react";
+import skillImage from "../../../assets/mainIconsdark.svg";
+import SkillCategories from "../_components/module/skills/skillsCategories";
+import { Title } from "../_components/ui/title";
 
 export default function SkillsPage() {
   return (

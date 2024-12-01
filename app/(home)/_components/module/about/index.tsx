@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import React from 'react';
+import React from "react";
 
-import { Title } from '../../ui/title';
-import AnimatedButton from '../../ui/button';
+import { Title } from "../../ui/title";
+import AnimatedButton from "../../ui/button";
 
-import { TAbout, TBlog, TProject, TSkill } from '@/types';
-import Image from 'next/image';
-import AchievementsSection from './achivement';
-import { Chip } from '@nextui-org/chip';
+import { TAbout, TBlog, TProject, TSkill } from "@/types";
+import Image from "next/image";
+import AchievementsSection from "./achivement";
+import { Chip } from "@nextui-org/chip";
 
 interface TAboutProps {
   about: TAbout;
@@ -27,7 +27,7 @@ export default function About({ about, projects, skills, blogs }: TAboutProps) {
           height={500}
           alt={about.me.name}
           className="w-full h-full md:h-[350px] rounded-lg shadow-lg object-cover"
-          src={about.image || 'https://example.com/my-image.jpg'}
+          src={about.image || "https://example.com/my-image.jpg"}
         />
       </div>
 
@@ -35,7 +35,7 @@ export default function About({ about, projects, skills, blogs }: TAboutProps) {
       <div className="w-full md:w-2/3 text-center md:text-left space-y-2">
         <h2 className="text-xl md:text-3xl font-bold">{about.title}</h2>
         <p className="text-sm text-default-500 mb-4">
-          Address: {about.address + ',' + about.country}
+          Address: {about.address + "," + about.country}
         </p>
         <p className="text-default-600 mb-10 text-sm">{about.description}</p>
 

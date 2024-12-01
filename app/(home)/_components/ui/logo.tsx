@@ -43,7 +43,7 @@ export default function Logo() {
               whileHover="whileHover"
             >
               <p
-                className="text-white font-bold text-2xl m-0"
+                className="text-white font-bold lg md:text-2xl m-0"
                 style={{
                   textShadow: '0 2px 4px rgba(0,0,0,0.1)',
                 }}

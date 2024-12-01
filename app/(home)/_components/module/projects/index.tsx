@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { TProject } from '@/types';
-import ProjectCard from './projectCard';
+import React from "react";
+import { TProject } from "@/types";
+import ProjectCard from "./projectCard";
 
 interface TProjectProps {
   projects: TProject[];

@@ -1,16 +1,16 @@
-'use client';
+"use client";
 
-import NavButtons from './ui/navButtons';
-import { siteConfig } from '@/config/site';
-import { linkVariants } from './ui/animation';
-import { Link as ScrollLink } from 'react-scroll';
-import { useRouter } from 'next/navigation';
-import clsx from 'clsx';
+import NavButtons from "./ui/navButtons";
+import { siteConfig } from "@/config/site";
+import { linkVariants } from "./ui/animation";
+import { Link as ScrollLink } from "react-scroll";
+import { useRouter } from "next/navigation";
+import clsx from "clsx";
 
 export default function Footer() {
   const router = useRouter();
   const handleLinkClick = () => {
-    router.push('/');
+    router.push("/");
   };
 
   return (
@@ -34,7 +34,7 @@ export default function Footer() {
                 <div key={item.href}>
                   <ScrollLink
                     className={clsx(
-                      'cursor-pointer text-default-900 hover:text-warning'
+                      "cursor-pointer text-default-900 hover:text-warning",
                     )}
                     color="black"
                     duration={500}

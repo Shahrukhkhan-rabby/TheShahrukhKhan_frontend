@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import { format } from 'date-fns';
+import React, { useState } from "react";
+import { format } from "date-fns";
 
-import { Title } from '../../ui/title';
+import { Title } from "../../ui/title";
 
-import { TEducation } from '@/types';
+import { TEducation } from "@/types";
 
 interface TEducationProps {
   educations: TEducation[];
@@ -43,21 +43,21 @@ const EducationCard = ({ education }: EducationCardProps) => {
       </p>
       <p className="text-sm text-default-500 mb-4">{education.location}</p>
       <p className="text-sm text-default-500 mb-4">
-        {format(new Date(education.startDate), 'dd MMM yyyy')} -{' '}
+        {format(new Date(education.startDate), "dd MMM yyyy")} -{" "}
         {education.endDate
-          ? format(new Date(education.endDate), 'dd MMM yyyy')
-          : 'Present'}
+          ? format(new Date(education.endDate), "dd MMM yyyy")
+          : "Present"}
       </p>
       <p className="text-default-600 mb-4">
         {isExpanded
           ? education.description
           : `${education.description.substring(0, maxDescriptionLength)}...`}
         <button className="text-warning text-xs ml-2" onClick={toggleExpand}>
-          {isExpanded ? 'See Less' : 'See More'}
+          {isExpanded ? "See Less" : "See More"}
         </button>
       </p>
       <p className="text-sm font-semibold">
-        Subjects: {education.subjects.join(', ')}
+        Subjects: {education.subjects.join(", ")}
       </p>
     </div>
   );

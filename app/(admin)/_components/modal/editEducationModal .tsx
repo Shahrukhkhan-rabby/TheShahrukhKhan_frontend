@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Modal,
   ModalContent,
@@ -6,14 +6,14 @@ import {
   ModalBody,
   ModalFooter,
   useDisclosure,
-} from '@nextui-org/modal';
-import { Button } from '@nextui-org/button';
-import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
-import { Input } from '@nextui-org/input';
-import { FaPencilAlt } from 'react-icons/fa';
+} from "@nextui-org/modal";
+import { Button } from "@nextui-org/button";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { Input } from "@nextui-org/input";
+import { FaPencilAlt } from "react-icons/fa";
 
-import { TEducation } from '@/types';
-import { useEditEducation } from '@/hooks/educations.hook';
+import { TEducation } from "@/types";
+import { useEditEducation } from "@/hooks/educations.hook";
 
 interface TEditEducationModalProps {
   education: TEducation;
@@ -33,12 +33,12 @@ export default function EditEducationModal({
     defaultValues: {
       institution: education.institution,
       location: education.location,
-      startDate: education.startDate.split('T')[0],
-      endDate: education.endDate.split('T')[0],
+      startDate: education.startDate.split("T")[0],
+      endDate: education.endDate.split("T")[0],
       grade: education.grade,
-      subjects: education.subjects.join(', '),
+      subjects: education.subjects.join(", "),
       degree: education.degree, // Assuming you have a degree field in education
-      description: education.description || '', // Default to empty if not available
+      description: education.description || "", // Default to empty if not available
     },
   });
 
@@ -51,10 +51,10 @@ export default function EditEducationModal({
         location: data.location,
         startDate: new Date(data.startDate).toISOString(),
         endDate: data.endDate ? new Date(data.endDate).toISOString() : null,
-        description: data.description || '',
+        description: data.description || "",
         grade: data.grade,
         subjects: data.subjects
-          .split(',')
+          .split(",")
           .map((subject: string) => subject.trim()),
       },
     };
@@ -86,7 +86,7 @@ export default function EditEducationModal({
                     label="Degree"
                     placeholder="Enter degree"
                     variant="bordered"
-                    {...register('degree', { required: 'Degree is required' })}
+                    {...register("degree", { required: "Degree is required" })}
                   />
                   {errors.degree && (
                     <p className="text-error text-xs text-red-500">
@@ -98,8 +98,8 @@ export default function EditEducationModal({
                     label="Institution"
                     placeholder="Enter institution name"
                     variant="bordered"
-                    {...register('institution', {
-                      required: 'Institution is required',
+                    {...register("institution", {
+                      required: "Institution is required",
                     })}
                   />
                   {errors.institution && (
@@ -112,8 +112,8 @@ export default function EditEducationModal({
                     label="Location"
                     placeholder="Enter location"
                     variant="bordered"
-                    {...register('location', {
-                      required: 'Location is required',
+                    {...register("location", {
+                      required: "Location is required",
                     })}
                   />
                   {errors.location && (
@@ -126,8 +126,8 @@ export default function EditEducationModal({
                     label="Start Date"
                     type="date"
                     variant="bordered"
-                    {...register('startDate', {
-                      required: 'Start date is required',
+                    {...register("startDate", {
+                      required: "Start date is required",
                     })}
                   />
                   {errors.startDate && (
@@ -140,14 +140,14 @@ export default function EditEducationModal({
                     label="End Date"
                     type="date"
                     variant="bordered"
-                    {...register('endDate')}
+                    {...register("endDate")}
                   />
 
                   <Input
                     label="Grade"
                     placeholder="Enter grade"
                     variant="bordered"
-                    {...register('grade', { required: 'Grade is required' })}
+                    {...register("grade", { required: "Grade is required" })}
                   />
                   {errors.grade && (
                     <p className="text-error text-xs text-red-500">
@@ -159,8 +159,8 @@ export default function EditEducationModal({
                     label="Subjects"
                     placeholder="Enter subjects (comma separated)"
                     variant="bordered"
-                    {...register('subjects', {
-                      required: 'Subjects are required',
+                    {...register("subjects", {
+                      required: "Subjects are required",
                     })}
                   />
                   {errors.subjects && (
@@ -173,7 +173,7 @@ export default function EditEducationModal({
                     label="Description"
                     placeholder="Enter a brief description"
                     variant="bordered"
-                    {...register('description')}
+                    {...register("description")}
                   />
 
                   <ModalFooter>
@@ -184,7 +184,7 @@ export default function EditEducationModal({
                       type="submit"
                       onPress={onClose}
                     >
-                      {isPending ? 'Saving...' : 'Save'}
+                      {isPending ? "Saving..." : "Save"}
                     </Button>
                   </ModalFooter>
                 </form>

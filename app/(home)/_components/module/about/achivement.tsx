@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { motion } from 'framer-motion';
-import { differenceInYears } from 'date-fns';
-import { TBlog, TProject, TSkill } from '@/types';
+import React from "react";
+import { motion } from "framer-motion";
+import { differenceInYears } from "date-fns";
+import { TBlog, TProject, TSkill } from "@/types";
 
 interface TAchievementsProps {
   projects: TProject[];
@@ -20,11 +20,11 @@ const AchievementsSection = ({
   const currentYearCount = differenceInYears(new Date(), programmingStartDate);
 
   const achievementsList = [
-    { metric: 'Experience', value: currentYearCount, postfix: '+' },
-    { metric: 'Projects', value: projects?.length, postfix: '+' },
-    { metric: 'Skills', value: skills?.length, postfix: '+' },
-    { metric: 'Blogs', value: blogs?.length, postfix: '+' },
-    { metric: 'Awards', value: 0 },
+    { metric: "Experience", value: currentYearCount, postfix: "+" },
+    { metric: "Projects", value: projects?.length, postfix: "+" },
+    { metric: "Skills", value: skills?.length, postfix: "+" },
+    { metric: "Blogs", value: blogs?.length, postfix: "+" },
+    { metric: "Awards", value: 0 },
   ];
 
   return (
@@ -33,7 +33,7 @@ const AchievementsSection = ({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
       className="flex flex-wrap justify-center md:justify-between items-center gap-5 md:gap-8 mt-8"
-      style={{ marginTop: '30px' }}
+      style={{ marginTop: "30px" }}
     >
       {achievementsList.map((achievement, index) => (
         <motion.div

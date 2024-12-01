@@ -1,5 +1,5 @@
-import React from 'react';
-import { Skeleton } from '@nextui-org/skeleton';
+import React from "react";
+import { Skeleton } from "@nextui-org/skeleton";
 
 export default function SkillsSkeleton() {
   return (

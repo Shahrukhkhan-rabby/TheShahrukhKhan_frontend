@@ -9,7 +9,7 @@
 }
 
 .box::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: -10px 100px;
   background: linear-gradient(#a16e00, #aa883f);
@@ -18,7 +18,7 @@
 }
 
 .box::after {
-  content: '';
+  content: "";
   position: absolute;
   background-color: #f5a524;
   inset: 10px;

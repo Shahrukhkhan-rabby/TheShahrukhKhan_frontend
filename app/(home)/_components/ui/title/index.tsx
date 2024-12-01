@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import dynamic from 'next/dynamic';
-import { motion } from 'framer-motion';
+import dynamic from "next/dynamic";
+import { motion } from "framer-motion";
 
 interface TitleProps {
   title1: string;
@@ -21,7 +21,7 @@ export const Title: React.FC<TitleProps> = ({ title1, title2 }) => {
           transition={{
             duration: 1.5,
             repeat: Infinity,
-            repeatType: 'reverse',
+            repeatType: "reverse",
           }}
         />
       </div>

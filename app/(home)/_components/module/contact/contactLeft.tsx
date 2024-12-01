@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import React, { useState } from 'react';
-import { FaWhatsapp, FaEnvelope } from 'react-icons/fa';
-import { Copy, Check } from 'lucide-react';
-import NavButtons from '../../ui/navButtons';
+import Image from "next/image";
+import React, { useState } from "react";
+import { FaWhatsapp, FaEnvelope } from "react-icons/fa";
+import { Copy, Check } from "lucide-react";
+import NavButtons from "../../ui/navButtons";
 
 const ContactLeft: React.FC = () => {
   const [copied, setCopied] = useState<{ whatsapp: boolean; email: boolean }>({
@@ -12,7 +12,7 @@ const ContactLeft: React.FC = () => {
     email: false,
   });
 
-  const handleCopy = (value: string, field: 'whatsapp' | 'email') => {
+  const handleCopy = (value: string, field: "whatsapp" | "email") => {
     navigator.clipboard.writeText(value).then(() => {
       setCopied({ ...copied, [field]: true });
       setTimeout(() => setCopied({ ...copied, [field]: false }), 2000); // Reset after 2 seconds
@@ -27,7 +27,7 @@ const ContactLeft: React.FC = () => {
         <p className="text-default-700">WhatsApp: +8801797660947</p>
         <button
           className="ml-2 text-gray-500 hover:text-green-500 transition-all"
-          onClick={() => handleCopy('+8801797660947', 'whatsapp')}
+          onClick={() => handleCopy("+8801797660947", "whatsapp")}
         >
           {copied.whatsapp ? (
             <Check className="text-green-500" size={20} />
@@ -42,7 +42,7 @@ const ContactLeft: React.FC = () => {
         <Image
           className="size-5"
           src={
-            'https://upload.wikimedia.org/wikipedia/commons/7/7e/Gmail_icon_%282020%29.svg'
+            "https://upload.wikimedia.org/wikipedia/commons/7/7e/Gmail_icon_%282020%29.svg"
           }
           width={20}
           height={20}
@@ -51,7 +51,7 @@ const ContactLeft: React.FC = () => {
         <p className="text-default-700">Email: rijwanjannat36@gmail.com</p>
         <button
           className="ml-2 text-gray-500 hover:text-blue-500 transition-all"
-          onClick={() => handleCopy('rijwanjannat36@gmail.com', 'email')}
+          onClick={() => handleCopy("rijwanjannat36@gmail.com", "email")}
         >
           {copied.email ? (
             <Check className="text-blue-500" size={20} />
@@ -71,7 +71,7 @@ const ContactLeft: React.FC = () => {
         <Image
           className="w-full h-[268px] object-cover rounded-lg"
           src={
-            'https://raw.githubusercontent.com/devSouvik/devSouvik/master/gif3.gif'
+            "https://raw.githubusercontent.com/devSouvik/devSouvik/master/gif3.gif"
           }
           width={500}
           height={500}

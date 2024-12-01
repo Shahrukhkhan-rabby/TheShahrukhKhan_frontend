@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { motion } from 'framer-motion';
+import React from "react";
+import { motion } from "framer-motion";
 
-import { TSkill } from '@/types';
-import Image from 'next/image';
+import { TSkill } from "@/types";
+import Image from "next/image";
 
 interface TSkillCardProps {
   skill: TSkill;

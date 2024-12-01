@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import styles from './Image.module.css';
-import Image from 'next/image';
-import React from 'react';
+import styles from "./Image.module.css";
+import Image from "next/image";
+import React from "react";
 
 interface BoxProps {
   imageUrl: string;

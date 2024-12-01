@@ -1,19 +1,19 @@
-'use client';
+"use client";
 
-import { Tab, Tabs } from '@nextui-org/tabs';
-import { FC, useState } from 'react';
-import SkillsSkeleton from '../../ui/skeleton/skillSkeleton';
-import { Title } from '../../ui/title';
-import SkillsCard from './skillsCard';
-import { useGetSkillsByCategory } from '@/hooks/skills.hook';
-import { TSkill } from '@/types';
-import { SkillCategory } from '@/constants/skills.constants';
-import Image from 'next/image';
-import skillImage from '../../../../../assets/mainIconsdark.svg';
+import { Tab, Tabs } from "@nextui-org/tabs";
+import { FC, useState } from "react";
+import SkillsSkeleton from "../../ui/skeleton/skillSkeleton";
+import { Title } from "../../ui/title";
+import SkillsCard from "./skillsCard";
+import { useGetSkillsByCategory } from "@/hooks/skills.hook";
+import { TSkill } from "@/types";
+import { SkillCategory } from "@/constants/skills.constants";
+import Image from "next/image";
+import skillImage from "../../../../../assets/mainIconsdark.svg";
 
 const SkillCategories: FC = () => {
   const categories = Object.values(SkillCategory);
-  const [selectedCategory, setSelectedCategory] = useState<string>('Frontend');
+  const [selectedCategory, setSelectedCategory] = useState<string>("Frontend");
 
   // Fetch data based on selected category
   const { data, isLoading } = useGetSkillsByCategory(selectedCategory);

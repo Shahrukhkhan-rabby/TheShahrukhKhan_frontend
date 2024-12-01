@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import { Avatar } from '@nextui-org/avatar';
+import React, { useState } from "react";
+import { Avatar } from "@nextui-org/avatar";
 
-import { Title } from '../../ui/title';
+import { Title } from "../../ui/title";
 
-import { TBlog } from '@/types';
-import Image from 'next/image';
-import Link from 'next/link';
+import { TBlog } from "@/types";
+import Image from "next/image";
+import Link from "next/link";
 
 interface TBlogsProps {
   blogs: TBlog[];
