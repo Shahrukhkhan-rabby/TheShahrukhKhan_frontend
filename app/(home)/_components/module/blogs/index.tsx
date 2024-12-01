@@ -17,7 +17,7 @@ export default function Blogs({ blogs }: TBlogsProps) {
   return (
     <div>
       <Title title1="Blogs" title2="Blogs" />
-      <div className="grid grid-cols-2 md:grid-cols-2 xl:grid-cols-3 gap-5 ">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 ">
         {blogs.map((blog) => (
           <BlogCard key={blog._id} blog={blog} />
         ))}
@@ -32,7 +32,7 @@ interface BlogCardProps {
 
 const BlogCard = ({ blog }: BlogCardProps) => {
   return (
-    <div className="border border-default-200 rounded-lg p-6 relative h-[350px]">
+    <div className="border border-default-200 rounded-lg p-6 relative h-auto md:h-[350px]">
       <div className="flex gap-3 items-center">
         <Avatar size="md" src={blog.author.image} />
         <div className="flex flex-col items-start">
@@ -46,15 +46,15 @@ const BlogCard = ({ blog }: BlogCardProps) => {
         width={500}
         height={500}
         alt="Blog image"
-        className="w-full h-auto md:w-[250px] my-2 rounded-lg"
+        className="w-full md:w-[250px] h-auto my-2 rounded-lg"
         src={blog.imageUrl}
       />
-      <div className="absolute bottom-6 left-6">
+      <div className="mt-5">
         <Link
           href={`/blogs/${blog?._id}`}
-          className="mt-4 font-semibold hover:text-warning hover:border-b border-warning"
+          className="mt-4 font-semibold text-warning border-b border-warning hover:text-warning-600"
         >
-          See details
+          Read more
         </Link>
       </div>
     </div>

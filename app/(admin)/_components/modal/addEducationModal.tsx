@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Modal,
   ModalContent,
@@ -6,13 +6,13 @@ import {
   ModalBody,
   ModalFooter,
   useDisclosure,
-} from "@nextui-org/modal";
-import { Button } from "@nextui-org/button";
-import { FaPlus } from "react-icons/fa";
-import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-import { Input, Textarea } from "@nextui-org/input";
+} from '@nextui-org/modal';
+import { Button } from '@nextui-org/button';
+import { FaPlus } from 'react-icons/fa';
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
+import { Input, Textarea } from '@nextui-org/input';
 
-import { useCreateEducation } from "@/hooks/educations.hook";
+import { useCreateEducation } from '@/hooks/educations.hook';
 
 export default function AddEducationModal() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -24,14 +24,14 @@ export default function AddEducationModal() {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      degree: "",
-      institution: "",
-      location: "",
-      startDate: "",
-      endDate: "",
-      grade: "",
-      description: "",
-      subjects: "",
+      degree: '',
+      institution: '',
+      location: '',
+      startDate: '',
+      endDate: '',
+      grade: '',
+      description: '',
+      subjects: '',
     },
   });
 
@@ -40,14 +40,14 @@ export default function AddEducationModal() {
       degree: data.degree,
       institution: data.institution,
       location: data.location,
-      startDate: new Date(data.startDate).toISOString().split("T")[0], // Format as 'YYYY-MM-DD'
+      startDate: new Date(data.startDate).toISOString().split('T')[0], // Format as 'YYYY-MM-DD'
       endDate: data.endDate
-        ? new Date(data.endDate).toISOString().split("T")[0]
+        ? new Date(data.endDate).toISOString().split('T')[0]
         : null,
       grade: data.grade,
       description: data.description,
       subjects: data.subjects
-        .split(",")
+        .split(',')
         .map((subject: string) => subject.trim()), // Split subjects by comma
     };
 
@@ -81,8 +81,8 @@ export default function AddEducationModal() {
                     label="Degree"
                     placeholder="Enter degree"
                     variant="bordered"
-                    {...register("degree", {
-                      required: "Degree is required",
+                    {...register('degree', {
+                      required: 'Degree is required',
                     })}
                   />
                   {errors.degree && (
@@ -95,8 +95,8 @@ export default function AddEducationModal() {
                     label="Institution"
                     placeholder="Enter institution name"
                     variant="bordered"
-                    {...register("institution", {
-                      required: "Institution is required",
+                    {...register('institution', {
+                      required: 'Institution is required',
                     })}
                   />
                   {errors.institution && (
@@ -109,8 +109,8 @@ export default function AddEducationModal() {
                     label="Location"
                     placeholder="Enter location"
                     variant="bordered"
-                    {...register("location", {
-                      required: "Location is required",
+                    {...register('location', {
+                      required: 'Location is required',
                     })}
                   />
                   {errors.location && (
@@ -123,8 +123,8 @@ export default function AddEducationModal() {
                     label="Start Date"
                     type="date"
                     variant="bordered"
-                    {...register("startDate", {
-                      required: "Start date is required",
+                    {...register('startDate', {
+                      required: 'Start date is required',
                     })}
                   />
                   {errors.startDate && (
@@ -137,8 +137,8 @@ export default function AddEducationModal() {
                     label="End Date"
                     type="date"
                     variant="bordered"
-                    {...register("endDate", {
-                      required: "End date is required",
+                    {...register('endDate', {
+                      required: 'End date is required',
                     })}
                   />
                   {errors.endDate && (
@@ -151,7 +151,7 @@ export default function AddEducationModal() {
                     label="Grade"
                     placeholder="Enter grade"
                     variant="bordered"
-                    {...register("grade", { required: "Grade is required" })}
+                    {...register('grade', { required: 'Grade is required' })}
                   />
                   {errors.grade && (
                     <p className="text-error text-xs text-red-500">
@@ -163,8 +163,8 @@ export default function AddEducationModal() {
                     label="Description"
                     placeholder="Enter description of your studies"
                     variant="bordered"
-                    {...register("description", {
-                      required: "Description is required",
+                    {...register('description', {
+                      required: 'Description is required',
                     })}
                   />
                   {errors.description && (
@@ -177,8 +177,8 @@ export default function AddEducationModal() {
                     label="Subjects"
                     placeholder="Enter subjects (comma separated)"
                     variant="bordered"
-                    {...register("subjects", {
-                      required: "Subjects are required",
+                    {...register('subjects', {
+                      required: 'Subjects are required',
                     })}
                   />
                   {errors.subjects && (
@@ -195,7 +195,7 @@ export default function AddEducationModal() {
                       type="submit"
                       onPress={onClose}
                     >
-                      {isPending ? "Creating..." : "Create"}
+                      {isPending ? 'Creating...' : 'Create'}
                     </Button>
                   </ModalFooter>
                 </form>

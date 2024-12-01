@@ -24,6 +24,14 @@ import { siteConfig } from '@/config/site';
 import { useRouter } from 'next/navigation';
 import { FaDashcube } from 'react-icons/fa';
 
+const underlineVariants = {
+  initial: { width: 0 },
+  whileHover: {
+    width: '100%',
+    transition: { duration: 0.3, ease: 'easeInOut' },
+  },
+};
+
 export const Navbar = () => {
   const router = useRouter();
   const [shouldHideOnScroll, setShouldHideOnScroll] = useState(true);
@@ -35,7 +43,9 @@ export const Navbar = () => {
 
   return (
     <NextUINavbar
-      className={`rounded-full border border-default-200 bg-opacity-5 top-4 ${!shouldHideOnScroll && 'top-4'}`}
+      className={`rounded-full border border-default-200 bg-opacity-5 top-4 ${
+        !shouldHideOnScroll && 'top-4'
+      }`}
       maxWidth="xl"
       position="sticky"
       shouldHideOnScroll={shouldHideOnScroll}
@@ -55,6 +65,7 @@ export const Navbar = () => {
                 initial="initial"
                 variants={linkVariants}
                 whileHover="whileHover"
+                className="relative"
               >
                 <ScrollLink
                   className={clsx(
@@ -69,6 +80,11 @@ export const Navbar = () => {
                 >
                   {item.label}
                 </ScrollLink>
+                {/* Animated underline */}
+                <motion.div
+                  className="absolute left-0 bottom-[-2px] h-[2px] bg-warning"
+                  variants={underlineVariants}
+                />
               </motion.div>
             </NavbarItem>
           ))}
@@ -90,6 +106,7 @@ export const Navbar = () => {
           <AnimatedButton
             href="/dashboard"
             text="Dashboard"
+            target="_self"
             bgColor="bg-transparent"
             borderColor="text-warning border-default-200"
             IconComponent={FaDashcube}
@@ -120,6 +137,7 @@ export const Navbar = () => {
                 initial="initial"
                 variants={linkVariants}
                 whileHover="whileHover"
+                className="relative"
               >
                 <ScrollLink
                   className={clsx('cursor-pointer text-foreground')}
@@ -131,6 +149,11 @@ export const Navbar = () => {
                 >
                   {item.label}
                 </ScrollLink>
+                {/* Animated underline */}
+                <motion.div
+                  className="absolute left-0 bottom-[-2px] h-[2px] bg-warning"
+                  variants={underlineVariants}
+                />
               </motion.div>
             </NavbarMenuItem>
           ))}

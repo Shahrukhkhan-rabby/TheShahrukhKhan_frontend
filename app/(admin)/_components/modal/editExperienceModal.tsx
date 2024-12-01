@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   Modal,
   ModalContent,
@@ -6,17 +6,17 @@ import {
   ModalBody,
   ModalFooter,
   useDisclosure,
-} from "@nextui-org/modal";
-import { Button } from "@nextui-org/button";
-import { FaPencilAlt } from "react-icons/fa";
-import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-import { Input } from "@nextui-org/input";
-import { Select, SelectItem } from "@nextui-org/select";
-import { Selection } from "@nextui-org/table";
+} from '@nextui-org/modal';
+import { Button } from '@nextui-org/button';
+import { FaPencilAlt } from 'react-icons/fa';
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
+import { Input } from '@nextui-org/input';
+import { Select, SelectItem } from '@nextui-org/select';
+import { Selection } from '@nextui-org/table';
 
-import { useEditExperience } from "@/hooks/experience.hook"; // Assuming you have a hook for creating experiences
-import { useGetAllSkills } from "@/hooks/skills.hook";
-import { TExperience, TSkill } from "@/types";
+import { useEditExperience } from '@/hooks/experience.hook'; // Assuming you have a hook for creating experiences
+import { useGetAllSkills } from '@/hooks/skills.hook';
+import { TExperience, TSkill } from '@/types';
 
 interface TEditExperienceModalProps {
   experience: TExperience;
@@ -41,7 +41,7 @@ export default function EditExperienceModal({
 
   // State to hold selected technologies (multiple selection)
   const [selectedTechnologies, setSelectedTechnologies] = useState<Selection>(
-    new Set(),
+    new Set()
   );
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
@@ -86,8 +86,8 @@ export default function EditExperienceModal({
                     label="Job Title"
                     placeholder="Enter job title"
                     variant="bordered"
-                    {...register("title", {
-                      required: "Job title is required",
+                    {...register('title', {
+                      required: 'Job title is required',
                     })}
                   />
                   {errors.title && (
@@ -100,8 +100,8 @@ export default function EditExperienceModal({
                     label="Company"
                     placeholder="Enter company name"
                     variant="bordered"
-                    {...register("company", {
-                      required: "Company name is required",
+                    {...register('company', {
+                      required: 'Company name is required',
                     })}
                   />
                   {errors.company && (
@@ -114,8 +114,8 @@ export default function EditExperienceModal({
                     label="Location"
                     placeholder="Enter location"
                     variant="bordered"
-                    {...register("location", {
-                      required: "Location is required",
+                    {...register('location', {
+                      required: 'Location is required',
                     })}
                   />
                   {errors.location && (
@@ -128,8 +128,8 @@ export default function EditExperienceModal({
                     label="Start Date"
                     type="date"
                     variant="bordered"
-                    {...register("startDate", {
-                      required: "Start date is required",
+                    {...register('startDate', {
+                      required: 'Start date is required',
                     })}
                   />
                   {errors.startDate && (
@@ -142,15 +142,15 @@ export default function EditExperienceModal({
                     label="End Date"
                     type="date"
                     variant="bordered"
-                    {...register("endDate")}
+                    {...register('endDate')}
                   />
 
                   <Input
                     label="Description"
                     placeholder="Enter job description"
                     variant="bordered"
-                    {...register("description", {
-                      required: "Job description is required",
+                    {...register('description', {
+                      required: 'Job description is required',
                     })}
                   />
                   {errors.description && (
@@ -189,7 +189,7 @@ export default function EditExperienceModal({
                       type="submit"
                       onPress={onClose}
                     >
-                      {isPending ? "Saving..." : "Save"}
+                      {isPending ? 'Saving...' : 'Save'}
                     </Button>
                   </ModalFooter>
                 </form>

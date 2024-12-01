@@ -51,7 +51,7 @@ export default function ProjectDetails({ project }: { project: TProject }) {
     >
       {/* Left Side - Main Image */}
       <motion.div
-        className="flex flex-col w-full lg:w-1/2 z-20"
+        className="flex flex-col w-full lg:w-1/2"
         variants={imageVariants}
       >
         <motion.div className="w-full h-[400px]">
@@ -74,7 +74,7 @@ export default function ProjectDetails({ project }: { project: TProject }) {
 
       {/* Right Side - Project Details */}
       <motion.div
-        className="flex flex-col w-full lg:w-1/2 z-20"
+        className="flex flex-col w-full lg:w-1/2"
         initial="hidden"
         animate="visible"
         variants={containerVariants}
@@ -89,7 +89,7 @@ export default function ProjectDetails({ project }: { project: TProject }) {
           {title}
         </motion.h1>
         <motion.p
-          className="text-gray-700 mb-4"
+          className="text-default-700 mb-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4 }}
@@ -109,10 +109,12 @@ export default function ProjectDetails({ project }: { project: TProject }) {
           {technologies.map((tech) => (
             <motion.span
               key={tech._id}
-              className="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full flex items-center gap-1"
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.3, delay: 0.2 }}
+              className="bg-default-200 text-default-800 text-xs px-2.5 py-1 rounded-full flex items-center gap-1"
+              animate="animate"
+              initial="initial"
+              variants={buttonVariants}
+              whileHover="whileHover"
+              whileTap="whileTap"
             >
               <Image
                 src={tech.icon}

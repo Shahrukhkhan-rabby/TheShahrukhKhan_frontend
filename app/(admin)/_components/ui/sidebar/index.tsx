@@ -79,9 +79,12 @@ export default function SidebarMain({ children }: { children: ReactNode }) {
         variants={sidebarVariants}
       >
         {/* Sidebar Logo */}
-        <div className="flex items-start text-lg font-semibold p-4">
+        <Link
+          href={'/'}
+          className="flex items-start text-lg font-semibold p-4 cursor-pointer"
+        >
           <Logo />
-        </div>
+        </Link>
 
         {/* Sidebar Navigation */}
         <motion.nav animate="visible" className="space-y-4" initial="hidden">

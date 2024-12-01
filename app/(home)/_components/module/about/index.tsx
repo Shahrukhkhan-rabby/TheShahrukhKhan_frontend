@@ -19,9 +19,9 @@ interface TAboutProps {
 
 export default function About({ about, projects, skills, blogs }: TAboutProps) {
   return (
-    <section className="bg-default-50 p-2 md:p-8 flex flex-col md:flex-row justify-center items-center md:space-x-8 space-y-8 md:space-y-0">
+    <section className="bg-default-50 p-2 md:p-8 flex flex-col md:flex-row justify-start items-start md:space-x-8 space-y-8 md:space-y-0">
       {/* Image Section */}
-      <div className="md:w-1/3">
+      <div className="w-full md:w-1/3">
         <Image
           width={500}
           height={500}
@@ -32,12 +32,12 @@ export default function About({ about, projects, skills, blogs }: TAboutProps) {
       </div>
 
       {/* Text Section */}
-      <div className="md:w-2/3 text-center md:text-left space-y-2">
-        <h2 className="text-3xl font-bold">{about.title}</h2>
+      <div className="w-full md:w-2/3 text-center md:text-left space-y-2">
+        <h2 className="text-xl md:text-3xl font-bold">{about.title}</h2>
         <p className="text-sm text-default-500 mb-4">
           Address: {about.address + ',' + about.country}
         </p>
-        <p className="text-default-600 mb-4">{about.description}</p>
+        <p className="text-default-600 mb-10 text-sm">{about.description}</p>
 
         {/* Experience, Projects, Companies Worked */}
         <AchievementsSection
@@ -50,9 +50,10 @@ export default function About({ about, projects, skills, blogs }: TAboutProps) {
         <AnimatedButton
           bgColor="bg-transparent"
           borderColor="border-gray-600"
-          href="https://drive.google.com/file/d/1YIFQMCuGD8NCdpW4XuSH_01Ft9bPh_2V/view?usp=sharing"
+          href="https://drive.google.com/file/d/1x6DLawdKCuVhNGW4qnHnD3m6OYkd2fDH/view?usp=drive_link"
           text="View Resume"
           textColor="text-default-900"
+          target="_blank"
         />
       </div>
     </section>

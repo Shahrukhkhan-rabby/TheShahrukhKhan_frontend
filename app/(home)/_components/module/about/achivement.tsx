@@ -1,12 +1,9 @@
 'use client';
+
 import React from 'react';
-import dynamic from 'next/dynamic';
+import { motion } from 'framer-motion';
 import { differenceInYears } from 'date-fns';
 import { TBlog, TProject, TSkill } from '@/types';
-
-const AnimatedNumbers = dynamic(() => import('react-animated-numbers'), {
-  ssr: false,
-});
 
 interface TAchievementsProps {
   projects: TProject[];
@@ -23,7 +20,7 @@ const AchievementsSection = ({
   const currentYearCount = differenceInYears(new Date(), programmingStartDate);
 
   const achievementsList = [
-    { metric: 'Years', value: currentYearCount },
+    { metric: 'Experience', value: currentYearCount, postfix: '+' },
     { metric: 'Projects', value: projects?.length, postfix: '+' },
     { metric: 'Skills', value: skills?.length, postfix: '+' },
     { metric: 'Blogs', value: blogs?.length, postfix: '+' },
@@ -31,26 +28,58 @@ const AchievementsSection = ({
   ];
 
   return (
-    <div className="flex justify-around md:justify-between md:space-x-8 my-6">
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="flex flex-wrap justify-center md:justify-between items-center gap-5 md:gap-8 mt-8"
+      style={{ marginTop: '30px' }}
+    >
       {achievementsList.map((achievement, index) => (
-        <div
+        <motion.div
           key={index}
-          className="flex flex-col items-center justify-center mx-4 my-4 sm:my-0"
+          initial={{ scale: 0.5, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.5, delay: index * 0.1 }}
+          className="flex flex-col items-center justify-center px-4 md:px-8 py-3"
         >
-          <h2 className="text-warning text-2xl font-bold flex flex-row">
-            <AnimatedNumbers
-              includeComma
-              animateToNumber={achievement.value}
-              locale="en-US"
-              className="text-warning text-2xl font-bold duration-1000"
-            />
-            {achievement.postfix}
-          </h2>
-          <p className="text-default-600 text-base">{achievement.metric}</p>
-        </div>
+          <motion.h2 className="text-warning text-4xl font-bold flex flex-row items-baseline">
+            <Counter from={0} to={achievement.value} />
+            {achievement.postfix && (
+              <span className="ml-1">{achievement.postfix}</span>
+            )}
+          </motion.h2>
+          <p className="text-foreground/80 text-lg">{achievement.metric}</p>
+        </motion.div>
       ))}
-    </div>
+    </motion.div>
   );
+};
+
+const Counter = ({ from, to }: any) => {
+  const [count, setCount] = React.useState(from);
+
+  React.useEffect(() => {
+    const animationDuration = 2000; // 2 seconds
+    const frameDuration = 1000 / 60; // 60 fps
+    const totalFrames = Math.round(animationDuration / frameDuration);
+    const easeOutQuad = (t: number) => t * (2 - t);
+
+    let frame = 0;
+    const counter = setInterval(() => {
+      frame++;
+      const progress = easeOutQuad(frame / totalFrames);
+      setCount(Math.floor(from + (to - from) * progress));
+
+      if (frame === totalFrames) {
+        clearInterval(counter);
+      }
+    }, frameDuration);
+
+    return () => clearInterval(counter);
+  }, [from, to]);
+
+  return <motion.span>{count}</motion.span>;
 };
 
 export default AchievementsSection;

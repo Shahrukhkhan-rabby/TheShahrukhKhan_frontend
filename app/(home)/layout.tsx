@@ -2,15 +2,15 @@
 
 import { ReactNode } from 'react';
 import { Element } from 'react-scroll';
-import { motion } from 'framer-motion';
 
 import Footer from './_components/footer';
 import { Navbar } from './_components/ui/navbar';
+import SmoothScrollWrapper from './_components/ui/ScrollAnimation';
 
 interface CommonLayoutProps {
   children: ReactNode;
   aboutMe: ReactNode;
-  education: ReactNode;
+  // education: ReactNode;
   experience: ReactNode;
   skills: ReactNode;
   projects: ReactNode;
@@ -26,7 +26,7 @@ const sectionAnimation = {
 export default function CommonLayout({
   children,
   aboutMe,
-  education,
+  // education,
   experience,
   skills,
   projects,
@@ -37,117 +37,46 @@ export default function CommonLayout({
     <div className="space-y-5 pt-4 px-2">
       <Navbar />
 
+      <SmoothScrollWrapper />
+
       {/* Main content */}
       <Element name="home">
-        <motion.section
-          className="h-full my-5"
-          id="home"
-          initial="hidden"
-          variants={sectionAnimation}
-          viewport={{ once: true, amount: 0.5 }}
-          whileInView="visible"
-        >
-          {' '}
-          {children}
-        </motion.section>
+        <div>{children}</div>
       </Element>
 
       {/* Skills section with animation */}
       <Element name="skills">
-        <motion.section
-          className="h-full my-5"
-          id="skills"
-          initial="hidden"
-          variants={sectionAnimation}
-          viewport={{ once: true, amount: 0.5 }}
-          whileInView="visible"
-        >
-          {skills}
-        </motion.section>
+        <div>{skills}</div>
       </Element>
 
       {/* Experience section with animation */}
       <Element name="experience">
-        <motion.section
-          className="h-full my-5"
-          id="experience"
-          initial="hidden"
-          variants={sectionAnimation}
-          viewport={{ once: true, amount: 0.5 }}
-          whileInView="visible"
-        >
-          {experience}
-        </motion.section>
+        <div>{experience}</div>
       </Element>
 
       {/* About section with animation */}
       <Element name="about">
-        <motion.section
-          className="h-full my-5"
-          id="about"
-          initial="hidden"
-          variants={sectionAnimation}
-          viewport={{ once: true, amount: 0.5 }}
-          whileInView="visible"
-        >
-          {aboutMe}
-        </motion.section>
+        <div>{aboutMe}</div>
       </Element>
 
       {/* Education section with animation */}
-      <Element name="education">
-        <motion.section
-          className="h-full my-5"
-          id="education"
-          initial="hidden"
-          variants={sectionAnimation}
-          viewport={{ once: true, amount: 0.5 }}
-          whileInView="visible"
-        >
-          {education}
-        </motion.section>
-      </Element>
+      {/* <Element name="education">
+        <div>{education}</div>
+      </Element> */}
 
       {/* Projects section with animation */}
       <Element name="projects">
-        <motion.section
-          className="h-full my-5"
-          id="projects"
-          initial="hidden"
-          variants={sectionAnimation}
-          viewport={{ once: true, amount: 0.5 }}
-          whileInView="visible"
-        >
-          {projects}
-        </motion.section>
+        <div>{projects}</div>
       </Element>
 
       {/* Blogs section with animation */}
       <Element name="blogs">
-        <motion.section
-          className="h-full my-5"
-          id="blogs"
-          initial="hidden"
-          variants={sectionAnimation}
-          viewport={{ once: true, amount: 0.5 }}
-          whileInView="visible"
-        >
-          {myBlogs}
-        </motion.section>
+        <div>{myBlogs}</div>
       </Element>
 
       {/* Contact section with animation */}
       <Element name="contact">
-        <motion.section
-          className="h-full my-5"
-          id="contact"
-          initial="hidden"
-          variants={sectionAnimation}
-          viewport={{ once: true, amount: 0.5 }}
-          whileInView="visible"
-        >
-          {contactMe}
-        </motion.section>
+        <div>{contactMe}</div>
       </Element>
       <Footer />
     </div>

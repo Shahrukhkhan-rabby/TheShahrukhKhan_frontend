@@ -88,7 +88,7 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <section>
+    <section id="contact">
       <Title title1="Contact" title2="Contact" />
       <div className="w-full flex flex-col md:flex-row gap-5 md:items-start justify-start">
         <div className="w-full md:w-[40%]">
@@ -101,12 +101,12 @@ const Contact: React.FC = () => {
           onSubmit={handleSend}
         >
           {errMsg && (
-            <p className="py-3 bg-gray-200 text-center text-orange-500 animate-bounce">
+            <p className="py-3 bg-default-200 text-center text-orange-500 animate-bounce">
               {errMsg}
             </p>
           )}
           {successMsg && (
-            <p className="py-3 bg-gray-200 text-center text-green-500 animate-bounce">
+            <p className="py-3 bg-default-200 text-center text-green-500 animate-bounce">
               {successMsg}
             </p>
           )}

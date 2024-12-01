@@ -33,7 +33,7 @@ export const BlogCard = ({ blog }: BlogCardProps) => {
   const sanitizedContent = DOMPurify.sanitize(remainingContent);
 
   return (
-    <div className="border border-default-200 rounded-lg p-6">
+    <div className="border border-default-200 bg-default-50 rounded-lg p-6 max-w-4xl mx-auto">
       {/* Author information */}
       <div className="flex gap-3 items-center">
         <Avatar size="md" src={blog.author.image} />
@@ -45,14 +45,6 @@ export const BlogCard = ({ blog }: BlogCardProps) => {
         </div>
       </div>
 
-      {/* Title extracted from the content */}
-      <div className="my-4">
-        <p
-          className="text-2xl font-bold"
-          dangerouslySetInnerHTML={{ __html: sanitizedTitle }}
-        />
-      </div>
-
       {/* Blog image */}
       <div className="my-3">
         <Image
@@ -60,7 +52,7 @@ export const BlogCard = ({ blog }: BlogCardProps) => {
           height={500}
           alt="Blog image"
           src={blog.imageUrl}
-          className="w-full h-auto rounded-lg"
+          className="w-full h-auto rounded-lg z-[99999]"
           style={{ objectFit: 'cover' }}
         />
       </div>
@@ -68,7 +60,7 @@ export const BlogCard = ({ blog }: BlogCardProps) => {
       {/* Full HTML Content */}
       <div
         className="blog-content my-4"
-        dangerouslySetInnerHTML={{ __html: sanitizedContent }}
+        dangerouslySetInnerHTML={{ __html: blog.content }}
       />
     </div>
   );

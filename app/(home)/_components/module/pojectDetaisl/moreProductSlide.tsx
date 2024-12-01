@@ -1,12 +1,12 @@
 // MoreProductsSlider.tsx
 
-"use client";
+'use client';
 
-import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import ProjectCard from "@/app/(home)/_components/module/projects/projectCard";
-import { TProject } from "@/types";
+import React from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import ProjectCard from '@/app/(home)/_components/module/projects/projectCard';
+import { TProject } from '@/types';
 
 interface MoreProductsSliderProps {
   projects: TProject[];
@@ -30,7 +30,7 @@ const MoreProductsSlider: React.FC<MoreProductsSliderProps> = ({
       >
         {projects.map((project) => (
           <SwiperSlide key={project._id}>
-            <div className="p-4 bg-white rounded-lg shadow-md">
+            <div className="m-3">
               <ProjectCard project={project} />
             </div>
           </SwiperSlide>

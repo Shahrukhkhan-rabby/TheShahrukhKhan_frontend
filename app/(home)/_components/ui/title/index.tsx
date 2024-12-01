@@ -9,19 +9,11 @@ interface TitleProps {
   title2: string;
 }
 
-// Dynamically import the IoIosArrowForward icon without SSR
-const IoIosArrowForward = dynamic(
-  () => import('react-icons/io').then((mod) => mod.IoIosArrowForward),
-  { ssr: false }
-);
-
 export const Title: React.FC<TitleProps> = ({ title1, title2 }) => {
   return (
-    <section className="my-5 md:my-10 w-1/5">
-      <div className="flex items-center justify-start gap-2 text-lg md:text-xl text-default-900 font-semibold relative">
+    <section className="my-5 md:my-10 w-1/6">
+      <div className="flex items-center justify-start gap-2 text-lg md:text-2xl text-default-900 font-semibold relative">
         <h2>{title1}</h2>
-        <IoIosArrowForward className="text-warning" />
-        {/* Gradient bar with framer-motion animation */}
         <motion.div
           className="absolute -bottom-2 left-0 h-1 w-full bg-gradient-to-r from-warning to-transparent"
           initial={{ opacity: 0.5 }}
