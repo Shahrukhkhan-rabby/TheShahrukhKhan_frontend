@@ -1,9 +1,10 @@
-import { TProject } from "@/types";
-import Image from "next/image";
-import React from "react";
-import { motion } from "framer-motion";
-import AnimatedButton from "../../ui/button";
-import { AiOutlineEye, AiOutlineInfoCircle } from "react-icons/ai";
+import { TProject } from '@/types';
+import Image from 'next/image';
+import React from 'react';
+import { motion } from 'framer-motion';
+import AnimatedButton from '../../ui/button';
+import { AiOutlineEye, AiOutlineInfoCircle } from 'react-icons/ai';
+import Link from 'next/link';
 
 const cardContainerVariants = {
   hidden: { opacity: 0, y: 30 },
@@ -13,7 +14,7 @@ const cardContainerVariants = {
     transition: {
       delay: 0.2,
       duration: 0.5,
-      ease: "easeOut",
+      ease: 'easeOut',
     },
   },
 };
@@ -52,28 +53,30 @@ export default function ProjectCard({ project }: { project: TProject }) {
       variants={cardContainerVariants}
       initial="hidden"
       animate="visible"
-      whileHover={{ scale: 1.05, boxShadow: "0 10px 20px rgba(0, 0, 0, 0.2)" }}
+      whileHover={{ scale: 1.05, boxShadow: '0 10px 20px rgba(0, 0, 0, 0.2)' }}
       transition={{ duration: 0.3 }}
     >
       {/* Project Image */}
       <div className="mb-10 relative overflow-hidden rounded">
-        <Image
-          className="w-full md:h-[200px] object-cover rounded transition-transform duration-300"
-          src={project?.images[0]}
-          alt={project?.title}
-          width={1000}
-          height={1000}
-        />
-        {/* Hover effect for the image */}
-        <motion.div
-          className="absolute inset-0 bg-black bg-opacity-50 flex justify-center items-center opacity-0 hover:opacity-100 transition-opacity duration-300"
-          initial="hidden"
-          whileHover={{ opacity: 1 }}
-        >
-          <h2 className="text-white font-bold text-lg px-2 text-center">
-            {project.title}
-          </h2>
-        </motion.div>
+        <Link href={`/project/${project._id}`}>
+          <Image
+            className="w-full md:h-[200px] object-cover rounded transition-transform duration-300"
+            src={project?.images[0]}
+            alt={project?.title}
+            width={1000}
+            height={1000}
+          />
+          {/* Hover effect for the image */}
+          <motion.div
+            className="absolute inset-0 bg-black bg-opacity-50 flex justify-center items-center opacity-0 hover:opacity-100 transition-opacity duration-300"
+            initial="hidden"
+            whileHover={{ opacity: 1 }}
+          >
+            <h2 className="text-white font-bold text-lg px-2 text-center">
+              {project.title}
+            </h2>
+          </motion.div>
+        </Link>
       </div>
 
       {/* Technology Badges */}

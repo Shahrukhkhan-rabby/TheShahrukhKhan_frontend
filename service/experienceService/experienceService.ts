@@ -1,17 +1,17 @@
-"use server";
+'use server';
 
-import { revalidateTag } from "next/cache";
-import { FieldValues } from "react-hook-form";
+import { revalidateTag } from 'next/cache';
+import { FieldValues } from 'react-hook-form';
 
-import axiosInstance from "@/lib/axiosInstance";
-import { TUpdateData } from "@/types";
+import axiosInstance from '@/lib/axiosInstance';
+import { TUpdateData } from '@/types';
 
 // Create experience
 export const createExperience = async (experienceData: FieldValues) => {
   try {
-    const { data } = await axiosInstance.post("/experiences", experienceData);
+    const { data } = await axiosInstance.post('/experiences', experienceData);
 
-    revalidateTag("experiences");
+    revalidateTag('experiences');
 
     return data;
   } catch (error: any) {
@@ -24,13 +24,15 @@ export const getAllExperiences = async () => {
   let fetchOptions = {};
 
   fetchOptions = {
-    cache: "no-store",
+    cache: 'no-store',
     next: {
-      tags: ["experiences"],
+      tags: ['experiences'],
     },
   };
 
-  const { data } = await axiosInstance.get("/experiences", { fetchOptions });
+  const { data } = await axiosInstance.get('/experiences?sort=-createdAt', {
+    fetchOptions,
+  });
 
   return data;
 };
@@ -40,10 +42,10 @@ export const editExperience = async (experienceData: TUpdateData) => {
   try {
     const { data } = await axiosInstance.patch(
       `/experiences/${experienceData?.id}`,
-      experienceData?.data,
+      experienceData?.data
     );
 
-    revalidateTag("experiences");
+    revalidateTag('experiences');
 
     return data;
   } catch (error: any) {
@@ -56,7 +58,7 @@ export const deleteExperience = async (id: string) => {
   try {
     const { data } = await axiosInstance.delete(`/experiences/${id}`);
 
-    revalidateTag("experiences");
+    revalidateTag('experiences');
 
     return data;
   } catch (error: any) {
