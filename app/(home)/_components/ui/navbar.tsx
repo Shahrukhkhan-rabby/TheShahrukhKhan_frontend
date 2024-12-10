@@ -45,18 +45,18 @@ export const Navbar = () => {
 
   return (
     <NextUINavbar
-      className={`rounded-full border border-default-200 bg-opacity-5 top-2`}
+      className={`rounded-full border border-default-200 bg-transparent top-2`}
       maxWidth="xl"
       shouldHideOnScroll={shouldHideOnScroll}
     >
       {/* Brand and logo */}
-      <NavbarContent className="basis-1/5 sm:basis-full m-3" justify="start">
+      <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
         <NavbarBrand className="gap-3 max-w-fit">
           <Logo />
         </NavbarBrand>
 
         {/* Desktop links with animation */}
-        <div className="hidden xl:flex gap-4 justify-start ml-2">
+        <div className="hidden xl:flex gap-4 justify-start">
           {siteConfig.navItems.map((item) => (
             <NavbarItem key={item.href}>
               <motion.div
@@ -107,7 +107,7 @@ export const Navbar = () => {
             text="Dashboard"
             target="_self"
             bgColor="bg-transparent"
-            borderColor="text-warning border-default-200"
+            borderColor="text-warning border-warning-500"
             IconComponent={FaDashcube}
           />
         </NavbarItem>

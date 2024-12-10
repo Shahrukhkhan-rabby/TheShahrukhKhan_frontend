@@ -3,7 +3,8 @@ import Image from 'next/image';
 import React from 'react';
 import { motion } from 'framer-motion';
 import AnimatedButton from '../../ui/button';
-import { AiOutlineEye, AiOutlineInfoCircle } from 'react-icons/ai';
+import { AiOutlineFundProjectionScreen } from 'react-icons/ai';
+import { TbFileDescription } from 'react-icons/tb';
 import Link from 'next/link';
 
 const cardContainerVariants = {
@@ -80,25 +81,17 @@ export default function ProjectCard({ project }: { project: TProject }) {
       </div>
 
       {/* Technology Badges */}
-      <div className="flex flex-wrap gap-2 mb-4">
-        {project.technologies.slice(0, 3).map((tech, index) => (
-          <motion.span
-            key={tech._id}
-            className="bg-default-200 text-default-800 text-xs px-2.5 py-1 rounded-full flex items-center gap-1"
-            custom={index}
-            variants={techBadgeVariants}
-            initial="hidden"
-            animate="visible"
-          >
+      <div className="flex flex-wrap justify-between gap-2 mb-4">
+        {project.technologies.slice(0, 6).map((tech, index) => (
+          <div key={index} className="">
             <Image
               src={tech.icon}
               alt="icon"
-              width={20}
-              height={20}
-              className="size-6 rounded-full object-cover"
+              width={1000}
+              height={1000}
+              className="size-8 object-cover"
             />
-            {tech.name}
-          </motion.span>
+          </div>
         ))}
       </div>
 
@@ -111,22 +104,22 @@ export default function ProjectCard({ project }: { project: TProject }) {
       >
         <motion.div variants={buttonVariants}>
           <AnimatedButton
-            text="Live"
-            bgColor="bg-white w-[120px] border-none flex items-center justify-center"
-            textColor="text-black"
+            text="See Live"
+            bgColor="bg-warning hover:bg-warning-500"
+            textColor="text-gray-800 text-sm mt-5"
             href={project.live}
-            IconComponent={AiOutlineEye}
+            IconComponent={AiOutlineFundProjectionScreen}
             target="_blank"
           />
         </motion.div>
         <motion.div variants={buttonVariants}>
           <AnimatedButton
             text="Details"
-            bgColor="bg-transparent w-[120px]"
-            borderColor="border-white"
-            textColor="text-default-800"
+            bgColor="bg-transparent"
+            borderColor="border-warning-500"
+            textColor="text-[#F5A524] text-sm mt-5"
             href={`/project/${project._id}`}
-            IconComponent={AiOutlineInfoCircle}
+            IconComponent={TbFileDescription}
             target="_self"
           />
         </motion.div>
