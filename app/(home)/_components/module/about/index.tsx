@@ -2,13 +2,12 @@
 
 import React from 'react';
 
-import { Title } from '../../ui/title';
 import AnimatedButton from '../../ui/button';
 
 import { TAbout, TBlog, TProject, TSkill } from '@/types';
 import Image from 'next/image';
 import AchievementsSection from './achivement';
-import { Chip } from '@nextui-org/chip';
+import { useGetLink } from '@/hooks/links.hook';
 
 interface TAboutProps {
   about: TAbout;
@@ -18,6 +17,8 @@ interface TAboutProps {
 }
 
 export default function About({ about, projects, skills, blogs }: TAboutProps) {
+  const { data: link } = useGetLink('67bb2077af9ba724ceece4ec');
+
   return (
     <section className="bg-default-50 p-2 md:p-8 flex flex-col lg:flex-row justify-start items-start lg:space-x-8 space-y-8 lg:space-y-0">
       {/* Image Section */}
@@ -51,7 +52,10 @@ export default function About({ about, projects, skills, blogs }: TAboutProps) {
           bgColor="bg-transparent"
           borderColor="border-warning-500 my-5"
           textColor="text-[#F5A524]"
-          href="https://drive.google.com/file/d/15OqqkOMwSooI_iuQhrb7bCAQLEGug-sN/view?usp=drive_link"
+          href={
+            link?.data?.resume ||
+            'https://drive.google.com/file/d/15OqqkOMwSooI_iuQhrb7bCAQLEGug-sN/view?usp=drive_link'
+          }
           text="View Resume"
           target="_blank"
         />

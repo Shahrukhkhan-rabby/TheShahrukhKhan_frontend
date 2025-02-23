@@ -2,14 +2,17 @@
 
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 import { useTypewriter, Cursor } from 'react-simple-typewriter';
 import AnimatedButton from './ui/button';
 import $ from 'jquery';
 import ImageBox from './module/banner/imageBox';
 import { AiOutlineFundProjectionScreen } from 'react-icons/ai';
+import { useGetLink } from '@/hooks/links.hook';
+import { useGetAllAbout } from '@/hooks/about.hook';
 
 const Landing = () => {
+  const { data: link } = useGetLink('67bb2077af9ba724ceece4ec');
+  const { data: aboutData } = useGetAllAbout();
   const [text] = useTypewriter({
     words: [
       'Full-Stack Developer.',
@@ -53,7 +56,10 @@ const Landing = () => {
         <div className="flex flex-col lg:flex-row items-center justify-between gap-10">
           {/* Profile Image */}
           <ImageBox
-            imageUrl="https://res.cloudinary.com/dihqveqyc/image/upload/v1733067074/ztghisys2mbrimijeazv.jpg"
+            imageUrl={
+              aboutData?.data?.image ||
+              'https://res.cloudinary.com/dihqveqyc/image/upload/v1733067074/ztghisys2mbrimijeazv.jpg'
+            }
             name="Md Rijwan Jannat"
             link="#contact"
             title="Full Stack Developer"
@@ -86,7 +92,10 @@ const Landing = () => {
                 <AnimatedButton
                   bgColor="bg-warning hover:bg-warning-500"
                   textColor="text-gray-800"
-                  href="https://drive.google.com/file/d/15OqqkOMwSooI_iuQhrb7bCAQLEGug-sN/view?usp=drive_link"
+                  href={
+                    link?.data?.resume ||
+                    'https://drive.google.com/file/d/15OqqkOMwSooI_iuQhrb7bCAQLEGug-sN/view?usp=drive_link'
+                  }
                   text="View Resume"
                   target="_blank"
                 />
