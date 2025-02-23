@@ -1,17 +1,17 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
-import { Input, Textarea } from "@nextui-org/input";
-import { Card, CardBody } from "@nextui-org/card";
-import { Button } from "@nextui-org/button";
-import Image from "next/image";
-import { Chip } from "@nextui-org/chip";
-import { Spinner } from "@nextui-org/spinner";
+import React, { useState } from 'react';
+import { Input, Textarea } from '@nextui-org/input';
+import { Card, CardBody } from '@nextui-org/card';
+import { Button } from '@nextui-org/button';
+import Image from 'next/image';
+import { Chip } from '@nextui-org/chip';
+import { Spinner } from '@nextui-org/spinner';
 
-import { useEditAbout } from "@/hooks/about.hook";
-import { useEditAdmin } from "@/hooks/auth.hook";
-import { uploadImageToCloudinary } from "@/utils/uploadImageToCloudinary";
-import { TAbout } from "@/types";
+import { useEditAbout } from '@/hooks/about.hook';
+import { useEditAdmin } from '@/hooks/auth.hook';
+import { uploadImageToCloudinary } from '@/utils/uploadImageToCloudinary';
+import { TAbout } from '@/types';
 
 interface TProfileProps {
   about: TAbout[]; // Ensure TAbout[] is typed correctly
@@ -45,7 +45,7 @@ export default function About({ about }: TProfileProps) {
   };
 
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
 
@@ -91,24 +91,24 @@ export default function About({ about }: TProfileProps) {
       editAboutFn(editAboutData);
       editAdminFn(editAdminData);
 
-      console.log("Data successfully saved:", {
+      console.log('Data successfully saved:', {
         about: editableData,
         admin: editableAdminData,
       });
       setIsEditing(false);
     } catch (error) {
-      console.error("Error saving data:", error);
+      console.error('Error saving data:', error);
     }
   };
 
   return (
-    <div className="max-w-lg mx-auto p-4">
+    <div className="w-full p-4">
       <Card>
         <CardBody>
           <div className="flex items-center mb-4">
             {isEditing ? (
               <>
-                {" "}
+                {' '}
                 <label className="cursor-pointer my-4 flex items-center">
                   <Input
                     accept="image/*"
@@ -233,7 +233,7 @@ export default function About({ about }: TProfileProps) {
             variant="faded"
             onClick={handleEditClick}
           >
-            {isEditing ? "Cancel" : "Edit"}
+            {isEditing ? 'Cancel' : 'Edit'}
           </Button>
         </CardBody>
       </Card>
