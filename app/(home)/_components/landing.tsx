@@ -86,7 +86,7 @@ const Landing = () => {
                 <AnimatedButton
                   bgColor="bg-warning hover:bg-warning-500"
                   textColor="text-gray-800"
-                  href="https://drive.google.com/file/d/1x6DLawdKCuVhNGW4qnHnD3m6OYkd2fDH/view?usp=drive_link"
+                  href="https://drive.google.com/file/d/15OqqkOMwSooI_iuQhrb7bCAQLEGug-sN/view?usp=drive_link"
                   text="View Resume"
                   target="_blank"
                 />
