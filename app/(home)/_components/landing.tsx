@@ -90,7 +90,6 @@ const Landing = () => {
                   text="View Resume"
                   target="_blank"
                 />
-
                 <AnimatedButton
                   bgColor="bg-transparent"
                   borderColor="border-warning-500"

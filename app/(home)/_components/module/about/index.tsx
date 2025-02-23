@@ -51,7 +51,7 @@ export default function About({ about, projects, skills, blogs }: TAboutProps) {
           bgColor="bg-transparent"
           borderColor="border-warning-500 my-5"
           textColor="text-[#F5A524]"
-          href="https://drive.google.com/file/d/1x6DLawdKCuVhNGW4qnHnD3m6OYkd2fDH/view?usp=drive_link"
+          href="https://drive.google.com/file/d/15OqqkOMwSooI_iuQhrb7bCAQLEGug-sN/view?usp=drive_link"
           text="View Resume"
           target="_blank"
         />
