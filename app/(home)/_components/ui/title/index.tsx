@@ -1,30 +1,44 @@
-"use client";
+'use client';
 
-import dynamic from "next/dynamic";
-import { motion } from "framer-motion";
+import { motion } from 'framer-motion';
 
 interface TitleProps {
   title1: string;
-
   title2: string;
 }
 
-export const Title: React.FC<TitleProps> = ({ title1, title2 }) => {
+export function Title({ title1, title2 }: TitleProps) {
   return (
-    <section className="my-5 md:my-10 w-1/6">
-      <div className="flex items-center justify-start gap-2 text-lg md:text-2xl text-default-900 font-semibold relative">
-        <h2>{title1}</h2>
+    <div className="relative py-16 md:mb-3 text-center z-20">
+      {/* Background text */}
+      <motion.h2
+        animate={{ opacity: 0.05 }}
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-5xl sm:text-8xl font-bold text-default-900 whitespace-nowrap pointer-events-none"
+        initial={{ opacity: 0 }}
+        transition={{ duration: 1 }}
+      >
+        {title1}
+      </motion.h2>
+
+      <div className="flex flex-col items-center -mb-10">
+        {/* Foreground text with animation */}
+        <motion.h3
+          animate={{ y: 0, opacity: 1 }}
+          className="relative text-xl sm:text-2xl font-bold text-default-900/60 mb-3"
+          initial={{ y: 20, opacity: 0 }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+        >
+          {title2}
+        </motion.h3>
+
+        {/* Animated underline */}
         <motion.div
-          className="absolute -bottom-2 left-0 h-1 w-full bg-gradient-to-r from-warning to-transparent"
-          initial={{ opacity: 0.5 }}
-          animate={{ opacity: 1 }}
-          transition={{
-            duration: 1.5,
-            repeat: Infinity,
-            repeatType: "reverse",
-          }}
+          animate={{ width: '80px' }}
+          className="h-1 bg-gradient-to-r from-purple-600 to-pink-500 mx-auto rounded-full"
+          initial={{ width: 0 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
         />
       </div>
-    </section>
+    </div>
   );
-};
+}

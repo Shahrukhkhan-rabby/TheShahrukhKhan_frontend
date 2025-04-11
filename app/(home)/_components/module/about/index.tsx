@@ -35,11 +35,13 @@ export default function About({ about, projects, skills, blogs }: TAboutProps) {
 
       {/* Text Section */}
       <div className="bg-default-100/50 backdrop-blur-sm border border-default-100 p-3 rounded-md w-full lg:w-2/3 text-center md:text-left space-y-2 lg:h-[350px] xl:h-[340px]">
-        <h2 className="text-xl font-bold">{about.title}</h2>
-        <p className="text-sm text-default-500 mb-4">
+        <h2 className="md:text-xl font-bold">{about.title}</h2>
+        <p className="text-[12px] md:text-sm text-default-500 mb-4">
           Address: {about.address + ',' + about.country}
         </p>
-        <p className="text-default-600 mb-10 text-xs">{about.description}</p>
+        <p className="text-default-600 mb-10 text-[10px] md:text-xs">
+          {about.description}
+        </p>
 
         {/* Experience, Projects, Companies Worked */}
         <AchievementsSection

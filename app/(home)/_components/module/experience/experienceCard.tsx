@@ -40,22 +40,28 @@ const ClientExperience: React.FC<TExperiencesProps> = ({ experiences }) => {
                   width={1000}
                 />
                 <div className="flex flex-col">
-                  <p className="text-default-600 font-medium">{exp.company}</p>
-                  <h3 className="text-[12px] font-medium">{exp.title}</h3>
+                  <p className=" text-xs md:text-sm text-default-600 font-medium">
+                    {exp.company}
+                  </p>
+                  <h3 className="text-[9px] md:text-[12px] font-medium">
+                    {exp.title}
+                  </h3>
                 </div>
               </div>
               <div className="flex flex-col items-end gap-1">
-                <span className="text-[10px] font-medium bg-white/20 px-3 py-1 rounded-full">
+                <span className="text-[8px] md:text-[10px] font-medium bg-white/20 px-3 py-1 rounded-full">
                   {format(new Date(exp.startDate), 'MMM yyyy')} -{' '}
                   {exp.endDate
                     ? format(new Date(exp.endDate), 'MMM yyyy')
                     : 'Present'}
                 </span>
-                <span className="text-[10px] italic">{exp.location}</span>
+                <span className="text-[8px] md:text-[10px] italic">
+                  {exp.location}
+                </span>
               </div>
             </div>
 
-            <p className="text-xs text-default-700 mb-2 text-start">
+            <p className="text-[10px] md:text-xs text-default-700 mb-2 text-start">
               {isExpanded || !isLong
                 ? exp.description
                 : `${exp.description.slice(0, MAX_CHAR)}...`}
@@ -63,7 +69,7 @@ const ClientExperience: React.FC<TExperiencesProps> = ({ experiences }) => {
 
             {isLong && (
               <button
-                className="text-[10px] text-warning hover:underline mb-4"
+                className="text-[8px] md:text-[10px] text-warning hover:underline mb-4"
                 onClick={() => toggleExpand(exp._id)}
               >
                 {isExpanded ? 'See less' : 'See more'}
@@ -83,7 +89,7 @@ const ClientExperience: React.FC<TExperiencesProps> = ({ experiences }) => {
                     src={tech.icon}
                     width={500}
                   />
-                  <span className="text-[10px]">{tech.name}</span>
+                  <span className="text-[8px] md:text-[10px]">{tech.name}</span>
                 </div>
               ))}
             </div>

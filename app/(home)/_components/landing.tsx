@@ -3,10 +3,12 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useTypewriter, Cursor } from 'react-simple-typewriter';
-import AnimatedButton from './ui/button';
 import $ from 'jquery';
-import ImageBox from './module/banner/imageBox';
 import { AiOutlineFundProjectionScreen } from 'react-icons/ai';
+
+import AnimatedButton from './ui/button';
+import ImageBox from './module/banner/imageBox';
+
 import { useGetLink } from '@/hooks/links.hook';
 import { useGetAllAbout } from '@/hooks/about.hook';
 
@@ -52,7 +54,7 @@ const Landing = () => {
 
   return (
     <>
-      <div className="flex items-center justify-center px-5 my-10 md:my-32">
+      <div className="flex items-center justify-center px-5 mt-10  md:mt-32 md:mb-16">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-10">
           {/* Profile Image */}
           <ImageBox
@@ -60,15 +62,15 @@ const Landing = () => {
               aboutData?.data?.image ||
               'https://res.cloudinary.com/dihqveqyc/image/upload/v1733067074/ztghisys2mbrimijeazv.jpg'
             }
-            name="Md Rijwan Jannat"
             link="#contact"
+            name="Md Rijwan Jannat"
             title="Full Stack Developer"
           />
           {/* Content Section */}
           <motion.div
+            animate={{ opacity: 1, y: 0 }}
             className="w-full md:w-8/12"
             initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
           >
             <div className="text-center lg:text-left">
@@ -91,22 +93,22 @@ const Landing = () => {
               <div className="mt-6 flex flex-wrap gap-4 justify-center lg:justify-start">
                 <AnimatedButton
                   bgColor="bg-warning hover:bg-warning-500"
-                  textColor="text-gray-800"
                   href={
                     link?.data?.resume ||
                     'https://drive.google.com/file/d/15OqqkOMwSooI_iuQhrb7bCAQLEGug-sN/view?usp=drive_link'
                   }
-                  text="View Resume"
                   target="_blank"
+                  text="View Resume"
+                  textColor="text-gray-800"
                 />
                 <AnimatedButton
+                  IconComponent={AiOutlineFundProjectionScreen}
                   bgColor="bg-transparent"
                   borderColor="border-warning-500"
-                  textColor="text-[#F5A524]"
                   href="#projects"
-                  text="Explore Projects"
                   target="_self"
-                  IconComponent={AiOutlineFundProjectionScreen}
+                  text="Explore Projects"
+                  textColor="text-[#F5A524]"
                 />
               </div>
             </div>
@@ -114,7 +116,7 @@ const Landing = () => {
         </div>
       </div>
       <div className="w-full h-full">
-        <div className="absolute top-0 left-0 w-full h-[60px] bg-warning blur-[150px] transform rotate-45"></div>
+        <div className="absolute top-0 left-0 w-full h-[60px] bg-warning blur-[150px] transform rotate-45" />
       </div>
     </>
   );

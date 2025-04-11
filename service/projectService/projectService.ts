@@ -1,17 +1,17 @@
-"use server";
+'use server';
 
-import { revalidateTag } from "next/cache";
-import { FieldValues } from "react-hook-form";
+import { revalidateTag } from 'next/cache';
+import { FieldValues } from 'react-hook-form';
 
-import axiosInstance from "@/lib/axiosInstance";
-import { TUpdateData } from "@/types";
+import axiosInstance from '@/lib/axiosInstance';
+import { TUpdateData } from '@/types';
 
 // Create project
 export const createProject = async (projectData: FieldValues) => {
   try {
-    const { data } = await axiosInstance.post("/projects", projectData);
+    const { data } = await axiosInstance.post('/projects', projectData);
 
-    revalidateTag("projects");
+    revalidateTag('projects');
 
     return data;
   } catch (error: any) {
@@ -20,17 +20,18 @@ export const createProject = async (projectData: FieldValues) => {
 };
 
 // Fetch all project
-export const getAllProjects = async () => {
-  let fetchOptions = {};
-
-  fetchOptions = {
-    cache: "no-store",
+export const getAllProjects = async (query?: Record<string, any>) => {
+  const fetchOptions = {
+    cache: 'no-store',
     next: {
-      tags: ["projects"],
+      tags: ['projects'],
     },
   };
 
-  const { data } = await axiosInstance.get("/projects", { fetchOptions });
+  const { data } = await axiosInstance.get('/projects', {
+    params: query,
+    ...fetchOptions,
+  });
 
   return data;
 };
@@ -47,10 +48,10 @@ export const editProject = async (projectData: TUpdateData) => {
   try {
     const { data } = await axiosInstance.patch(
       `/projects/${projectData?.id}`,
-      projectData?.data,
+      projectData?.data
     );
 
-    revalidateTag("projects");
+    revalidateTag('projects');
 
     return data;
   } catch (error: any) {
@@ -63,7 +64,7 @@ export const deleteProject = async (id: string) => {
   try {
     const { data } = await axiosInstance.delete(`/projects/${id}`);
 
-    revalidateTag("projects");
+    revalidateTag('projects');
 
     return data;
   } catch (error: any) {

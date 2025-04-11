@@ -31,7 +31,9 @@ export default function SkillsCard({ skill }: TSkillCardProps) {
       </div>
 
       {/* Skill Name */}
-      <h3 className="text-sm font-semibold text-default-800">{skill.name}</h3>
+      <h3 className="text-xs md:text-sm font-semibold text-default-800">
+        {skill.name}
+      </h3>
     </motion.div>
   );
 }
