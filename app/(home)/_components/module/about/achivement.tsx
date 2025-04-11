@@ -46,18 +46,16 @@ const AchievementsSection = ({
           initial={{ scale: 0.5, opacity: 0 }}
           transition={{ duration: 0.5, delay: index * 0.1 }}
         >
-          <motion.h2 className="text-default-800 text-xl md:text-3xl font-bold flex flex-row items-baseline">
+          <motion.h2 className="text-default-800 text-xl font-bold flex flex-row items-baseline">
             <NumberTicker
-              className="text-xl md:text-3xl font-bold"
+              className="text-xl font-bold"
               value={achievement.value}
             />
             {achievement.postfix && (
               <span className="ml-1 text-warning">{achievement.postfix}</span>
             )}
           </motion.h2>
-          <p className="text-foreground/80 text-sm md:text-lg">
-            {achievement.metric}
-          </p>
+          <p className="text-sm">{achievement.metric}</p>
         </motion.div>
       ))}
     </motion.div>

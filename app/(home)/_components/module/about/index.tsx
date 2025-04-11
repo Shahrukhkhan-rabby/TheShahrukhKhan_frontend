@@ -21,12 +21,12 @@ export default function About({ about, projects, skills, blogs }: TAboutProps) {
   const { data: link } = useGetLink('67bb2077af9ba724ceece4ec');
 
   return (
-    <section className="bg-default-50 p-3 flex flex-col lg:flex-row justify-start items-start lg:space-x-8 space-y-8 lg:space-y-0">
+    <section className="flex flex-col lg:flex-row items-center lg:space-x-8 space-y-8 lg:space-y-0">
       {/* Image Section */}
       <div className="w-full lg:w-1/3">
         <Image
           alt={about.me.name}
-          className="w-full h-full lg:h-[320px] rounded-lg shadow-lg object-cover"
+          className="w-full h-full lg:h-[350px] xl:h-[340px] rounded-lg shadow-lg object-cover"
           height={500}
           src={about.image || 'https://example.com/my-image.jpg'}
           width={500}
@@ -34,7 +34,7 @@ export default function About({ about, projects, skills, blogs }: TAboutProps) {
       </div>
 
       {/* Text Section */}
-      <div className="w-full lg:w-2/3 text-center md:text-left space-y-2">
+      <div className="bg-default-100/50 backdrop-blur-sm border border-default-100 p-3 rounded-md w-full lg:w-2/3 text-center md:text-left space-y-2 lg:h-[350px] xl:h-[340px]">
         <h2 className="text-xl font-bold">{about.title}</h2>
         <p className="text-sm text-default-500 mb-4">
           Address: {about.address + ',' + about.country}
