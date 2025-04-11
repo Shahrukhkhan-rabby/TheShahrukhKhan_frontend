@@ -34,7 +34,7 @@ export function Title({ title1, title2 }: TitleProps) {
         {/* Animated underline */}
         <motion.div
           animate={{ width: '80px' }}
-          className="h-1 bg-gradient-to-r from-purple-600 to-pink-500 mx-auto rounded-full"
+          className="h-1 bg-gradient-to-r from-warning-500 to-yellow-700 mx-auto rounded-full"
           initial={{ width: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
         />

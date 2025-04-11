@@ -68,7 +68,7 @@ const Contact: React.FC = () => {
           'wTuP0_-qh1sVDIcjH'
         )
         .then(
-          (result) => {
+          () => {
             setSuccessMsg(
               `Thank you, ${username}! Your message has been sent successfully.`
             );
@@ -80,7 +80,7 @@ const Contact: React.FC = () => {
               message: '',
             });
           },
-          (error) => {
+          () => {
             setErrMsg('Something went wrong. Please try again.');
           }
         );
@@ -89,7 +89,7 @@ const Contact: React.FC = () => {
 
   return (
     <section id="contact">
-      <Title title1="Contact" title2="Contact" />
+      <Title title1="Contact" title2="Contact With Me" />
       <div className="w-full flex flex-col md:flex-row gap-5 md:items-start justify-start">
         <div className="w-full md:w-[40%]">
           {' '}
@@ -149,10 +149,10 @@ const Contact: React.FC = () => {
           <div className="flex items-center justify-center">
             <Button
               fullWidth
-              radius="full"
               className="mt-4 text-gray-800 w-[150px]"
               color="warning"
               endContent={<IoSendSharp />}
+              radius="full"
               type="submit"
             >
               Send Message

@@ -30,6 +30,7 @@ export default function PaginationControls({
         color="warning"
         initialPage={currentPage}
         page={currentPage}
+        size="sm"
         total={totalPages}
         variant="bordered"
         onChange={handlePageChange}

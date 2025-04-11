@@ -6,7 +6,7 @@ import { Title } from '../_components/ui/title';
 export default function SkillsPage() {
   return (
     <div>
-      <Title title1="Skills" title2="Skills" />
+      <Title title1="Skills" title2="My Skills" />
       <SkillCategories />
     </div>
   );

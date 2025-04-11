@@ -35,7 +35,7 @@ export default async function ProjectsPage({
 
   return (
     <div>
-      <Title title1="Projects" title2="Projects" />
+      <Title title1="Projects" title2="My Projects" />
       <Project projects={projects} />
       <PaginationControls currentPage={currentPage} totalPages={totalPages} />
     </div>

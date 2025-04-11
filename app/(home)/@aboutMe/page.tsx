@@ -20,7 +20,7 @@ export default async function AboutPage() {
 
   return (
     <>
-      <Title title1="About" title2="About" />
+      <Title title1="About" title2="About Me" />
       <About about={about} blogs={blogs} projects={projects} skills={skills} />
     </>
   );

@@ -1,6 +1,7 @@
-import { TSkill } from "./skillsTypes";
+import { TSkill } from './skillsTypes';
 
 export interface TProject {
+  category: any;
   _id: string;
   title: string;
   description: string;
