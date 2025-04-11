@@ -1,6 +1,7 @@
-import Loader from "@/app/(home)/_components/ui/skeleton/loader";
-import LoginForm from "@/components/module/Login";
-import React, { Suspense } from "react";
+import React, { Suspense } from 'react';
+
+import Loader from '@/app/(home)/_components/ui/RLoader/loader';
+import LoginForm from '@/components/module/Login';
 
 export default function LoginPage() {
   return (

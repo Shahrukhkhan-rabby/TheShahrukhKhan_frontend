@@ -1,14 +1,8 @@
 import React from 'react';
 import { Avatar } from '@nextui-org/avatar';
 import Image from 'next/image';
-import { TBlog } from '@/types';
-import createDOMPurify from 'dompurify';
-import { motion } from 'framer-motion';
-import { JSDOM } from 'jsdom';
 
-// Create a DOMPurify instance for sanitizing HTML
-const window = new JSDOM('').window;
-const DOMPurify = createDOMPurify(window);
+import { TBlog } from '@/types';
 
 interface BlogCardProps {
   blog: TBlog;
@@ -31,19 +25,19 @@ export const BlogCard = ({ blog }: BlogCardProps) => {
       {/* Blog image */}
       <div className="my-3">
         <Image
-          width={500}
-          height={500}
           alt="Blog image"
-          src={blog.imageUrl}
           className="w-full h-auto rounded-lg z-[99999]"
+          height={500}
+          src={blog.imageUrl}
           style={{ objectFit: 'cover' }}
+          width={500}
         />
       </div>
 
       {/* Full HTML Content */}
       <div
-        className="blog-content my-4"
         dangerouslySetInnerHTML={{ __html: blog.content }}
+        className="blog-content my-4"
       />
     </div>
   );

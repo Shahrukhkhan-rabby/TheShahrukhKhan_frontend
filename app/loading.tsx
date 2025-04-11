@@ -1,5 +1,7 @@
 import React from 'react';
 
+import RLoader from './(home)/_components/ui/RLoader/loading';
+
 export default function loading() {
-  return <div className="text-5xl text-center text-red-500">loading....</div>;
+  return <RLoader />;
 }

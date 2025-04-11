@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Loader from '../_components/ui/skeleton/loader';
+import Loader from '../_components/ui/RLoader/loader';
 
 export default function loading() {
   return <Loader />;
