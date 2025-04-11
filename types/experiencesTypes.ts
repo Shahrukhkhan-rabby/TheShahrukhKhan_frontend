@@ -1,8 +1,9 @@
-import { TSkill } from "./skillsTypes";
+import { TSkill } from './skillsTypes';
 
 export interface TExperiences {
   _id: string;
   title: string;
+  logo: string;
   company: string;
   location: string;
   startDate: string;
