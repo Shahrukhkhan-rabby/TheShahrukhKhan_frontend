@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import React from "react";
-import { motion } from "framer-motion";
+import React from 'react';
+import { motion } from 'framer-motion';
+import Image from 'next/image';
 
-import { TSkill } from "@/types";
-import Image from "next/image";
+import { TSkill } from '@/types';
 
 interface TSkillCardProps {
   skill: TSkill;
@@ -22,11 +22,11 @@ export default function SkillsCard({ skill }: TSkillCardProps) {
       {/* Skill Icon */}
       <div className="bg-warningColor rounded-full ">
         <Image
-          width={500}
-          height={500}
           alt={skill.name}
           className="size-6 md:size-10 object-contain"
+          height={500}
           src={skill.icon}
+          width={500}
         />
       </div>
 

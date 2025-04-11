@@ -2,14 +2,16 @@
 
 import { Tab, Tabs } from '@nextui-org/tabs';
 import { FC, useState } from 'react';
+import Image from 'next/image';
+
 import SkillsSkeleton from '../../ui/skeleton/skillSkeleton';
-import { Title } from '../../ui/title';
+import skillImage from '../../../../../assets/mainIconsdark.svg';
+
 import SkillsCard from './skillsCard';
+
 import { useGetSkillsByCategory } from '@/hooks/skills.hook';
 import { TSkill } from '@/types';
 import { SkillCategory } from '@/constants/skills.constants';
-import Image from 'next/image';
-import skillImage from '../../../../../assets/mainIconsdark.svg';
 
 const SkillCategories: FC = () => {
   const categories = Object.values(SkillCategory);
@@ -27,11 +29,11 @@ const SkillCategories: FC = () => {
     <div className="flex flex-col gap-5 relative">
       <Tabs
         aria-label="Skill Categories"
+        className="z-10 flex items-center justify-center"
         color="warning"
         selectedKey={selectedCategory}
         variant="bordered"
         onSelectionChange={(key) => handleCategoryChange(key as string)}
-        className="z-10 flex items-center justify-center"
       >
         {categories.map((category) => (
           <Tab key={category} title={category} value={category}>
@@ -56,7 +58,7 @@ const SkillCategories: FC = () => {
         ))}
       </Tabs>
       <div className="absolute right-0 -top-20">
-        <Image width={500} height={500} src={skillImage} alt="skill" />
+        <Image alt="skill" height={500} src={skillImage} width={500} />
       </div>
     </div>
   );

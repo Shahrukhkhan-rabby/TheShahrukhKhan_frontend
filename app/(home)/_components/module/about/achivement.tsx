@@ -3,6 +3,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { differenceInYears } from 'date-fns';
+
+import { NumberTicker } from '../../ui/numberTracker';
+
 import { TBlog, TProject, TSkill } from '@/types';
 
 interface TAchievementsProps {
@@ -29,22 +32,25 @@ const AchievementsSection = ({
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
       className="flex flex-wrap justify-center md:justify-between items-center gap-2 md:gap-3"
+      initial={{ opacity: 0, y: 50 }}
       style={{ marginTop: '30px' }}
+      transition={{ duration: 0.5 }}
     >
       {achievementsList.map((achievement, index) => (
         <motion.div
           key={index}
-          initial={{ scale: 0.5, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.5, delay: index * 0.1 }}
           className="flex flex-col items-center justify-center px-4"
+          initial={{ scale: 0.5, opacity: 0 }}
+          transition={{ duration: 0.5, delay: index * 0.1 }}
         >
           <motion.h2 className="text-warning text-xl md:text-3xl font-bold flex flex-row items-baseline">
-            <Counter from={0} to={achievement.value} />
+            <NumberTicker
+              className="text-warning text-xl md:text-3xl font-bold"
+              value={achievement.value}
+            />
             {achievement.postfix && (
               <span className="ml-1">{achievement.postfix}</span>
             )}
@@ -56,32 +62,6 @@ const AchievementsSection = ({
       ))}
     </motion.div>
   );
-};
-
-const Counter = ({ from, to }: any) => {
-  const [count, setCount] = React.useState(from);
-
-  React.useEffect(() => {
-    const animationDuration = 2000; // 2 seconds
-    const frameDuration = 1000 / 60; // 60 fps
-    const totalFrames = Math.round(animationDuration / frameDuration);
-    const easeOutQuad = (t: number) => t * (2 - t);
-
-    let frame = 0;
-    const counter = setInterval(() => {
-      frame++;
-      const progress = easeOutQuad(frame / totalFrames);
-      setCount(Math.floor(from + (to - from) * progress));
-
-      if (frame === totalFrames) {
-        clearInterval(counter);
-      }
-    }, frameDuration);
-
-    return () => clearInterval(counter);
-  }, [from, to]);
-
-  return <motion.span>{count}</motion.span>;
 };
 
 export default AchievementsSection;
