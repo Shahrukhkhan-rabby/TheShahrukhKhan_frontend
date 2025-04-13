@@ -13,6 +13,8 @@ import {
 import { Link as ScrollLink } from 'react-scroll';
 import { motion } from 'framer-motion';
 import clsx from 'clsx';
+import { useRouter } from 'next/navigation';
+import { FaDashcube } from 'react-icons/fa';
 
 import { linkVariants, menuVariants } from './animation';
 import Logo from './logo';
@@ -21,8 +23,6 @@ import AnimatedButton from './button';
 
 import { ThemeSwitch } from '@/app/(home)/_components/ui/theme-switch';
 import { siteConfig } from '@/config/site';
-import { useRouter } from 'next/navigation';
-import { FaDashcube } from 'react-icons/fa';
 
 const underlineVariants = {
   initial: { width: 0 },
@@ -35,11 +35,9 @@ const underlineVariants = {
 export const Navbar = () => {
   const router = useRouter();
   const [shouldHideOnScroll, setShouldHideOnScroll] = useState(true);
-  const [style, setStyle] = useState('top-4');
 
   const handleLinkClick = () => {
     setShouldHideOnScroll(false);
-    setStyle('-top-4');
     router.push('/');
   };
 
@@ -61,10 +59,10 @@ export const Navbar = () => {
             <NavbarItem key={item.href}>
               <motion.div
                 animate="animate"
+                className="relative"
                 initial="initial"
                 variants={linkVariants}
                 whileHover="whileHover"
-                className="relative"
               >
                 <ScrollLink
                   className={clsx(
@@ -101,16 +99,6 @@ export const Navbar = () => {
         <NavbarItem className="hidden sm:flex gap-2">
           <ThemeSwitch />
         </NavbarItem>
-        <NavbarItem className="hidden sm:flex gap-2">
-          <AnimatedButton
-            href="/dashboard"
-            text="Dashboard"
-            target="_self"
-            bgColor="bg-transparent"
-            borderColor="text-warning border-warning-500"
-            IconComponent={FaDashcube}
-          />
-        </NavbarItem>
       </NavbarContent>
 
       {/* Mobile menu toggle */}
@@ -133,10 +121,10 @@ export const Navbar = () => {
             <NavbarMenuItem key={`${item}-${index}`}>
               <motion.div
                 animate="animate"
+                className="relative"
                 initial="initial"
                 variants={linkVariants}
                 whileHover="whileHover"
-                className="relative"
               >
                 <ScrollLink
                   className={clsx('cursor-pointer text-foreground')}
@@ -158,9 +146,6 @@ export const Navbar = () => {
           ))}
         </div>
         <NavButtons />
-        <NavbarItem className="hidden sm:flex gap-2">
-          <AnimatedButton href="/dashboard" text="Dashboard" />
-        </NavbarItem>
       </NavbarMenu>
     </NextUINavbar>
   );
