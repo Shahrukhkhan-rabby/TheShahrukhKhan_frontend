@@ -28,10 +28,10 @@ export default function Logo() {
   return (
     <Link href="/">
       <motion.div
-        className="flex items-center cursor-pointer"
-        variants={logoVariants}
-        initial="initial"
         animate="animate"
+        className="flex items-center cursor-pointer"
+        initial="initial"
+        variants={logoVariants}
         whileHover="whileHover"
       >
         <div className="flex items-center bg-gradient-to-r from-warning to-default-50 p-2 rounded-lg">
