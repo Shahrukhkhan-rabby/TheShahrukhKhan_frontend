@@ -51,17 +51,18 @@ export default function About({ about, projects, skills, blogs }: TAboutProps) {
         />
 
         {/* Download CV Button */}
-        <AnimatedButton
-          bgColor="bg-transparent"
-          borderColor="border-warning-500 my-5"
-          href={
-            link?.data?.resume ||
-            'https://drive.google.com/file/d/15OqqkOMwSooI_iuQhrb7bCAQLEGug-sN/view?usp=drive_link'
-          }
-          target="_blank"
-          text="View Resume"
-          textColor="text-[#F5A524]"
-        />
+        <div className="pt-3">
+          {' '}
+          <AnimatedButton
+            href={
+              link?.data?.resume ||
+              'https://drive.google.com/file/d/15OqqkOMwSooI_iuQhrb7bCAQLEGug-sN/view?usp=drive_link'
+            }
+            target="_blank"
+            text="View Resume"
+            variant="outline"
+          />
+        </div>
       </div>
     </section>
   );

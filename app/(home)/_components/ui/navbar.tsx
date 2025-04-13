@@ -14,12 +14,10 @@ import { Link as ScrollLink } from 'react-scroll';
 import { motion } from 'framer-motion';
 import clsx from 'clsx';
 import { useRouter } from 'next/navigation';
-import { FaDashcube } from 'react-icons/fa';
 
 import { linkVariants, menuVariants } from './animation';
 import Logo from './logo';
 import NavButtons from './navButtons';
-import AnimatedButton from './button';
 
 import { ThemeSwitch } from '@/app/(home)/_components/ui/theme-switch';
 import { siteConfig } from '@/config/site';

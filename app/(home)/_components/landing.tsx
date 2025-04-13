@@ -92,23 +92,19 @@ const Landing = () => {
 
               <div className="mt-6 flex flex-wrap gap-4 justify-center lg:justify-start">
                 <AnimatedButton
-                  bgColor="bg-warning hover:bg-warning-500"
                   href={
                     link?.data?.resume ||
                     'https://drive.google.com/file/d/15OqqkOMwSooI_iuQhrb7bCAQLEGug-sN/view?usp=drive_link'
                   }
                   target="_blank"
                   text="View Resume"
-                  textColor="text-gray-800"
                 />
                 <AnimatedButton
                   IconComponent={AiOutlineFundProjectionScreen}
-                  bgColor="bg-transparent"
-                  borderColor="border-warning-500"
                   href="#projects"
                   target="_self"
                   text="Explore Projects"
-                  textColor="text-[#F5A524]"
+                  variant="outline"
                 />
               </div>
             </div>

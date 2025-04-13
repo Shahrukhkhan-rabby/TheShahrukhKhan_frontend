@@ -4,7 +4,6 @@ import clsx from 'clsx';
 
 import { Providers } from '../providers/providers';
 
-import BgColor from './(home)/_components/ui/bgColor';
 import Container from './(home)/_components/ui/container';
 
 import { siteConfig } from '@/config/site';
