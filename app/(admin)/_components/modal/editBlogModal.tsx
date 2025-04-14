@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   Modal,
   ModalContent,
@@ -6,22 +6,22 @@ import {
   ModalBody,
   ModalFooter,
   useDisclosure,
-} from "@nextui-org/modal";
-import { Button } from "@nextui-org/button";
-import { FaImage, FaPencilAlt } from "react-icons/fa";
-import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-import { Input } from "@nextui-org/input";
-import { Spinner } from "@nextui-org/spinner";
-import Image from "next/image";
-import dynamic from "next/dynamic";
+} from '@nextui-org/modal';
+import { Button } from '@nextui-org/button';
+import { FaImage, FaPencilAlt } from 'react-icons/fa';
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
+import { Input } from '@nextui-org/input';
+import { Spinner } from '@nextui-org/spinner';
+import Image from 'next/image';
+import dynamic from 'next/dynamic';
 
-import { uploadImageToCloudinary } from "@/utils/uploadImageToCloudinary";
-import { useEditBlog } from "@/hooks/blogs.hook";
-import { TBlog } from "@/types";
+import { uploadImageToCloudinary } from '@/utils/uploadImageToCloudinary';
+import { useEditBlog } from '@/hooks/blogs.hook';
+import { TBlog } from '@/types';
 
-import "react-quill/dist/quill.snow.css";
+import 'react-quill/dist/quill.snow.css';
 
-const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
+const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
 export default function EditBlogModal({ blog }: { blog: TBlog }) {
   const [isImageUploading, setIsImageUploading] = useState(false);
@@ -45,14 +45,15 @@ export default function EditBlogModal({ blog }: { blog: TBlog }) {
       setIsImageUploading(true);
       const uploadedUrl = await uploadImageToCloudinary(file);
 
-      setValue("imageUrl", uploadedUrl);
+      setValue('imageUrl', uploadedUrl);
       setIsImageUploading(false);
     }
   };
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     if (!data.imageUrl) {
-      alert("Image is required but not uploaded.");
+      alert('Image is required but not uploaded.');
+
       return;
     }
 
@@ -91,8 +92,8 @@ export default function EditBlogModal({ blog }: { blog: TBlog }) {
               <ModalBody>
                 <form className="space-y-3" onSubmit={handleSubmit(onSubmit)}>
                   <ReactQuill
-                    value={watch("content")}
-                    onChange={(value) => setValue("content", value)}
+                    value={watch('content')}
+                    onChange={(value) => setValue('content', value)}
                   />
                   {errors.content && (
                     <p className="text-error text-xs text-red-500">
@@ -123,12 +124,12 @@ export default function EditBlogModal({ blog }: { blog: TBlog }) {
                       <Spinner color="warning" size="sm" />
                     </div>
                   ) : (
-                    watch("imageUrl") && (
+                    watch('imageUrl') && (
                       <Image
                         alt="Blog Image"
                         className="h-48 w-full mt-2 object-cover rounded-md border-dashed border-default-200 p-1"
                         height={500}
-                        src={watch("imageUrl")}
+                        src={watch('imageUrl')}
                         width={500}
                       />
                     )
@@ -142,7 +143,7 @@ export default function EditBlogModal({ blog }: { blog: TBlog }) {
                       type="submit"
                       onPress={onClose}
                     >
-                      {isPending ? "Updating..." : "Update"}
+                      {isPending ? 'Updating...' : 'Update'}
                     </Button>
                   </ModalFooter>
                 </form>

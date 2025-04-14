@@ -21,7 +21,6 @@ export default function Footer() {
   const [isVisible, setIsVisible] = useState(false);
   const currentYear = new Date().getFullYear();
 
-  // Animation to reveal footer when scrolled to view
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY + window.innerHeight;
@@ -152,7 +151,7 @@ export default function Footer() {
             </div>
 
             <nav className="flex flex-col space-y-3">
-              {siteConfig.navItems.slice(0, 5).map((item, i) => (
+              {siteConfig.navItems.slice(0, 5).map((item) => (
                 <motion.div
                   key={item.href}
                   transition={{ type: 'spring', stiffness: 400 }}

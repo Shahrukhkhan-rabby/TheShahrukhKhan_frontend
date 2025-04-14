@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { useEffect } from "react";
-import $ from "jquery";
+import { useEffect } from 'react';
+import $ from 'jquery';
 
 const SmoothScrollWrapper: React.FC = () => {
   useEffect(() => {
@@ -9,16 +9,18 @@ const SmoothScrollWrapper: React.FC = () => {
     const handleSmoothScroll = (event: JQuery.ClickEvent) => {
       event.preventDefault();
 
-      const targetId = $(event.currentTarget).attr("href"); // Get the href attribute
+      const targetId = $(event.currentTarget).attr('href'); // Get the href attribute
+
       if (targetId) {
         const targetElement = $(targetId);
+
         if (targetElement.length) {
-          $("html, body").animate(
+          $('html, body').animate(
             {
               scrollTop: targetElement.offset()?.top || 0,
             },
             800, // Duration of scroll animation in milliseconds
-            "swing", // Easing effect
+            'swing' // Easing effect
           );
         }
       }
@@ -26,11 +28,12 @@ const SmoothScrollWrapper: React.FC = () => {
 
     // Attach click event to anchor tags with href starting with '#'
     const anchorTags = $('a[href^="#"]');
-    anchorTags.on("click", handleSmoothScroll);
+
+    anchorTags.on('click', handleSmoothScroll);
 
     // Cleanup on component unmount
     return () => {
-      anchorTags.off("click", handleSmoothScroll);
+      anchorTags.off('click', handleSmoothScroll);
     };
   }, []);
 

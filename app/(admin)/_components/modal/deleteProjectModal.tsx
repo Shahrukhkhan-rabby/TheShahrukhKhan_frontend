@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Modal,
   ModalContent,
@@ -6,12 +6,12 @@ import {
   ModalBody,
   ModalFooter,
   useDisclosure,
-} from "@nextui-org/modal";
-import { Button } from "@nextui-org/button";
-import { FaTrashAlt } from "react-icons/fa";
+} from '@nextui-org/modal';
+import { Button } from '@nextui-org/button';
+import { FaTrashAlt } from 'react-icons/fa';
 
-import { TProject } from "@/types/projectsTypes";
-import { useDeleteProject } from "@/hooks/projects.hook";
+import { TProject } from '@/types/projectsTypes';
+import { useDeleteProject } from '@/hooks/projects.hook';
 
 interface TDeleteProjectModalProps {
   project: TProject;
@@ -26,8 +26,6 @@ export default function DeleteProjectModal({
 
   const deleteProjectHandler = async (id: string) => {
     if (!id) {
-      console.error("Id is required but not provided.");
-
       return;
     }
 

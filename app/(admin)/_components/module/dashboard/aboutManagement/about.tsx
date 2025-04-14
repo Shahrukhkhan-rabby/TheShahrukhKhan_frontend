@@ -90,15 +90,8 @@ export default function About({ about }: TProfileProps) {
 
       editAboutFn(editAboutData);
       editAdminFn(editAdminData);
-
-      console.log('Data successfully saved:', {
-        about: editableData,
-        admin: editableAdminData,
-      });
       setIsEditing(false);
-    } catch (error) {
-      console.error('Error saving data:', error);
-    }
+    } catch (error) {}
   };
 
   return (

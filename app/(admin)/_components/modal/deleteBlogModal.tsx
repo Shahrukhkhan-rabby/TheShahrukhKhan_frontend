@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Modal,
   ModalContent,
@@ -6,12 +6,12 @@ import {
   ModalBody,
   ModalFooter,
   useDisclosure,
-} from "@nextui-org/modal";
-import { Button } from "@nextui-org/button";
-import { FaTrashAlt } from "react-icons/fa";
+} from '@nextui-org/modal';
+import { Button } from '@nextui-org/button';
+import { FaTrashAlt } from 'react-icons/fa';
 
-import { TBlog } from "@/types";
-import { useDeleteBlog } from "@/hooks/blogs.hook";
+import { TBlog } from '@/types';
+import { useDeleteBlog } from '@/hooks/blogs.hook';
 
 interface TDeleteBlogModalProps {
   blog: TBlog;
@@ -23,8 +23,6 @@ export default function DeleteBlogModal({ blog }: TDeleteBlogModalProps) {
 
   const deleteBlogHandler = async (id: string) => {
     if (!id) {
-      console.error("Id is required but not provided.");
-
       return;
     }
 

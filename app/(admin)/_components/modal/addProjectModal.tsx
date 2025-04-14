@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   Modal,
   ModalContent,
@@ -6,20 +6,20 @@ import {
   ModalBody,
   ModalFooter,
   useDisclosure,
-} from "@nextui-org/modal";
-import { Button } from "@nextui-org/button";
-import { FaImage, FaPlus, FaTrash } from "react-icons/fa";
-import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-import { Input } from "@nextui-org/input";
-import Image from "next/image";
-import { Spinner } from "@nextui-org/spinner";
-import { Select, SelectItem } from "@nextui-org/select";
-import { Selection } from "@nextui-org/table";
+} from '@nextui-org/modal';
+import { Button } from '@nextui-org/button';
+import { FaImage, FaPlus } from 'react-icons/fa';
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
+import { Input } from '@nextui-org/input';
+import Image from 'next/image';
+import { Spinner } from '@nextui-org/spinner';
+import { Select, SelectItem } from '@nextui-org/select';
+import { Selection } from '@nextui-org/table';
 
-import { useCreateProject } from "@/hooks/projects.hook";
-import { uploadImageToCloudinary } from "@/utils/uploadImageToCloudinary";
-import { useGetAllSkills } from "@/hooks/skills.hook";
-import { TSkill } from "@/types";
+import { useCreateProject } from '@/hooks/projects.hook';
+import { uploadImageToCloudinary } from '@/utils/uploadImageToCloudinary';
+import { useGetAllSkills } from '@/hooks/skills.hook';
+import { TSkill } from '@/types';
 
 export default function AddProjectModal() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -36,13 +36,13 @@ export default function AddProjectModal() {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      title: "",
-      description: "",
+      title: '',
+      description: '',
       github: {
-        frontend: "",
-        backend: "",
+        frontend: '',
+        backend: '',
       },
-      live: "",
+      live: '',
       technologies: [] as string[],
       images: [] as string[],
     },
@@ -50,7 +50,7 @@ export default function AddProjectModal() {
 
   // State to hold selected technologies (multiple selection)
   const [selectedTechnologies, setSelectedTechnologies] = useState<Selection>(
-    new Set(),
+    new Set()
   );
   const [uploadedImages, setUploadedImages] = useState<string[]>([]);
 
@@ -60,26 +60,28 @@ export default function AddProjectModal() {
     if (files) {
       setLoadingImages(true);
       const uploadedUrls = await Promise.all(
-        Array.from(files).map(uploadImageToCloudinary),
+        Array.from(files).map(uploadImageToCloudinary)
       );
 
       setUploadedImages((prevImages) => [...prevImages, ...uploadedUrls]);
-      setValue("images", [...watch("images"), ...uploadedUrls]); // update form state
+      setValue('images', [...watch('images'), ...uploadedUrls]); // update form state
       setLoadingImages(false);
     }
   };
 
   const handleDeleteImage = (index: number) => {
     const newImages = uploadedImages.filter(
-      (_, imgIndex) => imgIndex !== index,
+      (_, imgIndex) => imgIndex !== index
     );
+
     setUploadedImages(newImages);
-    setValue("images", newImages); // update form state
+    setValue('images', newImages); // update form state
   };
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     if (data.images.length === 0) {
-      alert("At least one image is required.");
+      alert('At least one image is required.');
+
       return;
     }
 
@@ -117,8 +119,8 @@ export default function AddProjectModal() {
                     label="Project Title"
                     placeholder="Enter project title"
                     variant="bordered"
-                    {...register("title", {
-                      required: "Project title is required",
+                    {...register('title', {
+                      required: 'Project title is required',
                     })}
                   />
                   {errors.title && (
@@ -131,8 +133,8 @@ export default function AddProjectModal() {
                     label="Description"
                     placeholder="Enter project description"
                     variant="bordered"
-                    {...register("description", {
-                      required: "Project description is required",
+                    {...register('description', {
+                      required: 'Project description is required',
                     })}
                   />
                   {errors.description && (
@@ -145,8 +147,8 @@ export default function AddProjectModal() {
                     label="GitHub (Frontend)"
                     placeholder="Enter frontend GitHub URL"
                     variant="bordered"
-                    {...register("github.frontend", {
-                      required: "Frontend GitHub URL is required",
+                    {...register('github.frontend', {
+                      required: 'Frontend GitHub URL is required',
                     })}
                   />
                   {errors.github?.frontend && (
@@ -159,8 +161,8 @@ export default function AddProjectModal() {
                     label="GitHub (Backend)"
                     placeholder="Enter backend GitHub URL"
                     variant="bordered"
-                    {...register("github.backend", {
-                      required: "Backend GitHub URL is required",
+                    {...register('github.backend', {
+                      required: 'Backend GitHub URL is required',
                     })}
                   />
                   {errors.github?.backend && (
@@ -173,8 +175,8 @@ export default function AddProjectModal() {
                     label="Live Site URL"
                     placeholder="Enter live site URL"
                     variant="bordered"
-                    {...register("live", {
-                      required: "Live site URL is required",
+                    {...register('live', {
+                      required: 'Live site URL is required',
                     })}
                   />
                   {errors.live && (
@@ -207,16 +209,16 @@ export default function AddProjectModal() {
 
                   {/* Image Upload */}
                   <label
-                    htmlFor="file-upload"
                     className="mt-4 cursor-pointer text-xs text-warning-400 my-5 flex gap-2 items-center h-14 rounded-xl px-3 border border-default-200 hover:border-default-400"
+                    htmlFor="file-upload"
                   >
                     <FaImage className="text-2xl" />
                     <p>Upload Images</p>
                     <Input
-                      id="file-upload"
                       multiple
                       accept="image/*"
                       className="hidden"
+                      id="file-upload"
                       type="file"
                       variant="bordered"
                       onChange={handleFileUpload}
@@ -243,9 +245,9 @@ export default function AddProjectModal() {
                             width={100}
                           />
                           <button
+                            className="absolute -top-2 -right-2 size-4 bg-red-600 text-white rounded-full p-1"
                             type="button"
                             onClick={() => handleDeleteImage(index)}
-                            className="absolute -top-2 -right-2 size-4 bg-red-600 text-white rounded-full p-1"
                           >
                             X
                           </button>
@@ -262,7 +264,7 @@ export default function AddProjectModal() {
                       type="submit"
                       onPress={onClose}
                     >
-                      {isPending ? "Creating..." : "Create"}
+                      {isPending ? 'Creating...' : 'Create'}
                     </Button>
                   </ModalFooter>
                 </form>

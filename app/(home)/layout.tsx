@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { ReactNode } from "react";
-import { Element } from "react-scroll";
+import { ReactNode } from 'react';
+import { Element } from 'react-scroll';
 
-import Footer from "./_components/footer";
-import { Navbar } from "./_components/ui/navbar";
-import SmoothScrollWrapper from "./_components/ui/ScrollAnimation";
+import Footer from './_components/footer';
+import { Navbar } from './_components/ui/navbar';
+import SmoothScrollWrapper from './_components/ui/ScrollAnimation';
 
 interface CommonLayoutProps {
   children: ReactNode;
@@ -17,11 +17,6 @@ interface CommonLayoutProps {
   myBlogs: ReactNode;
   contactMe: ReactNode;
 }
-
-const sectionAnimation = {
-  hidden: { opacity: 0, y: 100 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
-};
 
 export default function CommonLayout({
   children,

@@ -47,45 +47,45 @@ const UpdateLinkForm = () => {
       <h2 className="text-sm md:text-lg font-semibold text-start text-default-700 mb-4">
         Update Link
       </h2>
-      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
+      <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          <Input size="sm" label="Resume" {...register('resume')} fullWidth />
+          <Input label="Resume" size="sm" {...register('resume')} fullWidth />
           <Input
-            size="sm"
             label="LinkedIn"
+            size="sm"
             {...register('linkedin')}
             fullWidth
           />
-          <Input size="sm" label="GitHub" {...register('github')} fullWidth />
-          <Input size="sm" label="Twitter" {...register('twitter')} fullWidth />
+          <Input label="GitHub" size="sm" {...register('github')} fullWidth />
+          <Input label="Twitter" size="sm" {...register('twitter')} fullWidth />
           <Input
-            size="sm"
             label="Facebook"
+            size="sm"
             {...register('facebook')}
             fullWidth
           />
           <Input
-            size="sm"
             label="Email"
+            size="sm"
             {...register('email')}
             fullWidth
             type="email"
           />
           <Input
-            size="sm"
             label="Phone"
+            size="sm"
             {...register('phone')}
             fullWidth
             type="tel"
           />
-          <Input size="sm" label="Discord" {...register('discord')} fullWidth />
+          <Input label="Discord" size="sm" {...register('discord')} fullWidth />
         </div>
         <Button
-          type="submit"
           className="mt-5 text-white w-full md:w-[200px]"
           color="warning"
-          isLoading={editLinkMutation.isPending}
           disabled={editLinkMutation.isPending}
+          isLoading={editLinkMutation.isPending}
+          type="submit"
         >
           Update Link
         </Button>

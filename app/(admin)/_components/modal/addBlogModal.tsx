@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   Modal,
   ModalContent,
@@ -8,21 +8,21 @@ import {
   ModalBody,
   ModalFooter,
   useDisclosure,
-} from "@nextui-org/modal";
-import { Button } from "@nextui-org/button";
-import { FaImage, FaPlus } from "react-icons/fa";
-import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-import { Input } from "@nextui-org/input";
-import { Spinner } from "@nextui-org/spinner";
-import Image from "next/image";
-import dynamic from "next/dynamic";
+} from '@nextui-org/modal';
+import { Button } from '@nextui-org/button';
+import { FaImage, FaPlus } from 'react-icons/fa';
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
+import { Input } from '@nextui-org/input';
+import { Spinner } from '@nextui-org/spinner';
+import Image from 'next/image';
+import dynamic from 'next/dynamic';
 
-import { useCreateBlog } from "@/hooks/blogs.hook";
-import { uploadImageToCloudinary } from "@/utils/uploadImageToCloudinary";
-import "react-quill/dist/quill.snow.css";
+import { useCreateBlog } from '@/hooks/blogs.hook';
+import { uploadImageToCloudinary } from '@/utils/uploadImageToCloudinary';
+import 'react-quill/dist/quill.snow.css';
 
 // Dynamically import the ReactQuill component to avoid SSR issues
-const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
+const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
 export default function AddBlogModal() {
   const [isImageUploading, setIsImageUploading] = useState(false);
@@ -31,15 +31,14 @@ export default function AddBlogModal() {
   const { mutate: addBlogFn, isPending } = useCreateBlog();
 
   const {
-    register,
     handleSubmit,
     setValue,
     watch,
     formState: { errors },
   } = useForm({
     defaultValues: {
-      content: "",
-      imageUrl: "",
+      content: '',
+      imageUrl: '',
     },
   });
 
@@ -50,18 +49,15 @@ export default function AddBlogModal() {
       setIsImageUploading(true);
       const uploadedUrl = await uploadImageToCloudinary(file);
 
-      setValue("imageUrl", uploadedUrl);
+      setValue('imageUrl', uploadedUrl);
       setIsImageUploading(false);
     }
   };
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     if (!data.imageUrl) {
-      console.error("Image is required but not uploaded.");
-
       return;
     }
-    console.log(data);
     addBlogFn(data);
   };
 
@@ -95,8 +91,8 @@ export default function AddBlogModal() {
                 <form className="space-y-3" onSubmit={handleSubmit(onSubmit)}>
                   <div className="space-y-2">
                     <label
-                      htmlFor="content"
                       className="block text-sm font-medium"
+                      htmlFor="content"
                     >
                       Content
                     </label>
@@ -104,8 +100,8 @@ export default function AddBlogModal() {
                       <ReactQuill
                         id="content"
                         theme="snow"
-                        value={watch("content")}
-                        onChange={(value) => setValue("content", value)}
+                        value={watch('content')}
+                        onChange={(value) => setValue('content', value)}
                       />
                     </div>
                   </div>
@@ -116,15 +112,15 @@ export default function AddBlogModal() {
                   )}
 
                   <label
-                    htmlFor="image"
                     className="mt-4 cursor-pointer text-xs text-warning-400 my-5 flex gap-2 items-center h-14 rounded-xl px-3 border border-default-200 hover:border-default-400"
+                    htmlFor="image"
                   >
                     <FaImage className="text-2xl" />
                     <p>Upload Image</p>
                     <Input
-                      id="image"
                       accept="image/*"
                       className="hidden"
+                      id="image"
                       type="file"
                       variant="bordered"
                       onChange={handleFileUpload}
@@ -142,12 +138,12 @@ export default function AddBlogModal() {
                       <Spinner color="warning" size="sm" />
                     </div>
                   ) : (
-                    watch("imageUrl") && (
+                    watch('imageUrl') && (
                       <Image
                         alt="Blog Image"
                         className="h-48 w-full mt-2 object-cover rounded-md border-dashed border-default-200 p-1"
                         height={500}
-                        src={watch("imageUrl")}
+                        src={watch('imageUrl')}
                         width={500}
                       />
                     )
@@ -161,7 +157,7 @@ export default function AddBlogModal() {
                       type="submit"
                       onPress={onClose}
                     >
-                      {isPending ? "Creating..." : "Create"}
+                      {isPending ? 'Creating...' : 'Create'}
                     </Button>
                   </ModalFooter>
                 </form>

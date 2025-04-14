@@ -80,8 +80,8 @@ export default function SidebarMain({ children }: { children: ReactNode }) {
       >
         {/* Sidebar Logo */}
         <Link
-          href={'/'}
           className="flex items-start text-lg font-semibold py-4 md:p-4 cursor-pointer"
+          href={'/'}
         >
           <Logo />
         </Link>

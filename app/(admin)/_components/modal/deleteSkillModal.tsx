@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Modal,
   ModalContent,
@@ -6,12 +6,12 @@ import {
   ModalBody,
   ModalFooter,
   useDisclosure,
-} from "@nextui-org/modal";
-import { Button } from "@nextui-org/button";
-import { FaTrashAlt } from "react-icons/fa";
+} from '@nextui-org/modal';
+import { Button } from '@nextui-org/button';
+import { FaTrashAlt } from 'react-icons/fa';
 
-import { useDeleteSkill } from "@/hooks/skills.hook";
-import { TSkill } from "@/types";
+import { useDeleteSkill } from '@/hooks/skills.hook';
+import { TSkill } from '@/types';
 
 interface TDeleteSkillModalProps {
   skill: TSkill;
@@ -24,8 +24,6 @@ export default function DeleteSkillModal({ skill }: TDeleteSkillModalProps) {
 
   const deleteSkillHandler = async (id: string) => {
     if (!id) {
-      console.error("Id is required but not provided.");
-
       return;
     }
 

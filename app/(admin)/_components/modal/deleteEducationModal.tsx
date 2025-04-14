@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Modal,
   ModalContent,
@@ -6,12 +6,12 @@ import {
   ModalBody,
   ModalFooter,
   useDisclosure,
-} from "@nextui-org/modal";
-import { Button } from "@nextui-org/button";
-import { FaTrashAlt } from "react-icons/fa";
+} from '@nextui-org/modal';
+import { Button } from '@nextui-org/button';
+import { FaTrashAlt } from 'react-icons/fa';
 
-import { TEducation } from "@/types";
-import { useDeleteEducation } from "@/hooks/educations.hook";
+import { TEducation } from '@/types';
+import { useDeleteEducation } from '@/hooks/educations.hook';
 
 interface TDeleteEducationModalProps {
   education: TEducation;
@@ -25,8 +25,6 @@ export default function DeleteEducationModal({
 
   const deleteEducationHandler = async (id: string) => {
     if (!id) {
-      console.error("Id is required but not provided.");
-
       return;
     }
 

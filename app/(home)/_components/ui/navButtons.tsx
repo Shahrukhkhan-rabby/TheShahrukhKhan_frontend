@@ -34,12 +34,12 @@ export default function NavButtons() {
           isIconOnly
           aria-label="LinkedIn"
           as={Link}
-          target="_blank"
           color="warning"
           href={link?.data?.linkedin || siteConfig.links.linkedin}
           radius="full"
           size="sm"
           startContent={<FaLinkedin className="text-default-500" size={18} />}
+          target="_blank"
           variant="faded"
         />
       </motion.div>
@@ -54,12 +54,12 @@ export default function NavButtons() {
           isIconOnly
           aria-label="Twitter"
           as={Link}
-          target="_blank"
           color="warning"
           href={link?.data?.twitter || siteConfig.links.twitter}
           radius="full"
           size="sm"
           startContent={<FaTwitter className="text-default-500" size={18} />}
+          target="_blank"
           variant="faded"
         />
       </motion.div>
@@ -76,12 +76,12 @@ export default function NavButtons() {
           isIconOnly
           aria-label="Discord"
           as={Link}
-          target="_blank"
           color="warning"
           href={link?.data?.discord || siteConfig.links.discord}
           radius="full"
           size="sm"
           startContent={<FaDiscord className="text-default-500" size={18} />}
+          target="_blank"
           variant="faded"
         />
       </motion.div>
@@ -98,12 +98,12 @@ export default function NavButtons() {
           isIconOnly
           aria-label="Github"
           as={Link}
-          target="_blank"
           color="warning"
           href={link?.data?.github || siteConfig.links.github}
           radius="full"
           size="sm"
           startContent={<FaGithub className="text-default-500" size={18} />}
+          target="_blank"
           variant="faded"
         />
       </motion.div>
@@ -120,12 +120,12 @@ export default function NavButtons() {
           isIconOnly
           aria-label="Facebook"
           as={Link}
-          target="_blank"
           color="warning"
           href={link?.data?.facebook || siteConfig.links.facebook}
           radius="full"
           size="sm"
           startContent={<FaFacebookF className="text-default-500" size={18} />}
+          target="_blank"
           variant="faded"
         />
       </motion.div>
