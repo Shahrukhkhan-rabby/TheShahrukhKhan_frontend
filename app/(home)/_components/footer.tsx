@@ -98,7 +98,7 @@ export default function Footer() {
         />
       </div>
 
-      <div className="max-w-6xl mx-auto px-6 py-12 md:py-16 relative z-10">
+      <div className="pt-12 md:pt-16 relative z-10">
         <motion.div
           className="grid grid-cols-1 md:grid-cols-12 gap-10"
           variants={childVariants}
@@ -109,13 +109,13 @@ export default function Footer() {
             variants={childVariants}
           >
             <div>
-              <h2 className="text-xl font-bold text-default-800 mb-1">
+              <h2 className="text-sm md:text-xl font-bold text-default-800 mb-1">
                 Md Rijwan Jannat
               </h2>
               <div className="w-20 h-1 bg-amber-500 mb-4 rounded-full" />
             </div>
 
-            <p className="text-default-600 leading-relaxed">
+            <p className="text-xs md:text-sm text-default-600 leading-relaxed">
               I am a passionate developer creating innovative solutions. My
               portfolio showcases my projects and skills in web development and
               design.
@@ -123,16 +123,18 @@ export default function Footer() {
 
             <div className="space-y-3 pt-2">
               <div className="flex items-center gap-3 text-default-700">
-                <IoLocationOutline className="text-amber-500 text-xl flex-shrink-0" />
-                <span className="text-sm">Bogura, Bangladesh</span>
+                <IoLocationOutline className="text-amber-500 text-lg md:text-xl flex-shrink-0" />
+                <span className="text-xs md:text-sm">Bogura, Bangladesh</span>
               </div>
               <div className="flex items-center gap-3 text-default-700">
-                <IoMailOutline className="text-amber-500 text-xl flex-shrink-0" />
-                <span className="text-sm">rijwanjannat36@gmail.com</span>
+                <IoMailOutline className="text-amber-500 text-lg md:text-xl flex-shrink-0" />
+                <span className="text-xs md:text-sm">
+                  rijwanjannat36@gmail.com
+                </span>
               </div>
               <div className="flex items-center gap-3 text-default-700">
-                <IoCallOutline className="text-amber-500 text-xl flex-shrink-0" />
-                <span className="text-sm">+880 1797-660947</span>
+                <IoCallOutline className="text-amber-500 text-lg md:text-xl flex-shrink-0" />
+                <span className="text-xs md:text-sm">+880 1797-660947</span>
               </div>
             </div>
           </motion.div>
@@ -143,7 +145,7 @@ export default function Footer() {
             variants={childVariants}
           >
             <div>
-              <h3 className="text-lg font-bold text-default-800 mb-1">
+              <h3 className="text-sm font-bold text-default-800 mb-1">
                 Quick Links
               </h3>
               <div className="w-16 h-1 bg-amber-500 mb-4 rounded-full" />
@@ -158,7 +160,7 @@ export default function Footer() {
                 >
                   <ScrollLink
                     className={clsx(
-                      'cursor-pointer text-default-700 hover:text-amber-500 flex items-center transition-colors duration-300'
+                      'cursor-pointer text-default-700 hover:text-amber-500 flex items-center transition-colors duration-300 text-xs md:text-sm'
                     )}
                     duration={500}
                     offset={-90}
@@ -180,7 +182,7 @@ export default function Footer() {
             variants={childVariants}
           >
             <div>
-              <h3 className="text-lg font-bold text-default-800 mb-1">
+              <h3 className="text-sm font-bold text-default-800 mb-1">
                 Connect With Me
               </h3>
               <div className="w-16 h-1 bg-amber-500 mb-4 rounded-full" />
@@ -192,16 +194,16 @@ export default function Footer() {
 
             {/* Newsletter subscription */}
             <div className="pt-3">
-              <p className="text-sm text-default-700 mb-3">
+              <p className="text-xs md:text-sm text-default-700 mb-3">
                 Subscribe to my newsletter
               </p>
               <div className="flex max-w-md">
                 <input
-                  className="flex-1 px-4 py-2 text-sm border border-default-200 rounded-l-md focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                  className="flex-1 px-4 py-2 text-xs md:text-sm border border-default-200 rounded-l-md focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"
                   placeholder="Your email address"
                   type="email"
                 />
-                <button className="bg-amber-500 hover:bg-amber-600 text-white px-4 py-2 rounded-r-md text-sm font-medium transition-colors duration-300">
+                <button className="bg-amber-500 hover:bg-amber-600 text-white px-4 py-2 rounded-r-md text-xs md:text-sm font-medium transition-colors duration-300">
                   Subscribe
                 </button>
               </div>
@@ -215,11 +217,11 @@ export default function Footer() {
           variants={childVariants}
         >
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-sm text-default-600 mb-4 md:mb-0">
+            <p className="text-xs md:text-sm text-default-600 mb-4 md:mb-0">
               © {currentYear} Md Rijwan Jannat. All rights reserved.
             </p>
 
-            <div className="flex space-x-6 text-sm text-default-600">
+            <div className="flex space-x-6 text-xs md:text-sm text-default-600">
               <Link
                 className="hover:text-amber-500 transition-colors duration-300"
                 href="#"
@@ -244,8 +246,8 @@ export default function Footer() {
       </div>
 
       {/* Decorative elements */}
-      <div className="absolute bottom-0 right-0 w-40 h-40 bg-amber-300 rounded-full -mb-20 -mr-20 opacity-10" />
-      <div className="absolute top-0 left-0 w-20 h-20 bg-amber-500 rounded-full -mt-10 -ml-10 opacity-10" />
+      <div className="absolute bottom-0 right-0 w-40 h-40 bg-amber-300 rounded-full -mb-20 md:-mr-20 opacity-10" />
+      <div className="absolute top-0 left-0 w-20 h-20 bg-amber-500 rounded-full -mt-10 md:-ml-10 opacity-10" />
     </motion.footer>
   );
 }

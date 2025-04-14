@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
-import Blogs from "../_components/module/blogs";
+import Blogs from '../_components/module/blogs';
 
-import { getAllBlogs } from "@/service/blogService/blogService";
+import { getAllBlogs } from '@/service/blogService/blogService';
 
 export default async function BlogsPage() {
   const data = await getAllBlogs();

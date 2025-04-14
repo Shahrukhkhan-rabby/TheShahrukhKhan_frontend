@@ -146,12 +146,7 @@ const Contact: React.FC = () => {
 
   return (
     <section className="py-12 overflow-hidden" id="contact">
-      <motion.div
-        animate="visible"
-        className="container mx-auto px-4"
-        initial="hidden"
-        variants={fadeInUp}
-      >
+      <motion.div animate="visible" initial="hidden" variants={fadeInUp}>
         <Title title1="Contact" title2="Contact With Me" />
 
         <motion.div

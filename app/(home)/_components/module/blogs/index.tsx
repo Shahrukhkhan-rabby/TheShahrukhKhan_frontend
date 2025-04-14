@@ -53,7 +53,7 @@ export default function Blogs({ blogs }: TBlogsProps) {
 
       <motion.div
         animate="visible"
-        className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8"
+        className="grid grid-cols-2 md:grid-cols-2 xl:grid-cols-3 gap-8"
         initial="hidden"
         variants={containerVariants}
       >
@@ -118,7 +118,7 @@ const BlogCard = ({ blog }: BlogCardProps) => {
     >
       <div className="bg-default-100/50 rounded-xl overflow-hidden shadow-lg h-full flex flex-col transition-all duration-300 hover:shadow-xl border border-default-100">
         {/* Image Container */}
-        <div className="relative overflow-hidden h-48">
+        <div className="relative overflow-hidden h-24 md:h-48">
           <motion.div
             animate={{ scale: isHovered ? 1.05 : 1 }}
             className="h-full w-full"
@@ -132,45 +132,38 @@ const BlogCard = ({ blog }: BlogCardProps) => {
               width={500}
             />
           </motion.div>
-
-          {/* Category tag */}
-          <div className="absolute top-4 right-4">
-            <span className="bg-warning-500 text-white text-xs font-bold px-3 py-1 rounded-full">
-              {blog._id || 'Technology'}
-            </span>
-          </div>
         </div>
 
         {/* Content */}
-        <div className="p-6 flex flex-col flex-grow">
-          <div className="flex items-center mb-4">
+        <div className="p-3 md:p-6 flex flex-col flex-grow">
+          <div className="flex items-center mb-2 md:mb-4">
             <Avatar size="sm" src={blog.author.image} />
             <div className="ml-2">
-              <p className="text-sm font-medium text-default7500">
+              <p className="text-[10px] md:text-sm font-medium text-default7500">
                 {blog.author.name}
               </p>
-              <p className="text-xs text-default-500">
+              <p className="text-[8px] md:text-xs text-default-500">
                 {formatDate(blog.createdAt)}
               </p>
             </div>
           </div>
 
-          <h2 className="text-xl font-bold mb-2 line-clamp-2 text-white">
+          <h2 className="text-sm md:text-lg font-bold mb-1 md:mb-2 line-clamp-2 text-white">
             {getTitle()}
           </h2>
 
-          <p className="text-default-600 text-sm mb-4 line-clamp-3 flex-grow">
+          <p className="text-default-600 text-[10px] md:text-sm mb-2 md:mb-4 line-clamp-3 flex-grow">
             {getExcerpt()}
           </p>
 
           <Link
-            className="inline-flex items-center mt-auto text-sm font-medium text-warning-500 hover:text-warning-600 group"
+            className="inline-flex items-center mt-auto text-xs md:text-sm font-medium text-warning-500 hover:text-warning-600 group"
             href={`/blogs/${blog._id}`}
           >
             Read more
             <motion.svg
               animate={{ x: isHovered ? 5 : 0 }}
-              className="ml-1 h-4 w-4"
+              className="ml-1 size-3 md:size-4"
               fill="none"
               stroke="currentColor"
               transition={{ duration: 0.2 }}
@@ -196,7 +189,7 @@ export const BlogPost = ({ blog }: BlogCardProps) => {
   return (
     <motion.div
       animate={{ opacity: 1, y: 0 }}
-      className="max-w-4xl mx-auto bg-white bg-default-800 rounded-xl overflow-hidden shadow-xl border border-default-100 border-default-700"
+      className="max-w-4xl mx-auto bg-default-100/50 rounded-xl overflow-hidden shadow-xl border border-default-100"
       initial={{ opacity: 0, y: 20 }}
       transition={{ duration: 0.6 }}
     >
@@ -212,7 +205,7 @@ export const BlogPost = ({ blog }: BlogCardProps) => {
 
         {/* Date overlay */}
         <div className="absolute top-6 right-6 bg-default-100/50 bg-default-800 px-4 py-2 rounded-lg shadow-md">
-          <p className="text-default-600 text-default-300 text-sm font-medium">
+          <p className="text-default-600 text-sm font-medium">
             {new Date(blog.createdAt).toLocaleDateString('en-US', {
               year: 'numeric',
               month: 'long',
@@ -225,13 +218,11 @@ export const BlogPost = ({ blog }: BlogCardProps) => {
       {/* Content */}
       <div className="p-8">
         {/* Author */}
-        <div className="flex items-center mb-6 pb-6 border-b border-default-100 border-default-700">
+        <div className="flex items-center mb-6 pb-6 border-b border-default-100 ">
           <Avatar size="lg" src={blog.author.image} />
           <div className="ml-4">
             <h3 className="text-lg font-bold text-white">{blog.author.name}</h3>
-            <p className="text-default-500 text-default-400 text-sm">
-              Author & Content Creator
-            </p>
+            <p className="text-default-500 text-sm">Author & Content Creator</p>
           </div>
         </div>
 
@@ -244,7 +235,7 @@ export const BlogPost = ({ blog }: BlogCardProps) => {
         </article>
 
         {/* Share/Like Section */}
-        <div className="flex justify-between items-center mt-10 pt-6 border-t border-default-100 border-default-700">
+        <div className="flex justify-between items-center mt-10 pt-6 border-t border-default-100">
           <div className="flex space-x-4">
             <button className="flex items-center text-default-500 hover:text-warning-500 transition-colors">
               <svg
@@ -283,7 +274,7 @@ export const BlogPost = ({ blog }: BlogCardProps) => {
           </div>
 
           <Link
-            className="text-warning-500 hover:text-warning-600 text-warning-400 hover:text-warning-300 flex items-center"
+            className="text-warning-500 hover:text-warning-600 flex items-center"
             href="/blogs"
           >
             <svg

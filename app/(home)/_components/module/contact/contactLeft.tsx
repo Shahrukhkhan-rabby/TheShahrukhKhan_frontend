@@ -34,11 +34,11 @@ const ContactLeft: React.FC = () => {
   return (
     <motion.div
       animate="visible"
-      className="p-6 border border-default-100 rounded-xl backdrop-blur shadow-lg h-full flex flex-col w-full"
+      className="p-3 md:p-6 border border-default-100 rounded-xl backdrop-blur shadow-lg h-full flex flex-col w-full"
       initial="hidden"
       variants={fadeInUp}
     >
-      <h3 className="text-xl font-bold text-default-800 mb-4">
+      <h3 className="text-xs md:text-sm md:text-lg font-bold text-default-800 mb-4">
         Let&apos;s Connect
       </h3>
 
@@ -54,11 +54,13 @@ const ContactLeft: React.FC = () => {
         >
           <div className="flex items-center space-x-3">
             <div className="bg-green-500 text-white p-2 rounded-full">
-              <FaWhatsapp size={22} />
+              <FaWhatsapp className="size-4 md:size-5" />
             </div>
             <div className="flex-1">
-              <p className="text-sm text-green-600 font-medium">WhatsApp</p>
-              <p className="text-default-700 font-medium">
+              <p className="text-xs md:text-sm text-green-600 font-medium">
+                WhatsApp
+              </p>
+              <p className="text-default-700 text-xs md:text-sm font-medium">
                 {link?.data?.phone || '+8801797660947'}
               </p>
             </div>
@@ -82,7 +84,7 @@ const ContactLeft: React.FC = () => {
                     initial={{ scale: 0.8, opacity: 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <Check className="text-green-500" size={18} />
+                    <Check className="text-green-500 size-4" />
                   </motion.div>
                 ) : (
                   <motion.div
@@ -92,7 +94,7 @@ const ContactLeft: React.FC = () => {
                     initial={{ scale: 0.8, opacity: 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <Copy size={18} />
+                    <Copy className="size-4" />
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -110,11 +112,13 @@ const ContactLeft: React.FC = () => {
         >
           <div className="flex items-center space-x-3">
             <div className="bg-blue-500 text-white p-2 rounded-full">
-              <MdAlternateEmail size={22} />
+              <MdAlternateEmail className="size-4 md:size-5" />
             </div>
             <div className="flex-1">
-              <p className="text-sm text-blue-600 font-medium">Email</p>
-              <p className="text-default-700 font-medium">
+              <p className="text-xs md:text-sm text-blue-600 font-medium">
+                Email
+              </p>
+              <p className="text-default-700 text-xs md:text-sm font-medium">
                 {link?.data?.email || 'rijwanjannat36@gmail.com'}
               </p>
             </div>
@@ -138,7 +142,7 @@ const ContactLeft: React.FC = () => {
                     initial={{ scale: 0.8, opacity: 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <Check className="text-blue-500" size={18} />
+                    <Check className="text-blue-500 size-4" />
                   </motion.div>
                 ) : (
                   <motion.div
@@ -148,7 +152,7 @@ const ContactLeft: React.FC = () => {
                     initial={{ scale: 0.8, opacity: 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <Copy size={18} />
+                    <Copy className="size-4" />
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -164,11 +168,13 @@ const ContactLeft: React.FC = () => {
         >
           <div className="flex items-center space-x-3">
             <div className="bg-purple-500 text-white p-2 rounded-full">
-              <MapPin size={22} />
+              <MapPin className="size-4 md:size-5" />
             </div>
             <div className="flex-1">
-              <p className="text-sm text-purple-600 font-medium">Location</p>
-              <p className="text-default-700 font-medium">
+              <p className="text-xs md:text-sm text-purple-600 font-medium">
+                Location
+              </p>
+              <p className="text-default-700 text-xs md:text-sm font-medium">
                 Shajahanpur Bogura, Bangladesh
               </p>
             </div>
@@ -206,8 +212,8 @@ const ContactLeft: React.FC = () => {
         >
           <Image
             alt="animation"
-            className="w-full h-auto object-contain rounded-lg"
-            height={300}
+            className="w-full h-auto md:h-56 object-contain rounded-lg"
+            height={260}
             src={
               'https://raw.githubusercontent.com/devSouvik/devSouvik/master/gif3.gif'
             }
