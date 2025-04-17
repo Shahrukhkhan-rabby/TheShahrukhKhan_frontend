@@ -137,7 +137,7 @@ const BlogCard = ({ blog }: BlogCardProps) => {
         {/* Content */}
         <div className="p-3 md:p-6 flex flex-col flex-grow">
           <div className="flex items-center mb-2 md:mb-4">
-            <Avatar size="sm" src={blog.author.image} />
+            <Avatar size="sm" src={blog.author.image || "/favicon.ico"} />
             <div className="ml-2">
               <p className="text-[10px] md:text-sm font-medium text-default7500">
                 {blog.author.name}
