@@ -94,7 +94,7 @@ const Landing = () => {
                 <AnimatedButton
                   href={
                     link?.data?.resume ||
-                    'https://docs.google.com/document/d/1uKpnvMUT0eo0izAj7xkAbr-jC4HpNvRhEpiz4hy1HvE/edit?tab=t.0?usp=drive_link'
+                    'https://drive.google.com/file/d/1ZeAFjdcbAZ24ktAhJP7mmHsxLwJKb5ad/view'
                   }
                   target="_blank"
                   text="View Resume"
