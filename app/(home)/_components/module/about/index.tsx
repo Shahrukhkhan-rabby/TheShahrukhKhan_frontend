@@ -20,12 +20,15 @@ interface TAboutProps {
 export default function About({ about, projects, skills, blogs }: TAboutProps) {
   const { data: link } = useGetLink('67bb2077af9ba724ceece4ec');
 
+  if (!about || !about.me) {
+    return <div className="text-center">Loading About info...</div>
+  }
   return (
     <section className="flex flex-col lg:flex-row items-center lg:space-x-8 space-y-8 lg:space-y-0">
       {/* Image Section */}
       <div className="w-full lg:w-1/3">
         <Image
-          alt={about.me.name}
+          alt={about.me.name || "About Image"}
           className="w-full h-full lg:h-[350px] xl:h-[340px] rounded-lg shadow-lg object-cover"
           height={500}
           src={about.image || 'https://example.com/my-image.jpg'}
@@ -56,7 +59,7 @@ export default function About({ about, projects, skills, blogs }: TAboutProps) {
           <AnimatedButton
             href={
               link?.data?.resume ||
-              'https://drive.google.com/file/d/15OqqkOMwSooI_iuQhrb7bCAQLEGug-sN/view?usp=drive_link'
+              'https://docs.google.com/document/d/1uKpnvMUT0eo0izAj7xkAbr-jC4HpNvRhEpiz4hy1HvE/edit?tab=t.0?usp=drive_link'
             }
             target="_blank"
             text="View Resume"

@@ -9,9 +9,9 @@ import {
 } from 'react-icons/fa';
 
 export const siteConfig = {
-  name: "Md-Rijwan-Jannat's Portfolio",
+  name: "Md-Shahrukh-Khan's Portfolio",
   ogImage: 'https://demo.jpg',
-  url: 'www.rijwanjanant.dev',
+  url: 'www.shahrukhkhan.dev',
   description:
     'Junior Full Stack Developer specializing in modern web technologies.',
   navItems: [
@@ -79,11 +79,11 @@ export const siteConfig = {
     },
   ],
   links: {
-    github: 'https://github.com/Md-Rijwan-Jannat',
-    linkedin: 'https://www.linkedin.com/in/md-rijwan-jannat47',
-    facebook: 'https://www.facebook.com/mdrijwanjannat',
-    twitter: 'https://x.com/JannatRijw51454',
-    discord: 'https://discord.com/channels/r.j.rijwan',
+    github: 'https://github.com/Shahrukhkhan-rabby',
+    linkedin: 'https://www.linkedin.com/in/md-shahrukh-khan-5858a6320/',
+    facebook: 'https://www.facebook.com/shahrukhkhan.rabby/',
+    twitter: 'https://x.com/shahrukh_m607',
+    discord: 'https://discord.com/channels/shahrukhkhanrabby',
     resume:
       'https://drive.google.com/file/d/1YIFQMCuGD8NCdpW4XuSH_01Ft9bPh_2V/view?usp=drive_link',
   },

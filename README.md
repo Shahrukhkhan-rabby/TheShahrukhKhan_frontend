@@ -1,4 +1,4 @@
-# <img src="https://raw.githubusercontent.com/ABSphreak/ABSphreak/master/gifs/Hi.gif" width="40px"  height='40px'>Hi, I am Md Rijwan Jannat
+# <img src="https://raw.githubusercontent.com/ABSphreak/ABSphreak/master/gifs/Hi.gif" width="40px"  height='40px'>Hi, I am Md Shahrukh Khan
 
 ![GitHub followers](https://img.shields.io/github/followers/Md-Rijwan-Jannat?label=follow&logo=github&style=flat-square)
 ![GitHub User's stars](https://img.shields.io/github/stars/Md-Rijwan-Jannat?label=%E2%AD%90GitHub%20stars&style=flat-square)
@@ -10,7 +10,7 @@
 
 ![mi perfil](https://res.cloudinary.com/superfolio/image/upload/v1620689979/68747470733a2f2f692e70696e696d672e636f6d2f6f726967696e616c732f63362f33332f63322f63363333633230656465383266306530636564376435373064626533613166332e676966_yjuh2s.gif)
 
-<p style="text-align: center; font-size: 1rem;" align='center'>👦🏻 <span style='color:cyan'>Md Rijwan Jannat |  </span> <span style='color:yellow'>Junior Full Stack stack Developer </span> | <span style='color:lightsky'>  MERN stack Developer </span></p>
+<p style="text-align: center; font-size: 1rem;" align='center'>👦🏻 <span style='color:cyan'>Md Shahrukh Khan |  </span> <span style='color:yellow'>Junior Full Stack stack Developer </span> | <span style='color:lightsky'>  MERN stack Developer </span></p>
 
 <br />
 
@@ -22,7 +22,7 @@
 
 💬 Ask me about <span style="color:orange; font-weight:bold">Web Development</span> and <span style="color:orange; font-weight:bold">Backend Solutions</span>
 
-📫 How to reach me: rijwanjannat36@gmail.com
+📫 How to reach me: shahrukhkhan3418198@gmail.com
 
 ⚡ Fun fact: <span style="color:orange; font-weight:bold">_I’m not just a coder—I'm a funny one too!_</span>
 
@@ -57,19 +57,19 @@
 ## 🌐 Connect with Me:
 <br />
 <br />
-  <a href="https://www.linkedin.com/in/md-rijwan-jannat-3a479532b" target="_blank">
+  <a href="https://www.linkedin.com/in/md-shahrukh-khan-5858a6320/" target="_blank">
     <img src="https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white" alt="LinkedIn" />
   </a>
-  <a href="https://www.instagram.com/rijwanjannat" target="_blank">
+  <a href="https://www.instagram.com/shahrukh.khan.rabby" target="_blank">
     <img src="https://img.shields.io/badge/Instagram-%23E4405F.svg?logo=instagram&logoColor=white" alt="Instagram" />
   </a>
-  <a href="https://www.facebook.com/profile.php?id=100086218014706" target="_blank">
+  <a href="https://www.facebook.com/shahrukhkhan.rabby/" target="_blank">
     <img src="https://img.shields.io/badge/Facebook-%231877F2.svg?logo=Facebook&logoColor=white" alt="Facebook" />
   </a>
-  <a href="mailto:rijwanjannat36@gmail.com" target="_blank">
+  <a href="mailto:shahrukhkhan3418198@gmail.com" target="_blank">
     <img src="https://img.shields.io/badge/Gmail-D14836?logo=gmail&logoColor=white" alt="Gmail" />
   </a>
-    <a href="https://x.com/JannatRijw51454" target="_blank">
+    <a href="https://x.com/shahrukh_m607" target="_blank">
     <img src="https://img.shields.io/badge/X-1DA1F2?logo=x&logoColor=white" alt="Twitter" />
   </a>
 <br>

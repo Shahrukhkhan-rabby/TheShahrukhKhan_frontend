@@ -97,7 +97,7 @@ const nameVariants = {
 };
 
 export default function Logo() {
-  const letters = 'MDRJ'.split('');
+  const letters = 'MDSRK'.split('');
   const [isHovering, setIsHovering] = useState(false);
   const [sparkleElements, setSparkleElements] = useState<JSX.Element[]>([]);
 
@@ -224,7 +224,7 @@ export default function Logo() {
         {/* Name part with its own animation */}
         <motion.div className="relative ml-3" variants={nameVariants}>
           <p className="font-semibold hidden xs:block text-lg md:text-xl">
-            Rijwan
+            Shahrukh
           </p>
 
           {/* Underline animation */}

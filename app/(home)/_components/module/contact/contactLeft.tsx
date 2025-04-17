@@ -61,7 +61,7 @@ const ContactLeft: React.FC = () => {
                 WhatsApp
               </p>
               <p className="text-default-700 text-xs md:text-sm font-medium">
-                {link?.data?.phone || '+8801797660947'}
+                {link?.data?.phone || '+8801787144607'}
               </p>
             </div>
             <motion.button
@@ -70,7 +70,7 @@ const ContactLeft: React.FC = () => {
               whileTap={{ scale: 0.9 }}
               onClick={() =>
                 handleCopy(
-                  `${link?.data?.phone || '+8801797660947'}`,
+                  `${link?.data?.phone || '+8801787144607'}`,
                   'whatsapp'
                 )
               }
@@ -119,7 +119,7 @@ const ContactLeft: React.FC = () => {
                 Email
               </p>
               <p className="text-default-700 text-xs md:text-sm font-medium">
-                {link?.data?.email || 'rijwanjannat36@gmail.com'}
+                {link?.data?.email || 'shahrukhkhan3418198@gmail.com'}
               </p>
             </div>
             <motion.button
@@ -128,7 +128,7 @@ const ContactLeft: React.FC = () => {
               whileTap={{ scale: 0.9 }}
               onClick={() =>
                 handleCopy(
-                  `${link?.data?.email || 'rijwanjannat36@gmail.com'}`,
+                  `${link?.data?.email || 'shahrukhkhan3418198@gmail.com'}`,
                   'email'
                 )
               }
@@ -175,7 +175,7 @@ const ContactLeft: React.FC = () => {
                 Location
               </p>
               <p className="text-default-700 text-xs md:text-sm font-medium">
-                Shajahanpur Bogura, Bangladesh
+                Bagha, Rajshahi, Bangladesh
               </p>
             </div>
           </div>

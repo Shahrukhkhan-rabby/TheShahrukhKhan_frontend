@@ -109,7 +109,7 @@ export default function Footer() {
           >
             <div>
               <h2 className="text-sm md:text-xl font-bold text-default-800 mb-1">
-                Md Rijwan Jannat
+                Md Shahrukh Khan
               </h2>
               <div className="w-20 h-1 bg-amber-500 mb-4 rounded-full" />
             </div>
@@ -123,17 +123,17 @@ export default function Footer() {
             <div className="space-y-3 pt-2">
               <div className="flex items-center gap-3 text-default-700">
                 <IoLocationOutline className="text-amber-500 text-lg md:text-xl flex-shrink-0" />
-                <span className="text-xs md:text-sm">Bogura, Bangladesh</span>
+                <span className="text-xs md:text-sm">Bagha, Rajshahi, Bangladesh</span>
               </div>
               <div className="flex items-center gap-3 text-default-700">
                 <IoMailOutline className="text-amber-500 text-lg md:text-xl flex-shrink-0" />
                 <span className="text-xs md:text-sm">
-                  rijwanjannat36@gmail.com
+                  shahrukhkhan3418198@gmail.com
                 </span>
               </div>
               <div className="flex items-center gap-3 text-default-700">
                 <IoCallOutline className="text-amber-500 text-lg md:text-xl flex-shrink-0" />
-                <span className="text-xs md:text-sm">+880 1797-660947</span>
+                <span className="text-xs md:text-sm">+880 1787-144607</span>
               </div>
             </div>
           </motion.div>
@@ -217,7 +217,7 @@ export default function Footer() {
         >
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-xs md:text-sm text-default-600 mb-4 md:mb-0">
-              © {currentYear} Md Rijwan Jannat. All rights reserved.
+              © {currentYear} Md Shahrukh Khan. All rights reserved.
             </p>
 
             <div className="flex space-x-6 text-xs md:text-sm text-default-600">

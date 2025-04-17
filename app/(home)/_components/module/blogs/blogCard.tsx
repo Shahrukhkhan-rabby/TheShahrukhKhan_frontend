@@ -13,7 +13,7 @@ export const BlogCard = ({ blog }: BlogCardProps) => {
     <div className="border border-default-200 bg-default-50 rounded-lg p-6 max-w-4xl mx-auto">
       {/* Author information */}
       <div className="flex gap-3 items-center">
-        <Avatar size="md" src={blog.author.image} />
+        <Avatar size="md" src={blog.author.image || "/favicon.ico"} />
         <div className="flex flex-col items-start">
           <h3 className="text-lg font-bold">{blog.author.name}</h3>
           <p className="text-sm text-default-500">

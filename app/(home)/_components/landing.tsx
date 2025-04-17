@@ -60,10 +60,10 @@ const Landing = () => {
           <ImageBox
             imageUrl={
               aboutData?.data?.image ||
-              'https://res.cloudinary.com/dihqveqyc/image/upload/v1733067074/ztghisys2mbrimijeazv.jpg'
+              '/favicon.ico'
             }
             link="#contact"
-            name="Md Rijwan Jannat"
+            name="Md Shahrukh Khan"
             title="Full Stack Developer"
           />
           {/* Content Section */}
@@ -76,7 +76,7 @@ const Landing = () => {
             <div className="text-center lg:text-left">
               <h1 className="text-3xl md:text-5xl font-bold text-default-800">
                 Hello, I&apos;m{' '}
-                <span className="text-[#F5A524]">MD Rijwan Jannat</span>
+                <span className="text-[#F5A524]">Md Shahrukh Khan</span>
               </h1>
 
               <h2 className="text-xl md:text-3xl text-default-700 mt-4">
@@ -94,7 +94,7 @@ const Landing = () => {
                 <AnimatedButton
                   href={
                     link?.data?.resume ||
-                    'https://drive.google.com/file/d/15OqqkOMwSooI_iuQhrb7bCAQLEGug-sN/view?usp=drive_link'
+                    'https://docs.google.com/document/d/1uKpnvMUT0eo0izAj7xkAbr-jC4HpNvRhEpiz4hy1HvE/edit?tab=t.0?usp=drive_link'
                   }
                   target="_blank"
                   text="View Resume"
