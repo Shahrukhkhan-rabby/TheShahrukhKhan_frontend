@@ -85,6 +85,6 @@ export const siteConfig = {
     twitter: 'https://x.com/shahrukh_m607',
     discord: 'https://discord.com/channels/shahrukhkhanrabby',
     resume:
-      'https://drive.google.com/file/d/1YIFQMCuGD8NCdpW4XuSH_01Ft9bPh_2V/view?usp=drive_link',
+      'https://drive.google.com/file/d/1ZGdUHpTNZ0SfT2zKsEwe2dYtjc7S6sDr/view',
   },
 };
