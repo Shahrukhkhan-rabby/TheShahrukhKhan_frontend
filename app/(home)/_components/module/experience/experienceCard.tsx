@@ -11,6 +11,14 @@ interface TExperiencesProps {
 }
 
 const MAX_CHAR = 150;
+const formatMonthYear = (dateString: string | undefined | null) => {
+  if (!dateString) return null;
+
+  const date = new Date(dateString);
+  if (isNaN(date.getTime())) return null;
+
+  return format(date, 'MMM yyyy');
+};
 
 const ClientExperience: React.FC<TExperiencesProps> = ({ experiences }) => {
   const [expanded, setExpanded] = useState<Record<string, boolean>>({});
@@ -24,6 +32,10 @@ const ClientExperience: React.FC<TExperiencesProps> = ({ experiences }) => {
       {experiences.map((exp) => {
         const isExpanded = expanded[exp._id];
         const isLong = exp.description.length > MAX_CHAR;
+
+        const start = formatMonthYear(exp.startDate) || "Unknown";
+        const end = exp.endDate ? formatMonthYear(exp.endDate) : "Present";
+
 
         return (
           <div
@@ -50,10 +62,7 @@ const ClientExperience: React.FC<TExperiencesProps> = ({ experiences }) => {
               </div>
               <div className="flex flex-col items-end gap-1">
                 <span className="text-[8px] md:text-[10px] font-medium bg-white/20 px-3 py-1 rounded-full">
-                  {format(new Date(exp.startDate), 'MMM yyyy')} -{' '}
-                  {exp.endDate
-                    ? format(new Date(exp.endDate), 'MMM yyyy')
-                    : 'Present'}
+                    {start} - {end}
                 </span>
                 <span className="text-[8px] md:text-[10px] italic">
                   {exp.location}

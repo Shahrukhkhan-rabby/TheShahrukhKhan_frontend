@@ -73,15 +73,19 @@ interface BlogCardProps {
 const BlogCard = ({ blog }: BlogCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
 
-  const formatDate = (dateString: string) => {
-    const options: Intl.DateTimeFormatOptions = {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    };
+const formatDate = (dateString: string | undefined | null) => {
+  if (!dateString) return "Unknown date";
 
-    return new Date(dateString).toLocaleDateString('en-US', options);
-  };
+  const date = new Date(dateString);
+  if (isNaN(date.getTime())) return "Invalid date";
+
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+};
+
 
   // Extract and truncate blog title from content
   const getTitle = () => {
